@@ -26,7 +26,7 @@ mkdir_artifact()
     fi
     ART_DIR="$ARTIFACTS_DIR/$1"
 
-    # delete old artifact
+    # delete old artifact dir
     if [ -e "$ART_DIR" ]; then
         rm -rf "$ART_DIR"
     fi
@@ -46,11 +46,11 @@ assemble_blargg()
     git clone https://github.com/retrio/gb-test-roms.git .
     git checkout c240dd7d700e5c0b00a7bbba52b53e4ee67b5f15
 
-    shopts -s globstar
-    cp -R -p **/*.gb "$ARTIFACT"
+    shopt -s globstar
+    cp --parents **/*.gb "$ARTIFACT"
 
-    cd "$SRC_DIR"
-    cp -R -p blargg-expected/** "$ARTIFACT"
+    cd "$SRC_DIR/blargg-expected"
+    cp --parents **/*.* "$ARTIFACT"
 }
 
 
@@ -65,11 +65,10 @@ assemble_gambatte()
     cd test
     ./assemble_tests.sh
 
-    shopts -s globstar
-    cp -R -p **/*.gb "$ARTIFACT"
-    cp -R -p **/*.gbc "$ARTIFACT"
-    cp -R -p **/*.cgb "$ARTIFACT"
-    # TODO copy screenshots
+    shopt -s globstar
+    cp --parents **/*.gb "$ARTIFACT"
+    cp --parents **/*.gbc "$ARTIFACT"
+    cp --parents **/*.png "$ARTIFACT"
 }
 
 
@@ -106,13 +105,14 @@ CMD_BLARGG=blargg
 CMD_GAMBATTE=gambatte
 CMD_MOONEYE_GB=mooneye-gb
 
-# determine the artifact directory based on the path of this script
+# determine repository directories based on the path of this script
 SCRIPT_DIR=`dirname $0`
-ARTIFACTS_DIR=`cd "$SCRIPT_DIR/../artifacts" && pwd -P`
-SRC_DIR=`cd "$SCRIPT_DIR/../src" && pwd -P`
+REPO_DIR=`cd "$SCRIPT_DIR/.." && pwd -P`
+ARTIFACTS_DIR="$REPO_DIR/artifacts"
+SRC_DIR="$REPO_DIR/src"
 
 # check the first parameter
-case ${$1} in
+case ${1} in
     ${CMD_BLARGG}) assemble_blargg ;;
     ${CMD_GAMBATTE}) assemble_gambatte ;;
     ${CMD_MOONEYE_GB}) assemble_mooneye_gb ;;

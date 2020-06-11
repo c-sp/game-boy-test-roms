@@ -1,3 +1,6 @@
 
 # ignore WebStorm workspace
 .idea
+
+# build artifacts
+artifacts
