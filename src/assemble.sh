@@ -39,7 +39,7 @@ mkdir_artifact()
 
 assemble_blargg()
 {
-    REPO=$(mkdir_artifact repo-gb-test-roms)
+    REPO=$(mktemp -d)
     ARTIFACT=$(mkdir_artifact blargg)
 
     cd "$REPO"
@@ -56,7 +56,7 @@ assemble_blargg()
 
 assemble_gambatte()
 {
-    REPO=$(mkdir_artifact repo-gambatte)
+    REPO=$(mktemp -d)
     ARTIFACT=$(mkdir_artifact gambatte)
 
     cd "$REPO"
@@ -75,8 +75,8 @@ assemble_gambatte()
 
 assemble_mooneye_gb()
 {
-    REPO_WLA_DX=$(mkdir_artifact repo-wla-dx)
-    REPO=$(mkdir_artifact repo-mooneye-gb)
+    REPO_WLA_DX=$(mktemp -d)
+    REPO=$(mktemp -d)
     ARTIFACT=$(mkdir_artifact mooneye-gb)
 
     cd "$REPO_WLA_DX"
