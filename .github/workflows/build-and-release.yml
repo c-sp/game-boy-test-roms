@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts/blargg
+          path: artifacts
 
   gambatte-roms:
     name: create Gambatte test rom artifact
@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts/gambatte
+          path: artifacts
 
   mooneye-gb-roms:
     name: create Mooneye GB test rom artifact
@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts/mooneye-gb
+          path: artifacts
 
   upload-release-asset:
     name: upload release asset

@@ -65,6 +65,7 @@ assemble_gambatte()
     cd test
     ./assemble_tests.sh
 
+    cd test/hwtests
     shopt -s globstar
     cp --parents **/*.gb "$ARTIFACT"
     cp --parents **/*.gbc "$ARTIFACT"
@@ -90,8 +91,8 @@ assemble_mooneye_gb()
     git checkout 7cb040d0b7a418bf9063754a448ec72ae1d4c422
     make -C tests clean all
 
-    shopt -s globstar
     cd tests/build
+    shopt -s globstar
     cp --parents **/*.gb "$ARTIFACT"
 }
 
