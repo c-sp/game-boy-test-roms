@@ -83,14 +83,16 @@ assemble_mooneye_gb()
     git checkout d9a3237cc2a15c45e5dfde80b3ee6c6467c70beb
     cmake -G "Unix Makefiles" .
     make
-    # TODO add wla-dx binaries to PATH
+    PATH="$PATH:$REPO_WLA_DX/binaries"
 
     cd "$REPO"
     git clone https://github.com/Gekkio/mooneye-gb.git .
     git checkout 7cb040d0b7a418bf9063754a448ec72ae1d4c422
     make -C tests clean all
 
-    # TODO copy files to $ARTIFACT
+    shopt -s globstar
+    cd tests/build
+    cp --parents **/*.gb "$ARTIFACT"
 }
 
 
