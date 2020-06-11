@@ -65,7 +65,7 @@ assemble_gambatte()
     cd test
     ./assemble_tests.sh
 
-    cd test/hwtests
+    cd hwtests
     shopt -s globstar
     cp --parents **/*.gb "$ARTIFACT"
     cp --parents **/*.gbc "$ARTIFACT"
