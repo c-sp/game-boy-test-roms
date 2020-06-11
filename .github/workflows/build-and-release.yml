@@ -3,7 +3,7 @@ name: build and release
 on: push
 
 env:
-  ROMS_ARTIFACT_NAME: gameboy-test-roms
+  ARTIFACT_NAME: gameboy-test-roms
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
       - name: upload Blargg artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ROMS_ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
           path: artifacts/blargg
 
   gambatte-roms:
@@ -38,7 +38,7 @@ jobs:
       - name: upload Gambatte artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ROMS_ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
           path: artifacts/gambatte
 
   mooneye-gb-roms:
@@ -55,7 +55,7 @@ jobs:
       - name: upload Mooneye GB artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ROMS_ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
           path: artifacts/mooneye-gb
 
   upload-release-asset:
@@ -67,7 +67,7 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v1
         with:
-          name: ROMS_ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
           path: ./
 
       - name: list files
