@@ -3,75 +3,107 @@ name: build and release
 on: push
 
 env:
-  ARTIFACT_NAME: gameboy-test-roms
+  ARTIFACTS_NAME: gameboy-test-roms
+  ARTIFACTS_PATH: artifacts
+  ZIP_ARTIFACT_NAME: gameboy-test-roms.zip
 
 jobs:
+
 
   blargg-roms:
     name: create Blargg test rom artifact
     runs-on: ubuntu-latest
     steps:
-      # checkout
       - name: checkout code
         uses: actions/checkout@v2
-      # build
+
       - name: assemble Blargg test roms
-        run: src/assemble.sh blargg
-      # upload
+        run: src/assemble.sh blargg-roms
+
       - name: upload Blargg artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
 
   gambatte-roms:
     name: create Gambatte test rom artifact
     runs-on: ubuntu-latest
     steps:
-      # checkout
       - name: checkout code
         uses: actions/checkout@v2
-      # build
+
       - name: assemble Gambatte test roms
-        run: src/assemble.sh gambatte
-      # upload
+        run: src/assemble.sh gambatte-roms
+
       - name: upload Gambatte artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
 
   mooneye-gb-roms:
     name: create Mooneye GB test rom artifact
     runs-on: ubuntu-latest
     steps:
-      # checkout
       - name: checkout code
         uses: actions/checkout@v2
-      # build
+
       - name: assemble Mooneye GB test roms
-        run: src/assemble.sh mooneye-gb
-      # upload
+        run: src/assemble.sh mooneye-gb-roms
+
       - name: upload Mooneye GB artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: artifacts
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
 
-  upload-release-asset:
-    name: upload release asset
-    # if: startsWith( github.ref, 'refs/tags/v' )
+
+  create-release-zip:
+    name: create release zip
     runs-on: ubuntu-latest
     needs: [blargg-roms, gambatte-roms, mooneye-gb-roms]
     steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
       - name: download artifacts
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ./
 
-      - name: list files
-        run: ls -lsahR ./
+      - name: zip artifacts
+        run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
+
+      - name: upload zipped artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ZIP_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
+
+
+  upload-release-asset:
+    name: upload release asset
+    runs-on: ubuntu-latest
+    needs: [create-release-zip]
+    if: startsWith( github.ref, 'refs/tags/v' )
+    steps:
+      - name: get release version
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+
+      - name: DEBUG - check release version
+        run: |
+          echo release version is "$RELEASE_VERSION"
+          echo released file is named "gameboy-test-roms-$RELEASE_VERSION.zip"
+
+      - name: download zipped artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.ZIP_ARTIFACT_NAME }}
+          path: ./
 
 #      - name: create release
 #        id: create_release
