@@ -72,7 +72,7 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v1
         with:
-          name: ${{ env.ARTIFACT_NAME }}
+          name: ${{ env.ARTIFACTS_NAME }}
           path: ./
 
       - name: zip artifacts
