@@ -109,7 +109,7 @@ create_release_zip()
     cp README.md "$ARTIFACTS_DIR"
 
     cd "$ARTIFACTS_DIR"
-    zip "$1" *
+    zip -r "$1" .
 }
 
 
