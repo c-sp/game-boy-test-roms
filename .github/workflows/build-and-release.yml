@@ -11,7 +11,7 @@ jobs:
 
 
   blargg-roms:
-    name: create Blargg test rom artifact
+    name: create Blargg suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -28,7 +28,7 @@ jobs:
 
 
   gambatte-roms:
-    name: create Gambatte test rom artifact
+    name: create Gambatte suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -45,7 +45,7 @@ jobs:
 
 
   mooneye-gb-roms:
-    name: create Mooneye GB test rom artifact
+    name: create Mooneye GB suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
