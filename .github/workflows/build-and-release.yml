@@ -3,21 +3,21 @@ name: build and release
 on: push
 
 env:
-  ARTIFACTS_NAME: gameboy-test-roms
+  ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: gameboy-test-roms.zip
 
 jobs:
 
 
-  blargg-roms:
+  blargg-suite:
     name: create Blargg suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2
 
-      - name: assemble Blargg test roms
+      - name: assemble Blargg test suite
         run: src/assemble.sh blargg-roms
 
       - name: upload Blargg artifact
@@ -27,14 +27,14 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
-  gambatte-roms:
-    name: create Gambatte suite
+  gambatte-suite:
+    name: build Gambatte suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2
 
-      - name: assemble Gambatte test roms
+      - name: assemble Gambatte test suite
         run: src/assemble.sh gambatte-roms
 
       - name: upload Gambatte artifact
@@ -44,14 +44,14 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
-  mooneye-gb-roms:
-    name: create Mooneye GB suite
+  mooneye-gb-suite:
+    name: build Mooneye GB suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2
 
-      - name: assemble Mooneye GB test roms
+      - name: assemble Mooneye GB test suite
         run: src/assemble.sh mooneye-gb-roms
 
       - name: upload Mooneye GB artifact
@@ -64,7 +64,7 @@ jobs:
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest
-    needs: [blargg-roms, gambatte-roms, mooneye-gb-roms]
+    needs: [blargg-suite, gambatte-suite, mooneye-gb-suite]
     steps:
       - name: checkout code
         uses: actions/checkout@v2
@@ -85,48 +85,48 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
 
 
-  upload-release-asset:
-    name: upload release asset
+  upload-new-release:
+    name: upload new release
     runs-on: ubuntu-latest
     needs: [create-release-zip]
     if: startsWith( github.ref, 'refs/tags/v' )
     steps:
-      - name: get release version
-        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
-
-      - name: DEBUG - check release version
-        run: |
-          echo release version is "$RELEASE_VERSION"
-          echo released file is named "gameboy-test-roms-$RELEASE_VERSION.zip"
-
       - name: download zipped artifacts
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ./
 
-#      - name: create release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          draft: false
-#          prerelease: false
-#
-#      - name: upload release asset
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          # This pulls from the CREATE RELEASE step above,
-#          # referencing it's ID to get its outputs object,
-#          # which include a `upload_url`.
-#          # See this blog post for more info:
-#          # https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./gameboy-test-roms.zip
-#          asset_name: gameboy-test-roms.zip
-#          asset_content_type: application/zip
+      - name: get release version
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+
+#      - name: DEBUG - check release version
+#        run: |
+#          echo release version is "$RELEASE_VERSION"
+#          echo released file is named "gameboy-test-roms-$RELEASE_VERSION.zip"
+
+      - name: create release ${{ env.RELEASE_VERSION }}
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: Release ${{ env.RELEASE_VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: upload release ${{ env.RELEASE_VERSION }} asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # This pulls from the CREATE RELEASE step above,
+          # referencing it's ID to get its outputs object,
+          # which include a `upload_url`.
+          # See this blog post for more info:
+          # https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.ZIP_ARTIFACT_NAME }}
+          asset_name: gameboy-test-roms-${{ env.RELEASE_VERSION }}.zip
+          asset_content_type: application/zip
