@@ -2,8 +2,7 @@
 
 Have a Gameboy emulator you want to test for accuracy?
 This collection of
-[compiled Gameboy test suites]()
-**TODO add link to releases once they are "CI'd"**
+[compiled Gameboy test suites](releases)
 might help.
 It includes:
 
