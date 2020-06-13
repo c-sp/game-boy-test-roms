@@ -84,7 +84,7 @@ assemble_mooneye_gb()
     git clone https://github.com/vhelin/wla-dx.git .
     git checkout de9a0fcdd093964696d873619a9a48102affa47e
     cmake -G "Unix Makefiles" .
-    make
+    make wla-gb wlalink
     PATH="$REPO_WLA_DX/binaries:$PATH"
 
     cd "$REPO"
