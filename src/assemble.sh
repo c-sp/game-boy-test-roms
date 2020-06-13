@@ -82,7 +82,7 @@ assemble_mooneye_gb()
 
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
-    git checkout d9a3237cc2a15c45e5dfde80b3ee6c6467c70beb
+    git checkout b4ebbc32601e7462a84728c93954573f245e94f2
     cmake -G "Unix Makefiles" .
     make
     PATH="$PATH:$REPO_WLA_DX/binaries"

@@ -2,6 +2,12 @@
 # master
 
 - compile Mooneye GB test roms with
+  [wla-dx:b4ebbc3260](https://github.com/vhelin/wla-dx/tree/b4ebbc3260)
+  *(2020-06-08)*
+
+# v1.0
+
+- compile Mooneye GB test roms with
   [wla-dx:d9a3237cc2](https://github.com/vhelin/wla-dx/tree/d9a3237cc2)
   *(2019-05-30)*
 - use
