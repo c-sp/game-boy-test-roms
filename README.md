@@ -122,12 +122,3 @@ Fibonacci sequence part:
     H = 21
     L = 34
 ```
-
-
-
-# Reproducible releases
-
-For reproducible `gameboy-test-roms` releases we use a specific immutable
-version of any resource.
-For git repositories that means cloning a specific commit instead of e.g. the
-`master`.
