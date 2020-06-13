@@ -1,9 +1,14 @@
 
 # master
 
+- use
+  [mooneye-gb:6b9488fa3e](https://github.com/Gekkio/mooneye-gb/tree/6b9488fa3e)
+  *(2020-04-18)*
 - compile Mooneye GB test roms with
-  [wla-dx:b4ebbc3260](https://github.com/vhelin/wla-dx/tree/b4ebbc3260)
-  *(2020-06-08)*
+  [wla-dx:de9a0fcdd0](https://github.com/vhelin/wla-dx/tree/de9a0fcdd0)
+  *(2020-01-03)* as this is the commit ID used by the
+  [mooneye-gb:6b9488fa3e](https://github.com/Gekkio/mooneye-gb/tree/6b9488fa3e)
+  `build_test_roms` job
 
 # v1.0
 
