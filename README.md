@@ -2,7 +2,7 @@
 
 Have a Gameboy emulator you want to test for accuracy?
 This collection of
-[compiled Gameboy test suites](releases)
+[compiled Gameboy test suites](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
 It includes:
 
