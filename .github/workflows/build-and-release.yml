@@ -85,6 +85,12 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
 
 
+  # Releases are created automatically for each pushed tag.
+  # Creating a new tag without any additional release information is
+  # (as of 2020-06-13) not possible using the github.com website.
+  # Instead create a new tag via CLI:
+  #     git tag -a v1.0 -m "release v1.0"
+  #     git push origin --tags
   upload-new-release:
     name: upload new release
     runs-on: ubuntu-latest
@@ -100,11 +106,6 @@ jobs:
       - name: get release version
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
 
-#      - name: DEBUG - check release version
-#        run: |
-#          echo release version is "$RELEASE_VERSION"
-#          echo released file is named "gameboy-test-roms-$RELEASE_VERSION.zip"
-
       - name: create release ${{ env.RELEASE_VERSION }}
         id: create_release
         uses: actions/create-release@v1
@@ -112,7 +113,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Release ${{ env.RELEASE_VERSION }}
+          release_name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
 
