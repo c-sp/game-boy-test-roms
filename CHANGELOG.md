@@ -9,6 +9,9 @@
   *(2020-01-03)* as this is the commit ID used by the
   [mooneye-gb:6b9488fa3e](https://github.com/Gekkio/mooneye-gb/tree/6b9488fa3e)
   `build_test_roms` job
+- use
+  [gambatte:56e3371151](https://github.com/sinamas/gambatte/tree/56e3371151)
+  *(2020-03-08)*
 
 # v1.0
 

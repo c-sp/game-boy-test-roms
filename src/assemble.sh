@@ -62,7 +62,7 @@ assemble_gambatte()
 
     cd "$REPO"
     git clone https://github.com/sinamas/gambatte.git .
-    git checkout f93c5be1a47e8c355e7d87938c00f03224340279
+    git checkout 56e3371151b5ee86dcdcf4868324ebc6de220bc9
     cd test
     ./assemble_tests.sh
 
