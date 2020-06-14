@@ -141,7 +141,7 @@ create_release_zip()
     fi
 
     mkdir -p "$ARTIFACTS_DIR"
-    cp README.md "$ARTIFACTS_DIR"
+    cp README.md CHANGELOG.md "$ARTIFACTS_DIR"
 
     # remove old zip file
     cd "$ARTIFACTS_DIR"
