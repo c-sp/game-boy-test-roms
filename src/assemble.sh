@@ -145,7 +145,7 @@ create_release_zip()
 
     # remove old zip file
     cd "$ARTIFACTS_DIR"
-    rm "$ZIP_FILE"
+    rm -rf "$ZIP_FILE"
 
     # create new zip file
     untar_all_artifacts
