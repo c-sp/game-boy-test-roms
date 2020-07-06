@@ -86,6 +86,12 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v2
 
+      - name: download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
       - name: build dmg-acid2 test rom
         run: src/assemble.sh dmg-acid2
 
