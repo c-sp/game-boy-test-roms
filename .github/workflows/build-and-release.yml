@@ -61,6 +61,23 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
+  rgbds:
+    name: build RGBDS
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: build RGBDS
+        run: src/assemble.sh rgbds
+
+      - name: upload RGBDS artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest

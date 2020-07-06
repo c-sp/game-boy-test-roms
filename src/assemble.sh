@@ -14,6 +14,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_BLARGG"
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_MOONEYE_GB"
+    echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     exit 1
 }
@@ -133,6 +134,24 @@ assemble_mooneye_gb()
 
 
 
+build_rgbds()
+{
+    ARTIFACT_NAME=rgbds
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_RGBDS=$(mktemp -d)
+    cd "$REPO_RGBDS"
+    git clone https://github.com/rednex/rgbds.git .
+    git checkout 8b60efa1495128301a407e93bd7c4ac0eb0b0f1e
+    make
+
+    cp rgbasm rgbfix rgbgfx rgblink "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 create_release_zip()
 {
     ZIP_FILE=$1
@@ -163,6 +182,7 @@ create_release_zip()
 CMD_BLARGG=blargg-roms
 CMD_GAMBATTE=gambatte-roms
 CMD_MOONEYE_GB=mooneye-gb-roms
+CMD_RGBDS=rgbds
 CMD_RELEASE_ZIP=release-zip
 
 # identify repository directories based on the path of this script
@@ -181,6 +201,7 @@ case ${CMD} in
     ${CMD_BLARGG}) assemble_blargg $@ ;;
     ${CMD_GAMBATTE}) assemble_gambatte $@ ;;
     ${CMD_MOONEYE_GB}) assemble_mooneye_gb $@ ;;
+    ${CMD_RGBDS}) build_rgbds $@ ;;
     ${CMD_RELEASE_ZIP}) create_release_zip $@ ;;
 
     *) print_usage_and_exit ;;

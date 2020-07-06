@@ -1,7 +1,11 @@
 
-# master
+## master
 
-# v1.1
+- build [RGBDS:8b60efa149](https://github.com/rednex/rgbds/tree/8b60efa149)
+  *(2020-06-27)*
+
+
+## [v1.1](https://github.com/c-sp/gameboy-test-roms/releases/tag/v1.1) *(2020-06-14)*
 
 - use
   [mooneye-gb:6b9488fa3e](https://github.com/Gekkio/mooneye-gb/tree/6b9488fa3e)
@@ -15,7 +19,8 @@
   [gambatte:56e3371151](https://github.com/sinamas/gambatte/tree/56e3371151)
   *(2020-03-08)*
 
-# v1.0
+
+## [v1.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v1.0) *(2020-06-13)*
 
 - compile Mooneye GB test roms with
   [wla-dx:d9a3237cc2](https://github.com/vhelin/wla-dx/tree/d9a3237cc2)
