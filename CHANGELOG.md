@@ -1,8 +1,10 @@
 
 ## master
 
-- build [RGBDS:8b60efa149](https://github.com/rednex/rgbds/tree/8b60efa149)
+- use [RGBDS:8b60efa149](https://github.com/rednex/rgbds/tree/8b60efa149)
   *(2020-06-27)*
+- use [dmg-acid2:8a98ce731f](https://github.com/mattcurrie/dmg-acid2/tree/8a98ce731f)
+  *(2020-04-21)*
 
 
 ## [v1.1](https://github.com/c-sp/gameboy-test-roms/releases/tag/v1.1) *(2020-06-14)*
