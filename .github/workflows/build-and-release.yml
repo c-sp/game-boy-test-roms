@@ -6,6 +6,7 @@ env:
   ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: gameboy-test-roms.zip
+  RGBDS_ARTIFACT_NAME: rgbds
 
 jobs:
 
@@ -74,7 +75,7 @@ jobs:
       - name: upload RGBDS artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -89,7 +90,7 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v1
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
       - name: build dmg-acid2 test rom
