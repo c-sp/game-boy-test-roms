@@ -16,6 +16,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_MOONEYE_GB"
     echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_DMG_ACID2"
+    echo "    $0 $CMD_CGB_ACID2"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     exit 1
 }
@@ -176,6 +177,29 @@ build_dmg_acid2()
 
 
 
+build_cgb_acid2()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=cgb-acid2
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_CGB_ACID2=$(mktemp -d)
+    cd "$REPO_CGB_ACID2"
+    git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid2 .
+    git checkout 76c4e2c42de62141dacc829232eb9e2531a79538
+    make
+
+    cp build/cgb-acid2.gbc "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 create_release_zip()
 {
     ZIP_FILE=$1
@@ -209,6 +233,7 @@ CMD_GAMBATTE=gambatte-roms
 CMD_MOONEYE_GB=mooneye-gb-roms
 CMD_RGBDS=rgbds
 CMD_DMG_ACID2=dmg-acid2
+CMD_CGB_ACID2=cgb-acid2
 CMD_RELEASE_ZIP=release-zip
 
 # identify repository directories based on the path of this script
@@ -229,6 +254,7 @@ case ${CMD} in
     ${CMD_MOONEYE_GB}) assemble_mooneye_gb $@ ;;
     ${CMD_RGBDS}) build_rgbds $@ ;;
     ${CMD_DMG_ACID2}) build_dmg_acid2 $@ ;;
+    ${CMD_CGB_ACID2}) build_cgb_acid2 $@ ;;
     ${CMD_RELEASE_ZIP}) create_release_zip $@ ;;
 
     *) print_usage_and_exit ;;
