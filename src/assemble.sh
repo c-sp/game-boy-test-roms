@@ -171,6 +171,8 @@ build_dmg_acid2()
     make
 
     cp build/dmg-acid2.gb "$ARTIFACT"
+    cp img/reference-cgb.png "$ARTIFACT"
+    cp img/reference-dmg.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -194,6 +196,7 @@ build_cgb_acid2()
     make
 
     cp build/cgb-acid2.gbc "$ARTIFACT"
+    cp img/reference.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
