@@ -210,6 +210,10 @@ build_cgb_acid2()
 
 build_mealybug_tearoom_tests()
 {
+    echo "+ which rename"
+    which rename
+    echo "- which rename"
+
     # extract RGBDS artifacts
     cd "$ARTIFACTS_DIR"
     untar_all_artifacts
