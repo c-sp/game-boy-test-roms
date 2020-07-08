@@ -12,12 +12,13 @@ print_usage_and_exit()
 {
     echo "usages:"
     echo "    $0 $CMD_BLARGG"
-    echo "    $0 $CMD_GAMBATTE"
-    echo "    $0 $CMD_MOONEYE_GB"
-    echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_DMG_ACID2"
     echo "    $0 $CMD_CGB_ACID2"
+    echo "    $0 $CMD_GAMBATTE"
+    echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
+    echo "    $0 $CMD_MOONEYE_GB"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
+    echo "    $0 $CMD_RGBDS"
     exit 1
 }
 
@@ -59,7 +60,11 @@ tar_rm_artifact()
 untar_all_artifacts()
 {
     # untar and remove all tar files in the current directory
-    for f in *.tar*; do tar -xvf "$f" && rm "$f"; done
+    for f in *.tar*; do
+        if [ -f "$f" ]; then
+            tar -xvf "$f" && rm "$f"
+        fi
+    done
 }
 
 
@@ -203,6 +208,38 @@ build_cgb_acid2()
 
 
 
+build_mealybug_tearoom_tests()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=mealybug-tearoom-tests
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_MEALYBUG_TEAROOM_TESTS=$(mktemp -d)
+    cd "$REPO_MEALYBUG_TEAROOM_TESTS"
+    git clone https://github.com/mattcurrie/mealybug-tearoom-tests.git .
+    git checkout 844b92ea59986cfb8a9bb66a94dd8c771aa113de
+    make
+
+    rename ".png" "_cgb_c.png" expected/CPU\ CGB\ C/*.png
+    rename ".png" "_cgb_d.png" expected/CPU\ CGB\ D/*.png
+    rename ".png" "_dmg_b.png" expected/DMG-CPU\ B/*.png
+    rename ".png" "_dmg_blob.png" expected/DMG-blob/*.png
+
+    cp build/*.gb "$ARTIFACT"
+    cp expected/CPU\ CGB\ C/*.png "$ARTIFACT"
+    cp expected/CPU\ CGB\ D/*.png "$ARTIFACT"
+    cp expected/DMG-CPU\ B/*.png "$ARTIFACT"
+    cp expected/DMG-blob/*.png "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 create_release_zip()
 {
     ZIP_FILE=$1
@@ -237,6 +274,7 @@ CMD_MOONEYE_GB=mooneye-gb-roms
 CMD_RGBDS=rgbds
 CMD_DMG_ACID2=dmg-acid2
 CMD_CGB_ACID2=cgb-acid2
+CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_RELEASE_ZIP=release-zip
 
 # identify repository directories based on the path of this script
@@ -258,6 +296,7 @@ case ${CMD} in
     ${CMD_RGBDS}) build_rgbds $@ ;;
     ${CMD_DMG_ACID2}) build_dmg_acid2 $@ ;;
     ${CMD_CGB_ACID2}) build_cgb_acid2 $@ ;;
+    ${CMD_MEALYBUG_TEAROOM_TESTS}) build_mealybug_tearoom_tests $@ ;;
     ${CMD_RELEASE_ZIP}) create_release_zip $@ ;;
 
     *) print_usage_and_exit ;;

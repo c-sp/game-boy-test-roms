@@ -5,7 +5,9 @@
   *(2020-04-21)*
 - use [cgb-acid2:76c4e2c42d](https://github.com/mattcurrie/cgb-acid2/tree/76c4e2c42d)
   *(2020-04-21)*
-- compile dmg-acid2 and cgb-acid2 test roms with
+- use [mealybug-tearoom-tests:844b92ea59](https://github.com/mattcurrie/mealybug-tearoom-tests/tree/844b92ea59)
+  *(2019-10-24)*
+- compile dmg-acid2, cgb-acid2 and mealybug-tearoom-tests with
   [RGBDS:8b60efa149](https://github.com/rednex/rgbds/tree/8b60efa149)
   *(2020-06-27)*
 

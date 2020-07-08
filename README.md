@@ -2,19 +2,28 @@
 
 Have a Gameboy emulator you want to test for accuracy?
 This collection of
-[compiled Gameboy test suites](https://github.com/c-sp/gameboy-test-roms/releases)
+[compiled Gameboy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
 It includes:
 
-* [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
-  test suite written by
-  [Joonas Javanainen](https://github.com/Gekkio)
+* [cgb-acid2](https://github.com/mattcurrie/cgb-acid2)
+  test rom written by
+  [Matt Currie](https://github.com/mattcurrie)
+* [dmg-acid2](https://github.com/mattcurrie/dmg-acid2)
+  test rom written by
+  [Matt Currie](https://github.com/mattcurrie)
 * [Gambatte](https://github.com/sinamas/gambatte)
   test suite written by
   [sinamas](https://github.com/sinamas)
-* [Gameboy test suite](https://github.com/retrio/gb-test-roms)
+* [Gameboy hardware test ROMs](https://github.com/retrio/gb-test-roms)
   written by
-  [Blargg](http://blargg.8bitalley.com/)
+  [Blargg](http://blargg.8bitalley.com)
+* [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+  written by
+  [Matt Currie](https://github.com/mattcurrie)
+* [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
+  test suite written by
+  [Joonas Javanainen](https://github.com/Gekkio)
 
 
 
@@ -42,8 +51,8 @@ The time required for a test to finish varies:
 
 | test | emulated seconds |
 |---|---|
-| `cgb_cpu_instrs` | 30 |
-| `dmg_cpu_instrs` | 54 |
+| `cgb_cpu_instrs` | 31 |
+| `dmg_cpu_instrs` | 55 |
 | `cgb_instr_timing` | 1 |
 | `dmg_instr_timing` | 1 |
 | `cgb_mem_timing` | 4 |
