@@ -6,6 +6,9 @@ This collection of
 might help.
 It includes:
 
+* [Blargg's test roms](https://github.com/retrio/gb-test-roms)
+  written by
+  [Blargg](http://blargg.8bitalley.com)
 * [cgb-acid2](https://github.com/mattcurrie/cgb-acid2)
   test rom written by
   [Matt Currie](https://github.com/mattcurrie)
@@ -15,9 +18,6 @@ It includes:
 * [Gambatte](https://github.com/sinamas/gambatte)
   test suite written by
   [sinamas](https://github.com/sinamas)
-* [Gameboy hardware test ROMs](https://github.com/retrio/gb-test-roms)
-  written by
-  [Blargg](http://blargg.8bitalley.com)
 * [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
   written by
   [Matt Currie](https://github.com/mattcurrie)
@@ -65,6 +65,25 @@ The time required for a test to finish varies:
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
 
+
+
+## cgb-acid2, dmg-acid2, Mealybug Tearoom Tests
+
+[cgb-acid2](https://github.com/mattcurrie/cgb-acid2),
+[dmg-acid2](https://github.com/mattcurrie/dmg-acid2) and the
+[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+are located at `cgb-acid2/`, `dmg-acid2/` and `mealybug-tearoom-tests/`
+respectively.
+They are compiled with [RGBDS](https://github.com/rednex/rgbds).
+
+### Exit Condition
+
+Each of these test roms executes opcode `0x40: LD B, B` when finished.
+
+### Test Success
+
+For each test rom there is a screenshot of the expected result.
+Some tests come with multiple screenshots to cover different Gameboy hardware. 
 
 
 ## Gambatte test suite
