@@ -224,10 +224,22 @@ build_mealybug_tearoom_tests()
     git checkout 844b92ea59986cfb8a9bb66a94dd8c771aa113de
     make
 
-    rename ".png" "_cgb_c.png" expected/CPU\ CGB\ C/*.png
-    rename ".png" "_cgb_d.png" expected/CPU\ CGB\ D/*.png
-    rename ".png" "_dmg_b.png" expected/DMG-CPU\ B/*.png
-    rename ".png" "_dmg_blob.png" expected/DMG-blob/*.png
+    # Ubuntu (GitHub runner) symlinks "rename" to the Perl script "prename".
+    # Fedora comes with the regular "rename".
+    # As these two are not compatible and I thus would not be able
+    # to test this script on my machine, we do this the hard way ...
+    for f in expected/CPU\ CGB\ C/*.png; do
+        mv -- "$f" "${f%.png}_cgb_c.png"
+    done
+    for f in expected/CPU\ CGB\ D/*.png; do
+        mv -- "$f" "${f%.png}_cgb_d.png"
+    done
+    for f in expected/DMG-CPU\ B/*.png; do
+        mv -- "$f" "${f%.png}_dmg_b.png"
+    done
+    for f in expected/DMG-blob/*.png; do
+        mv -- "$f" "${f%.png}_dmg_blob.png"
+    done
 
     cp build/*.gb "$ARTIFACT"
     cp expected/CPU\ CGB\ C/*.png "$ARTIFACT"
