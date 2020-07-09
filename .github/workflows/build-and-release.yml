@@ -6,6 +6,7 @@ env:
   ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: gameboy-test-roms.zip
+  RGBDS_ARTIFACT_NAME: rgbds
 
 jobs:
 
@@ -61,10 +62,104 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
+  rgbds:
+    name: build RGBDS
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: build RGBDS
+        run: src/assemble.sh rgbds
+
+      - name: upload RGBDS artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  dmg-acid2:
+    name: build dmg-acid2 test rom
+    runs-on: ubuntu-latest
+    needs: [rgbds]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: build dmg-acid2 test rom
+        run: src/assemble.sh dmg-acid2
+
+      - name: upload dmg-acid2 artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  cgb-acid2:
+    name: build cgb-acid2 test rom
+    runs-on: ubuntu-latest
+    needs: [rgbds]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: build cgb-acid2 test rom
+        run: src/assemble.sh cgb-acid2
+
+      - name: upload cgb-acid2 artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  mealybug-tearoom-tests:
+    name: build mealybug-tearoom-tests
+    runs-on: ubuntu-latest
+    needs: [rgbds]
+    steps:
+      - name: install "rename"
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y rename
+
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: build mealybug-tearoom-tests
+        run: src/assemble.sh mealybug-tearoom-tests
+
+      - name: upload mealybug-tearoom-tests artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest
-    needs: [blargg-suite, gambatte-suite, mooneye-gb-suite]
+    needs: [blargg-suite, gambatte-suite, mooneye-gb-suite, dmg-acid2, cgb-acid2, mealybug-tearoom-tests]
     steps:
       - name: checkout code
         uses: actions/checkout@v2

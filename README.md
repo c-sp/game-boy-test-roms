@@ -2,19 +2,28 @@
 
 Have a Gameboy emulator you want to test for accuracy?
 This collection of
-[compiled Gameboy test suites](https://github.com/c-sp/gameboy-test-roms/releases)
+[compiled Gameboy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
 It includes:
 
-* [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
-  test suite written by
-  [Joonas Javanainen](https://github.com/Gekkio)
+* [Blargg's test roms](https://github.com/retrio/gb-test-roms)
+  written by
+  [Blargg](http://blargg.8bitalley.com)
+* [cgb-acid2](https://github.com/mattcurrie/cgb-acid2)
+  test rom written by
+  [Matt Currie](https://github.com/mattcurrie)
+* [dmg-acid2](https://github.com/mattcurrie/dmg-acid2)
+  test rom written by
+  [Matt Currie](https://github.com/mattcurrie)
 * [Gambatte](https://github.com/sinamas/gambatte)
   test suite written by
   [sinamas](https://github.com/sinamas)
-* [Gameboy test suite](https://github.com/retrio/gb-test-roms)
+* [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
   written by
-  [Blargg](http://blargg.8bitalley.com/)
+  [Matt Currie](https://github.com/mattcurrie)
+* [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
+  test suite written by
+  [Joonas Javanainen](https://github.com/Gekkio)
 
 
 
@@ -42,8 +51,8 @@ The time required for a test to finish varies:
 
 | test | emulated seconds |
 |---|---|
-| `cgb_cpu_instrs` | 30 |
-| `dmg_cpu_instrs` | 54 |
+| `cgb_cpu_instrs` | 31 |
+| `dmg_cpu_instrs` | 55 |
 | `cgb_instr_timing` | 1 |
 | `dmg_instr_timing` | 1 |
 | `cgb_mem_timing` | 4 |
@@ -56,6 +65,25 @@ The time required for a test to finish varies:
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
 
+
+
+## cgb-acid2, dmg-acid2, Mealybug Tearoom Tests
+
+[cgb-acid2](https://github.com/mattcurrie/cgb-acid2),
+[dmg-acid2](https://github.com/mattcurrie/dmg-acid2) and the
+[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+are located at `cgb-acid2/`, `dmg-acid2/` and `mealybug-tearoom-tests/`
+respectively.
+They are compiled with [RGBDS](https://github.com/rednex/rgbds).
+
+### Exit Condition
+
+Each of these test roms executes opcode `0x40: LD B, B` when finished.
+
+### Test Success
+
+For each test rom there is a screenshot of the expected result.
+Some tests come with multiple screenshots to cover different Gameboy hardware. 
 
 
 ## Gambatte test suite
