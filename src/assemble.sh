@@ -1,4 +1,12 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
+#
+# portable shebang:
+# https://www.cyberciti.biz/tips/finding-bash-perl-python-portably-using-env.html
+#
+# bash on macos:
+# https://itnext.io/upgrading-bash-on-macos-7138bd1066ba
+#
 
 
 
@@ -24,7 +32,7 @@ print_usage_and_exit()
 
 mkdir_artifact()
 {
-    if ! [ -n "$1" ]; then
+    if [ -z "$1" ]; then
         echo "artifact name not specified"
         exit 1
     fi
@@ -42,7 +50,7 @@ mkdir_artifact()
 tar_rm_artifact()
 {
     ARTIFACT_NAME=$1
-    if ! [ -n "$ARTIFACT_NAME" ]; then
+    if [ -z "$ARTIFACT_NAME" ]; then
         echo "artifact name not specified"
         exit 1
     fi
@@ -79,11 +87,10 @@ assemble_blargg()
     git clone https://github.com/retrio/gb-test-roms.git .
     git checkout c240dd7d700e5c0b00a7bbba52b53e4ee67b5f15
 
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     cd "$SRC_DIR/blargg-expected"
-    cp --parents **/*.* "$ARTIFACT"
+    rsync -am ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -103,10 +110,9 @@ assemble_gambatte()
     ./assemble_tests.sh
 
     cd hwtests
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
-    cp --parents **/*.gbc "$ARTIFACT"
-    cp --parents **/*.png "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='*.gbc' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -133,8 +139,7 @@ assemble_mooneye_gb()
     make -C tests clean all
 
     cd tests/build
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -146,6 +151,8 @@ build_rgbds()
     ARTIFACT_NAME=rgbds
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
+    # build rgbds from source:
+    # https://rgbds.gbdev.io/install/source
     REPO_RGBDS=$(mktemp -d)
     cd "$REPO_RGBDS"
     git clone https://github.com/rednex/rgbds.git .
@@ -255,7 +262,7 @@ build_mealybug_tearoom_tests()
 create_release_zip()
 {
     ZIP_FILE=$1
-    if ! [ -n "$ZIP_FILE" ]; then
+    if [ -z "$ZIP_FILE" ]; then
         print_usage_and_exit
     fi
 
@@ -290,8 +297,8 @@ CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_RELEASE_ZIP=release-zip
 
 # identify repository directories based on the path of this script
-SCRIPT_DIR=`dirname $0`
-REPO_DIR=`cd "$SCRIPT_DIR/.." && pwd -P`
+SCRIPT_DIR=$(dirname "$0")
+REPO_DIR=$(cd "$SCRIPT_DIR/.." && pwd -P)
 ARTIFACTS_DIR="$REPO_DIR/artifacts"
 SRC_DIR="$REPO_DIR/src"
 
@@ -302,14 +309,14 @@ if [ -n "$CMD" ]; then
 fi
 
 case ${CMD} in
-    ${CMD_BLARGG}) assemble_blargg $@ ;;
-    ${CMD_GAMBATTE}) assemble_gambatte $@ ;;
-    ${CMD_MOONEYE_GB}) assemble_mooneye_gb $@ ;;
-    ${CMD_RGBDS}) build_rgbds $@ ;;
-    ${CMD_DMG_ACID2}) build_dmg_acid2 $@ ;;
-    ${CMD_CGB_ACID2}) build_cgb_acid2 $@ ;;
-    ${CMD_MEALYBUG_TEAROOM_TESTS}) build_mealybug_tearoom_tests $@ ;;
-    ${CMD_RELEASE_ZIP}) create_release_zip $@ ;;
+    "${CMD_BLARGG}") assemble_blargg "$@" ;;
+    "${CMD_GAMBATTE}") assemble_gambatte "$@" ;;
+    "${CMD_MOONEYE_GB}") assemble_mooneye_gb "$@" ;;
+    "${CMD_RGBDS}") build_rgbds "$@" ;;
+    "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
+    "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
+    "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
+    "${CMD_RELEASE_ZIP}") create_release_zip "$@" ;;
 
     *) print_usage_and_exit ;;
 esac
