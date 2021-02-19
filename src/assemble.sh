@@ -309,14 +309,14 @@ if [ -n "$CMD" ]; then
 fi
 
 case ${CMD} in
-    "${CMD_BLARGG}") assemble_blargg $@ ;;
-    "${CMD_GAMBATTE}") assemble_gambatte $@ ;;
-    "${CMD_MOONEYE_GB}") assemble_mooneye_gb $@ ;;
-    "${CMD_RGBDS}") build_rgbds $@ ;;
-    "${CMD_DMG_ACID2}") build_dmg_acid2 $@ ;;
-    "${CMD_CGB_ACID2}") build_cgb_acid2 $@ ;;
-    "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests $@ ;;
-    "${CMD_RELEASE_ZIP}") create_release_zip $@ ;;
+    "${CMD_BLARGG}") assemble_blargg "$@" ;;
+    "${CMD_GAMBATTE}") assemble_gambatte "$@" ;;
+    "${CMD_MOONEYE_GB}") assemble_mooneye_gb "$@" ;;
+    "${CMD_RGBDS}") build_rgbds "$@" ;;
+    "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
+    "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
+    "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
+    "${CMD_RELEASE_ZIP}") create_release_zip "$@" ;;
 
     *) print_usage_and_exit ;;
 esac
