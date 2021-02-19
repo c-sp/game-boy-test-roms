@@ -145,7 +145,7 @@ see [mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tes
 
 ### Test Success
 
-A test has succeeded if the Gameboy'S CPU registers contain the following
+A test has succeeded if the Gameboy's CPU registers contain the following
 Fibonacci sequence part:
 ```
     B = 3
