@@ -87,11 +87,10 @@ assemble_blargg()
     git clone https://github.com/retrio/gb-test-roms.git .
     git checkout c240dd7d700e5c0b00a7bbba52b53e4ee67b5f15
 
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     cd "$SRC_DIR/blargg-expected"
-    cp --parents **/*.* "$ARTIFACT"
+    rsync -am ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -111,10 +110,9 @@ assemble_gambatte()
     ./assemble_tests.sh
 
     cd hwtests
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
-    cp --parents **/*.gbc "$ARTIFACT"
-    cp --parents **/*.png "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='*.gbc' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -141,8 +139,7 @@ assemble_mooneye_gb()
     make -C tests clean all
 
     cd tests/build
-    shopt -s globstar
-    cp --parents **/*.gb "$ARTIFACT"
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
