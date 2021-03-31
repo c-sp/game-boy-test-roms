@@ -33,13 +33,12 @@ It includes:
 
 # Running test suites
 
-Every test rom may work and behave differently.
-We have to examine two important aspects to make use of a test rom:
+For each test rom we have to consider:
 
-* *Exit Condition:*
-  How long does the emulation have to run until a test finishes?
-* *Test Success:*
-  How do we identify test success and failure for a finished test?
+* **Exit Condition:**
+  When has a test finished?
+* **Test Success/Failure:**
+  How do we identify test success and failure?
 
 
 
@@ -48,24 +47,29 @@ We have to examine two important aspects to make use of a test rom:
 [Blargg's test roms](https://github.com/retrio/gb-test-roms)
 are located at `blargg/` inside the released zip file.
 
-### Exit Condition
-
-Each test has to run for a specific amount of (emulated) time.
-The time required for a test to finish varies:
+**Exit Condition:**
+Each test has to run for a specific amount of (emulated) time:
 
 | test | emulated seconds |
 |---|---|
-| `cgb_cpu_instrs` | 31 |
-| `dmg_cpu_instrs` | 55 |
-| `cgb_instr_timing` | 1 |
-| `dmg_instr_timing` | 1 |
-| `cgb_mem_timing` | 4 |
-| `dmg_mem_timing` | 4 |
-| `cgb_sound` | 37 |
-| `dmg_sound` | 36 |
+| `cgb_sound` (CGB) | 37 |
+| `cpu_instrs` (CGB) | 31 |
+| `cpu_instrs` (DMG) | 55 |
+| `dmg_sound` (DMG) | 36 |
+| `instr_timing` (CGB) | 1 |
+| `instr_timing` (DMG) | 1 |
+| `interrupt_time` (CGB) | *todo* |
+| `interrupt_time` (DMG) | *todo* |
+| `mem_timing` (CGB) | *todo* |
+| `mem_timing` (DMG) | *todo* |
+| `mem_timing-2` (CGB) | 4 |
+| `mem_timing-2` (DMG) | 4 |
+| `oam_bug` (CGB) | *todo* |
+| `oam_bug` (DMG) | *todo* |
+| `halt_bug` (CGB) | *todo* |
+| `halt_bug` (DMG) | *todo* |
 
-### Test Success
-
+**Test Success:**
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
 
@@ -80,12 +84,10 @@ are located at `cgb-acid2/`, `dmg-acid2/` and `mealybug-tearoom-tests/`
 respectively.
 They are compiled with [RGBDS](https://github.com/rednex/rgbds).
 
-### Exit Condition
-
+**Exit Condition:**
 Each of these test roms executes opcode `0x40: LD B, B` when finished.
 
-### Test Success
-
+**Test Success:**
 For each test rom there is a screenshot of the expected result.
 Some tests come with multiple screenshots to cover different Gameboy hardware. 
 
@@ -96,15 +98,12 @@ Some tests come with multiple screenshots to cover different Gameboy hardware.
 [Gambatte](https://github.com/sinamas/gambatte)
 test roms are located at `gambatte/` inside the released zip file.
 
-### Exit Condition
-
+**Exit Condition:**
 All Gambatte test roms finish after 15 Gameboy LCD frames (see
-[testrunner.cpp: runTestRom()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp)
-).
+[testrunner.cpp: runTestRom()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp)).
 That equals 1053360 Gameboy clock cycles or ~252 emulated milliseconds.
 
-### Test Success
-
+**Test Success:**
 There are different types of Gambatte test roms:
 
 * Audio tests are identified by their file name containing `_outaudio0` or
@@ -134,19 +133,14 @@ expected test result.
 test roms are located at `mooneye-gb/` inside the released zip file.
 They are compiled with [WLA DX](https://github.com/vhelin/wla-dx).
 
-Be aware that some Mooneye GB tests are written for specific Gameboy hardware.
-They might fail depending on what hardware your emulator supports.
-
-### Exit Condition
-
+**Exit Condition:**
 Each Mooneye GB test rom executes opcode `0x40: LD B, B` when finished.
-The maximal duration for a test is 120 seconds (emulated time),
-see [mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tests/mooneye_suite.rs).
+The maximal runtime for a test is 120 emulated seconds (see
+[mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tests/mooneye_suite.rs)).
 
-### Test Success
-
+**Test Success:**
 A test has succeeded if the Gameboy's CPU registers contain the following
-Fibonacci sequence part:
+Fibonacci values:
 ```
     B = 3
     C = 5
@@ -155,3 +149,5 @@ Fibonacci sequence part:
     H = 21
     L = 34
 ```
+Note that some Mooneye GB tests are written for specific Gameboy hardware.
+They might fail depending on what hardware your emulator supports.
