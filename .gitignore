@@ -4,3 +4,6 @@
 
 # build artifacts
 artifacts
+
+# misc
+.DS_Store

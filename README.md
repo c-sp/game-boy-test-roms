@@ -50,28 +50,41 @@ are located at `blargg/` inside the released zip file.
 **Exit Condition:**
 Each test has to run for a specific amount of (emulated) time:
 
-| test | emulated seconds |
+| test (cgb) | emulated seconds |
 |---|---|
-| `cgb_sound` (CGB) | 37 |
-| `cpu_instrs` (CGB) | 31 |
-| `cpu_instrs` (DMG) | 55 |
-| `dmg_sound` (DMG) | 36 |
-| `instr_timing` (CGB) | 1 |
-| `instr_timing` (DMG) | 1 |
-| `interrupt_time` (CGB) | *todo* |
-| `interrupt_time` (DMG) | *todo* |
-| `mem_timing` (CGB) | *todo* |
-| `mem_timing` (DMG) | *todo* |
-| `mem_timing-2` (CGB) | 4 |
-| `mem_timing-2` (DMG) | 4 |
-| `oam_bug` (CGB) | *todo* |
-| `oam_bug` (DMG) | *todo* |
-| `halt_bug` (CGB) | *todo* |
-| `halt_bug` (DMG) | *todo* |
+| `cgb_sound` <sup>(*)</sup> | 37 |
+| `cpu_instrs` | 31 |
+| `halt_bug` | *todo* |
+| `instr_timing` | 1 |
+| `interrupt_time` | 2 |
+| `mem_timing` | 3 |
+| `mem_timing-2` | 4 |
+| `oam_bug` <sup>(*)</sup> | *todo: seconds* |
+
+| test (dmg) | emulated seconds |
+|---|---|
+| `cpu_instrs` | 55 |
+| `dmg_sound` | 36 |
+| `halt_bug` | *todo* |
+| `instr_timing` | 1 |
+| `interrupt_time` | 2 *todo: screenshot* |
+| `mem_timing` | 3 |
+| `mem_timing-2` | 4 |
+| `oam_bug` | *todo* |
 
 **Test Success:**
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
+
+**(\*) Notes:**
+* `cgb_sound`:
+  Test case 3 fails with code `04` on my Gameboy Color.
+  All test cases are repeated infinitely,
+  the test rom never really finishes.
+  [Gambatte](https://github.com/sinamas/gambatte) runs this test rom
+  successfully though.
+* `oam_bug`:
+  Test cases 2, 4, 5, 7 and 8 fail with code `02` on my Gameboy Color.
 
 
 
@@ -122,7 +135,7 @@ Note that a test rom can produce results for DMG (identified by `dmg08`),
 CGB (identified by `cgb04c`) or both.
 For details please have a look at
 [testrunner.cpp: main()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp).
-In every case there will be some file name parsing involved to determine the
+There will always be some file name parsing required to determine the
 expected test result.
 
 
