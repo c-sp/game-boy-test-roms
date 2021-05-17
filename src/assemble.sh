@@ -155,11 +155,12 @@ build_rgbds()
     # https://rgbds.gbdev.io/install/source
     REPO_RGBDS=$(mktemp -d)
     cd "$REPO_RGBDS"
-    git clone https://github.com/rednex/rgbds.git .
-    git checkout 8b60efa1495128301a407e93bd7c4ac0eb0b0f1e
-    make
+    git clone https://github.com/gbdev/rgbds.git .
+    git checkout e970b6d6eb50125717e637375bd893f223d2c7e7
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
 
-    cp rgbasm rgbfix rgbgfx rgblink "$ARTIFACT"
+    cp build/src/rgbasm build/src/rgbfix build/src/rgbgfx build/src/rgblink "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
