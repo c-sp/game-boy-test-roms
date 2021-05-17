@@ -64,7 +64,7 @@ Each test has to run for a specific amount of (emulated) time:
 | test (dmg) | emulated seconds |
 |---|---|
 | `cpu_instrs` | 55 |
-| `dmg_sound` | 36 |
+| `dmg_sound` <sup>(*)</sup> | 36 |
 | `halt_bug` | *todo* |
 | `instr_timing` | 1 |
 | `interrupt_time` | 2 *todo: screenshot* |
@@ -81,6 +81,12 @@ respective [screenshot](src/blargg-expected).
   Test case 3 fails with code `04` on my Gameboy Color.
   All test cases are repeated infinitely,
   the test rom never really finishes.
+  [Gambatte](https://github.com/sinamas/gambatte) runs this test rom
+  successfully though.
+* `dmg_sound`:
+  All test cases pass on my old Gameboy.
+  Though (similar to `cgb_sound`) they are repeated infinitely.
+  The test rom never really finishes.
   [Gambatte](https://github.com/sinamas/gambatte) runs this test rom
   successfully though.
 * `oam_bug`:
@@ -102,7 +108,11 @@ Each of these test roms executes opcode `0x40: LD B, B` when finished.
 
 **Test Success:**
 For each test rom there is a screenshot of the expected result.
-Some tests come with multiple screenshots to cover different Gameboy hardware. 
+Some tests come with multiple screenshots to cover different Gameboy hardware.
+
+[Matt Currie](https://github.com/mattcurrie) uses the formula
+`(X << 3) | (X >> 2)` for each color channel to to calculate the final RGB values.
+You might have to adjust your emulator accordingly.
 
 
 
