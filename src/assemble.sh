@@ -18,10 +18,11 @@ set -e
 
 print_usage_and_exit()
 {
-    echo "usages:"
+    echo "usage:"
     echo "    $0 $CMD_BLARGG"
     echo "    $0 $CMD_DMG_ACID2"
     echo "    $0 $CMD_CGB_ACID2"
+    echo "    $0 $CMD_CGB_ACID_HELL"
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
     echo "    $0 $CMD_MOONEYE_GB"
@@ -216,6 +217,30 @@ build_cgb_acid2()
 
 
 
+build_cgb_acid_hell()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=cgb-acid-hell
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_CGB_ACID_HELL=$(mktemp -d)
+    cd "$REPO_CGB_ACID_HELL"
+    git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid-hell.git .
+    git checkout 107b7c5a875f26473ebc1193e32c59394bdd3049
+    make
+
+    cp cgb-acid-hell.gbc "$ARTIFACT"
+    cp img/reference.png "$ARTIFACT/cgb-acid-hell.png"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 build_mealybug_tearoom_tests()
 {
     # extract RGBDS artifacts
@@ -294,6 +319,7 @@ CMD_MOONEYE_GB=mooneye-gb-roms
 CMD_RGBDS=rgbds
 CMD_DMG_ACID2=dmg-acid2
 CMD_CGB_ACID2=cgb-acid2
+CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_RELEASE_ZIP=release-zip
 
@@ -316,6 +342,7 @@ case ${CMD} in
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
+    "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
     "${CMD_RELEASE_ZIP}") create_release_zip "$@" ;;
 

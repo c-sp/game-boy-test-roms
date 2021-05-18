@@ -1,3 +1,12 @@
+## [master](https://github.com/c-sp/gameboy-test-roms)
+
+- use
+  [cgb-acid-hell:107b7c5a87](https://github.com/mattcurrie/cgb-acid-hell/tree/107b7c5a87)
+  *(2021-03-22)*
+- upgrade to
+  [RGBDS:8b60efa149](https://github.com/gbdev/rgbds/tree/e970b6d6eb)
+  *(2021-05-15)*
+
 
 ## [v2.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v2.0) *(2020-07-09)*
 
