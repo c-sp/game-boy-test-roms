@@ -231,6 +231,12 @@ build_cgb_acid_hell()
     cd "$REPO_CGB_ACID_HELL"
     git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid-hell.git .
     git checkout 107b7c5a875f26473ebc1193e32c59394bdd3049
+
+    # The GitHub Ubuntu runner does not know any "md5" command
+    # (Ubuntu comes with "md5sum" instead).
+    # We comment out the "md5" step in the Makefile ...
+    sed -i.bak "s/md5/#md5/" Makefile
+
     make
 
     cp cgb-acid-hell.gbc "$ARTIFACT"
