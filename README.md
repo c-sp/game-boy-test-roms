@@ -2,11 +2,11 @@
 
 
 
-# Gameboy Test Roms
+# Game Boy Test Roms
 
-Have a Gameboy emulator you want to test for accuracy?
+Have a Game Boy emulator you want to test for accuracy?
 This collection of
-[compiled Gameboy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
+[compiled Game Boy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
 It includes:
 
@@ -54,7 +54,7 @@ Each test has to run for a specific amount of (emulated) time:
 |---|---|
 | `cgb_sound` <sup>(*)</sup> | 37 |
 | `cpu_instrs` | 31 |
-| `halt_bug` | *todo* |
+| `halt_bug` | *todo: seconds* |
 | `instr_timing` | 1 |
 | `interrupt_time` | 2 |
 | `mem_timing` | 3 |
@@ -65,7 +65,7 @@ Each test has to run for a specific amount of (emulated) time:
 |---|---|
 | `cpu_instrs` | 55 |
 | `dmg_sound` <sup>(*)</sup> | 36 |
-| `halt_bug` | *todo* |
+| `halt_bug` | *todo: seconds* |
 | `instr_timing` | 1 |
 | `interrupt_time` | 2 *todo: screenshot* |
 | `mem_timing` | 3 |
@@ -75,22 +75,25 @@ Each test has to run for a specific amount of (emulated) time:
 **Test Success:**
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
+For details on the screenshot RGB values please have a look at
+**Gambatte screenshot colors**
+below as I used the same color formulas for Blargg screenshots.
 
 **(\*) Notes:**
 * `cgb_sound`:
-  Test case 3 fails with code `04` on my Gameboy Color.
+  Test case 3 fails with code `04` on my Game Boy Color.
   All test cases are repeated infinitely,
   the test rom never really finishes.
   [Gambatte](https://github.com/sinamas/gambatte) runs this test rom
   successfully though.
 * `dmg_sound`:
-  All test cases pass on my old Gameboy.
+  All test cases pass on my old Game Boy.
   Though (similar to `cgb_sound`) they are repeated infinitely.
   The test rom never really finishes.
   [Gambatte](https://github.com/sinamas/gambatte) runs this test rom
   successfully though.
 * `oam_bug`:
-  Test cases 2, 4, 5, 7 and 8 fail with code `02` on my Gameboy Color.
+  Test cases 2, 4, 5, 7 and 8 fail with code `02` on my Game Boy Color.
 
 
 
@@ -108,11 +111,11 @@ Each of these test roms executes opcode `0x40: LD B, B` when finished.
 
 **Test Success:**
 For each test rom there is a screenshot of the expected result.
-Some tests come with multiple screenshots to cover different Gameboy hardware.
-
+Some tests come with multiple screenshots to cover different Game Boy hardware.
 [Matt Currie](https://github.com/mattcurrie) uses the formula
-`(X << 3) | (X >> 2)` for each color channel to to calculate the final RGB values.
-You might have to adjust your emulator accordingly.
+`(X << 3) | (X >> 2)` for each Game Boy Color RGB channel.
+DMG screenshots use RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+instead of greenish Game Boy colors.
 
 
 
@@ -122,9 +125,9 @@ You might have to adjust your emulator accordingly.
 test roms are located at `gambatte/` inside the released zip file.
 
 **Exit Condition:**
-All Gambatte test roms finish after 15 Gameboy LCD frames (see
+All Gambatte test roms finish after 15 Game Boy LCD frames (see
 [testrunner.cpp: runTestRom()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp)).
-That equals 1053360 Gameboy clock cycles or ~252 emulated milliseconds.
+That equals 1053360 Game Boy clock cycles or ~252 emulated milliseconds.
 
 **Test Success:**
 There are different types of Gambatte test roms:
@@ -145,8 +148,20 @@ Note that a test rom can produce results for DMG (identified by `dmg08`),
 CGB (identified by `cgb04c`) or both.
 For details please have a look at
 [testrunner.cpp: main()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp).
-There will always be some file name parsing required to determine the
-expected test result.
+There will be file name parsing required to determine the expected test result.
+
+### Gambatte screenshot colors
+
+Your emulator should use the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+as DMG shades instead of the classic greenish Game Boy colors to compare the screenshots.
+
+Gambatte calculates Game Boy Color RGB values using these formulas:
+
+| channel | formula |
+|---|---|
+| red   | `(R * 13 + G * 2 + B) / 2` |
+| green | `(G * 3 + B) * 2` |
+| blue  | `(R * 3 + G * 2 + B * 11) / 2` |
 
 
 
@@ -162,7 +177,7 @@ The maximal runtime for a test is 120 emulated seconds (see
 [mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tests/mooneye_suite.rs)).
 
 **Test Success:**
-A test has succeeded if the Gameboy's CPU registers contain the following
+A test has succeeded if the Game Boy's CPU registers contain the following
 Fibonacci values:
 ```
     B = 3
@@ -172,5 +187,5 @@ Fibonacci values:
     H = 21
     L = 34
 ```
-Note that some Mooneye GB tests are written for specific Gameboy hardware.
+Note that some Mooneye GB tests are written for specific Game Boy hardware.
 They might fail depending on what hardware your emulator supports.
