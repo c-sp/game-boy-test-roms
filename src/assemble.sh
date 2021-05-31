@@ -19,6 +19,7 @@ set -e
 print_usage_and_exit()
 {
     echo "usage:"
+    echo "    $0 $CMD_AGE_TEST_ROMS"
     echo "    $0 $CMD_BLARGG"
     echo "    $0 $CMD_DMG_ACID2"
     echo "    $0 $CMD_CGB_ACID2"
@@ -162,6 +163,30 @@ build_rgbds()
     cmake --build build
 
     cp build/src/rgbasm build/src/rgbfix build/src/rgbgfx build/src/rgblink "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
+build_age_test_roms()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=age-test-roms
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_AGE_TEST_ROMS=$(mktemp -d)
+    cd "$REPO_AGE_TEST_ROMS"
+    git clone https://github.com/c-sp/age-test-roms.git .
+    git checkout fb6cd3b1d7468441b9cee3737d1c9b7932368fc0
+    make
+
+    cd build
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -323,6 +348,7 @@ CMD_BLARGG=blargg-roms
 CMD_GAMBATTE=gambatte-roms
 CMD_MOONEYE_GB=mooneye-gb-roms
 CMD_RGBDS=rgbds
+CMD_AGE_TEST_ROMS=age-test-roms
 CMD_DMG_ACID2=dmg-acid2
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
@@ -346,6 +372,7 @@ case ${CMD} in
     "${CMD_GAMBATTE}") assemble_gambatte "$@" ;;
     "${CMD_MOONEYE_GB}") assemble_mooneye_gb "$@" ;;
     "${CMD_RGBDS}") build_rgbds "$@" ;;
+    "${CMD_AGE_TEST_ROMS}") build_age_test_roms "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;

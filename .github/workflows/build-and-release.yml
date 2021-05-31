@@ -79,6 +79,30 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
+  age-test-roms:
+    name: build age-test-roms
+    runs-on: ubuntu-latest
+    needs: [rgbds]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: build age-test-roms
+        run: src/assemble.sh age-test-roms
+
+      - name: upload age-test-roms artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   dmg-acid2:
     name: build dmg-acid2 test rom
     runs-on: ubuntu-latest
