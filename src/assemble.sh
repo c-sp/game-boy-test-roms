@@ -308,6 +308,7 @@ build_mealybug_tearoom_tests()
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    cd ..
     cp expected/CPU\ CGB\ C/*.png "$ARTIFACT/ppu"
     cp expected/CPU\ CGB\ D/*.png "$ARTIFACT/ppu"
     cp expected/DMG-CPU\ B/*.png "$ARTIFACT/ppu"
