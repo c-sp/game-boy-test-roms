@@ -254,7 +254,7 @@ build_cgb_acid_hell()
 
     REPO_CGB_ACID_HELL=$(mktemp -d)
     cd "$REPO_CGB_ACID_HELL"
-    git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid-hell.git .
+    git clone https://github.com/mattcurrie/cgb-acid-hell.git .
     git checkout 107b7c5a875f26473ebc1193e32c59394bdd3049
 
     # The GitHub Ubuntu runner does not know any "md5" command
@@ -284,8 +284,8 @@ build_mealybug_tearoom_tests()
 
     REPO_MEALYBUG_TEAROOM_TESTS=$(mktemp -d)
     cd "$REPO_MEALYBUG_TEAROOM_TESTS"
-    git clone https://github.com/mattcurrie/mealybug-tearoom-tests.git .
-    git checkout 844b92ea59986cfb8a9bb66a94dd8c771aa113de
+    git clone --recurse-submodules https://github.com/mattcurrie/mealybug-tearoom-tests.git .
+    git checkout 70e88fb90b59d19dfbb9c3ac36c64105202bb1f4
     make
 
     # Ubuntu (GitHub runner) symlinks "rename" to the Perl script "prename".
@@ -305,11 +305,13 @@ build_mealybug_tearoom_tests()
         mv -- "$f" "${f%.png}_dmg_blob.png"
     done
 
-    cp build/*.gb "$ARTIFACT"
-    cp expected/CPU\ CGB\ C/*.png "$ARTIFACT"
-    cp expected/CPU\ CGB\ D/*.png "$ARTIFACT"
-    cp expected/DMG-CPU\ B/*.png "$ARTIFACT"
-    cp expected/DMG-blob/*.png "$ARTIFACT"
+    cd build
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+
+    cp expected/CPU\ CGB\ C/*.png "$ARTIFACT/ppu"
+    cp expected/CPU\ CGB\ D/*.png "$ARTIFACT/ppu"
+    cp expected/DMG-CPU\ B/*.png "$ARTIFACT/ppu"
+    cp expected/DMG-blob/*.png "$ARTIFACT/ppu"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
