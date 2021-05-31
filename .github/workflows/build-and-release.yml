@@ -207,7 +207,7 @@ jobs:
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest
-    needs: [blargg-suite, gambatte-suite, mooneye-gb-suite, dmg-acid2, cgb-acid2, cgb-acid-hell, mealybug-tearoom-tests]
+    needs: [blargg-suite, gambatte-suite, mooneye-gb-suite, age-test-roms, dmg-acid2, cgb-acid2, cgb-acid-hell, mealybug-tearoom-tests]
     steps:
       - name: checkout code
         uses: actions/checkout@v2
