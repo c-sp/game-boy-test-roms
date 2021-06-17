@@ -29,6 +29,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_MOONEYE_GB"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     echo "    $0 $CMD_RGBDS"
+    echo "    $0 $CMD_SAME_SUITE"
     exit 1
 }
 
@@ -319,6 +320,31 @@ build_mealybug_tearoom_tests()
 
 
 
+build_same_suite()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=same-suite
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_SAME_SUITE=$(mktemp -d)
+    cd "$REPO_SAME_SUITE"
+    git clone https://github.com/LIJI32/SameSuite.git .
+    git checkout a09fc186fb6c42e2e496d804b46129a8d02c067a
+
+    make
+    pwd
+
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 create_release_zip()
 {
     ZIP_FILE=$1
@@ -356,6 +382,7 @@ CMD_DMG_ACID2=dmg-acid2
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
+CMD_SAME_SUITE=same-suite
 CMD_RELEASE_ZIP=release-zip
 
 # identify repository directories based on the path of this script
@@ -380,6 +407,7 @@ case ${CMD} in
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
+    "${CMD_SAME_SUITE}") build_same_suite "$@" ;;
     "${CMD_RELEASE_ZIP}") create_release_zip "$@" ;;
 
     *) print_usage_and_exit ;;

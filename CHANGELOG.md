@@ -12,6 +12,9 @@
 - upgrade to
   [RGBDS:8b60efa149](https://github.com/gbdev/rgbds/tree/e970b6d6eb)
   *(2021-05-15)*
+- use
+  [same-suite:a09fc186fb](https://github.com/LIJI32/SameSuite/tree//a09fc186fb)
+  *(2020-10-18)*
 
 
 ## [v2.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v2.0) *(2020-07-09)*
