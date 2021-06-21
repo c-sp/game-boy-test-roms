@@ -1,13 +1,13 @@
 ## [master](https://github.com/c-sp/gameboy-test-roms)
 
 - add
-  [age-test-roms:fb6cd3b1d7](https://github.com/c-sp/age-test-roms/tree/fb6cd3b1d7)
-  *(2021-05-28)*
+  [age-test-roms:620943b975](https://github.com/c-sp/age-test-roms/tree/620943b975)
+  *(2021-06-17)*
 - add
   [cgb-acid-hell:107b7c5a87](https://github.com/mattcurrie/cgb-acid-hell/tree/107b7c5a87)
   *(2021-03-22)*
 - add
-  [same-suite:a09fc186fb](https://github.com/LIJI32/SameSuite/tree//a09fc186fb)
+  [same-suite:a09fc186fb](https://github.com/LIJI32/SameSuite/tree/a09fc186fb)
   *(2020-10-18)*
 - upgrade to
   [mealybug-tearoom-tests:70e88fb90b](https://github.com/mattcurrie/mealybug-tearoom-tests/tree/70e88fb90b)
