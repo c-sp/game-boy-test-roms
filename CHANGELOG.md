@@ -1,4 +1,4 @@
-## [master](https://github.com/c-sp/gameboy-test-roms)
+## [v3.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.0) *(2021-06-21)*
 
 - add
   [age-test-roms:620943b975](https://github.com/c-sp/age-test-roms/tree/620943b975)
