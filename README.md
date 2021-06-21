@@ -10,24 +10,25 @@ This collection of
 might help.
 It includes:
 
+* [AGE test roms](https://github.com/c-sp/age-test-roms)
 * [Blargg's test roms](https://github.com/retrio/gb-test-roms)
   written by
-  [Blargg](http://blargg.8bitalley.com)
-* [cgb-acid2](https://github.com/mattcurrie/cgb-acid2)
-  test rom written by
-  [Matt Currie](https://github.com/mattcurrie)
-* [dmg-acid2](https://github.com/mattcurrie/dmg-acid2)
-  test rom written by
+  [Shay Green (a.k.a. Blargg)](http://blargg.8bitalley.com)
+* [cgb-acid2](https://github.com/mattcurrie/cgb-acid2),
+  [cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell),
+  [dmg-acid2](https://github.com/mattcurrie/dmg-acid2) and
+  [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+  written by
   [Matt Currie](https://github.com/mattcurrie)
 * [Gambatte](https://github.com/sinamas/gambatte)
   test suite written by
   [sinamas](https://github.com/sinamas)
-* [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
-  written by
-  [Matt Currie](https://github.com/mattcurrie)
 * [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
   test suite written by
   [Joonas Javanainen](https://github.com/Gekkio)
+* [SameSuite](https://github.com/LIJI32/SameSuite)
+  written by
+  [Lior Halphon](https://github.com/LIJI32)
 
 
 
@@ -35,10 +36,33 @@ It includes:
 
 For each test rom we have to consider:
 
+* **Hardware:**
+  What Game Boy devices is a test compatible to?
+  This is quite important as
+  [some tests will not run on all devices](https://github.com/LIJI32/SameSuite/tree/master/apu).
 * **Exit Condition:**
-  When has a test finished?
+  When is a test finished?
 * **Test Success/Failure:**
   How do we identify test success and failure?
+
+
+
+## AGE test roms
+
+[AGE test roms](https://github.com/c-sp/age-test-roms)
+test roms are located at `age-test-roms/` inside the released zip file.
+They are compiled with [RGBDS](https://github.com/gbdev/rgbds).
+
+**Hardware:**
+*todo: find out the exact device types I test with
+(will have to disassemble my Game Boys first)*
+
+**Exit Condition:**
+Each test rom executes opcode `0x40: LD B, B` when finished.
+
+**Test Success:**
+A test succeeds if the Game Boy's CPU registers contain the following
+Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 
 
 
@@ -46,6 +70,10 @@ For each test rom we have to consider:
 
 [Blargg's test roms](https://github.com/retrio/gb-test-roms)
 are located at `blargg/` inside the released zip file.
+
+**Hardware:**
+*todo: At the moment I don't have any comprehensive information on device
+compatibility.*
 
 **Exit Condition:**
 Each test has to run for a specific amount of (emulated) time:
@@ -97,14 +125,27 @@ below as I used the same color formulas for Blargg screenshots.
 
 
 
-## cgb-acid2, dmg-acid2, Mealybug Tearoom Tests
+## cgb-acid2, cgb-acid-hell, dmg-acid2, Mealybug Tearoom Tests
 
 [cgb-acid2](https://github.com/mattcurrie/cgb-acid2),
+[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell),
 [dmg-acid2](https://github.com/mattcurrie/dmg-acid2) and the
 [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
-are located at `cgb-acid2/`, `dmg-acid2/` and `mealybug-tearoom-tests/`
-respectively.
-They are compiled with [RGBDS](https://github.com/rednex/rgbds).
+are located at `cgb-acid2/`, `cgb-acid-hell/`, `dmg-acid2/` and
+`mealybug-tearoom-tests/` respectively.
+They are compiled with [RGBDS](https://github.com/gbdev/rgbds).
+
+**Hardware:**
+`cgb-acid2` and `dmg-acid2` don't require any T-cycle accurate timing and thus
+*probably* work on any device.
+However, I could not yet verify this.
+For
+[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+there are
+[device specific results](https://github.com/mattcurrie/mealybug-tearoom-tests/tree/master/expected)
+provided
+(note that we copy these screenshots next to the respective test roms when
+bundling a release zip).
 
 **Exit Condition:**
 Each of these test roms executes opcode `0x40: LD B, B` when finished.
@@ -124,9 +165,18 @@ instead of greenish Game Boy colors.
 [Gambatte](https://github.com/sinamas/gambatte)
 test roms are located at `gambatte/` inside the released zip file.
 
+**Hardware:**
+Test  roms produce results for DMG (identified by `dmg08`),
+CGB (identified by `cgb04c`) or both.
+For details please have a look at
+[testrunner.cpp: main()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp#L331).
+Based on the file names I *guess* that Gambatte tests were verified on
+[DMG-CPU-08 (unknown CPU version)](https://gbhwdb.gekkio.fi/consoles/dmg) and
+[CGB-CPU-04 with CPU-CGB-C](https://gbhwdb.gekkio.fi/consoles/cgb).
+
 **Exit Condition:**
 All Gambatte test roms finish after 15 Game Boy LCD frames (see
-[testrunner.cpp: runTestRom()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp)).
+[testrunner.cpp: runTestRom()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp#L275)).
 That equals 1053360 Game Boy clock cycles or ~252 emulated milliseconds.
 
 **Test Success:**
@@ -134,26 +184,21 @@ There are different types of Gambatte test roms:
 
 * Audio tests are identified by their file name containing `_outaudio0` or
   `_outaudio1`.
-  Depending on the `_outaudio` value they are expected to either produce any
-  audio output (not necessarily audible though) or remain completely silent.
-* Tests displaying any hexadecimal result on screen are identified by their
+  Depending on the `_outaudio` value they are expected to either produce audio
+  output or remain completely silent.
+* Tests displaying a hexadecimal result value on screen are identified by their
   file name containing `_out<hex>`.
   The emulator screen has to be compared against a monochrome pattern found in
-  [testrunner.cpp](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp)
+  [testrunner.cpp](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp#L63)
   to determine test success.
-* For tests displaying any other result on screen a `png` screenshot file
-  with a matching file name can be found next to the rom file.
-
-Note that a test rom can produce results for DMG (identified by `dmg08`),
-CGB (identified by `cgb04c`) or both.
-For details please have a look at
-[testrunner.cpp: main()](https://github.com/sinamas/gambatte/blob/master/test/testrunner.cpp).
-There will be file name parsing required to determine the expected test result.
+* For some tests a `png` screenshot file with matching file name can be found
+  next to the rom file.
 
 ### Gambatte screenshot colors
 
-Your emulator should use the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
-as DMG shades instead of the classic greenish Game Boy colors to compare the screenshots.
+Your emulator should use the RGB values `#000000`, `#555555`, `#AAAAAA` and
+`#FFFFFF` as DMG shades instead of the classic greenish Game Boy colors to
+compare the screenshots.
 
 Gambatte calculates Game Boy Color RGB values using these formulas:
 
@@ -171,21 +216,43 @@ Gambatte calculates Game Boy Color RGB values using these formulas:
 test roms are located at `mooneye-gb/` inside the released zip file.
 They are compiled with [WLA DX](https://github.com/vhelin/wla-dx).
 
+**Hardware:**
+Tests limited to specific devices will contain a hint in their file name.
+For example,
+`acceptance/boot_regs-dmgABC.gb` is tailored to 
+[DMG-CPU-A, -B and -C](https://gbhwdb.gekkio.fi/consoles/dmg)
+while `acceptance/boot_regs-sgb.gb` works only on
+[SGB](https://gbhwdb.gekkio.fi/consoles/sgb) devices.
+Please see [Test naming](https://github.com/Gekkio/mooneye-gb#test-naming)
+for further details.
+
 **Exit Condition:**
 Each Mooneye GB test rom executes opcode `0x40: LD B, B` when finished.
 The maximal runtime for a test is 120 emulated seconds (see
 [mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tests/mooneye_suite.rs)).
 
 **Test Success:**
-A test has succeeded if the Game Boy's CPU registers contain the following
-Fibonacci values:
-```
-    B = 3
-    C = 5
-    D = 8
-    E = 13
-    H = 21
-    L = 34
-```
+A test succeeds if the Game Boy's CPU registers contain the following
+Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 Note that some Mooneye GB tests are written for specific Game Boy hardware.
 They might fail depending on what hardware your emulator supports.
+
+
+
+## SameSuite
+
+[SameSuite](https://github.com/LIJI32/SameSuite)
+test roms are located at `same-suite/` inside the released zip file.
+They are compiled with [RGBDS](https://github.com/gbdev/rgbds).
+
+**Hardware:**
+Some [SameSuite apu tests](https://github.com/LIJI32/SameSuite/tree/master/apu)
+only work on [CPU-CGB-E](https://gbhwdb.gekkio.fi/consoles/cgb).
+I could not find any compatibility information for non-apu tests.
+
+**Exit Condition:**
+Each test rom executes opcode `0x40: LD B, B` when finished.
+
+**Test Success:**
+A test succeeds if the Game Boy's CPU registers contain the following
+Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
