@@ -23,6 +23,9 @@ It includes:
 * [Gambatte](https://github.com/sinamas/gambatte)
   test suite written by
   [sinamas](https://github.com/sinamas)
+  (as the original Gambatte repository is not public anymore we use
+  [gambatte-speedrun](https://github.com/pokemon-speedrunning/gambatte-speedrun)
+  instead)
 * [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
   test suite written by
   [Joonas Javanainen](https://github.com/Gekkio)
