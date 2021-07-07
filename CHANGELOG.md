@@ -1,3 +1,15 @@
+## master
+
+- upgrade to
+  [mooneye-gb:2d52008228](https://github.com/Gekkio/mooneye-gb/tree/2d52008228)
+  *(2021-04-30)*
+  and include Mooneye GB test reference screenshots in the release archive
+- compile Mooneye GB test roms with
+  [wla-dx:eba3774e8d](https://github.com/vhelin/wla-dx/tree/eba3774e8d)
+  *(2021-02-21)* as this is the commit ID used by the
+  [mooneye-gb:2d52008228](https://github.com/Gekkio/mooneye-gb/tree/2d52008228)
+  `build_test_roms` job
+
 ## [v3.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.0) *(2021-06-21)*
 
 - add
@@ -15,6 +27,7 @@
 - upgrade to
   [RGBDS:8b60efa149](https://github.com/gbdev/rgbds/tree/e970b6d6eb)
   *(2021-05-15)*
+- add several Blargg reference screenshots and document the missing ones
 
 
 ## [v2.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v2.0) *(2020-07-09)*

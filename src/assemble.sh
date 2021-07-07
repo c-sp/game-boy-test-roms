@@ -130,7 +130,7 @@ assemble_mooneye_gb()
     REPO_WLA_DX=$(mktemp -d)
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
-    git checkout de9a0fcdd093964696d873619a9a48102affa47e
+    git checkout eba3774e8d06f9d92f7ec1d4f39a0f3b9a92b27d
     cmake -G "Unix Makefiles" .
     make wla-gb wlalink
     PATH="$REPO_WLA_DX/binaries:$PATH"
@@ -138,10 +138,12 @@ assemble_mooneye_gb()
     REPO=$(mktemp -d)
     cd "$REPO"
     git clone https://github.com/Gekkio/mooneye-gb.git .
-    git checkout 6b9488fa3e7da033a3c33c55ac94476c0e8368b0
+    git checkout 2d52008228557f9e713545e702d5b7aa233d09bb
     make -C tests clean all
 
-    cd tests/build
+    cd tests
+    rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
