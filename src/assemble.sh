@@ -107,10 +107,11 @@ assemble_gambatte()
 
     REPO=$(mktemp -d)
     cd "$REPO"
-    git clone https://github.com/sinamas/gambatte.git .
-    git checkout 56e3371151b5ee86dcdcf4868324ebc6de220bc9
+    git clone https://github.com/pokemon-speedrunning/gambatte-speedrun.git .
+    git checkout 4387f0dec5381a69ba247ca5984b0d1fcc9fbc8d
     cd test
-    ./assemble_tests.sh
+    chmod +x ./scripts/assemble_tests.sh
+    ./scripts/assemble_tests.sh
 
     cd hwtests
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"

@@ -30,7 +30,7 @@ jobs:
 
   gambatte-suite:
     name: build Gambatte suite
-    runs-on: ubuntu-18.04 # we need Python 2 here (Ubuntu-20.04 default Python is 3)
+    runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2

@@ -9,6 +9,13 @@
   *(2021-02-21)* as this is the commit ID used by the
   [mooneye-gb:2d52008228](https://github.com/Gekkio/mooneye-gb/tree/2d52008228)
   `build_test_roms` job
+- switch from
+  [gambatte](https://github.com/sinamas/gambatte)
+  to
+  [gambatte-speedrun:4387f0dec5](https://github.com/pokemon-speedrunning/gambatte-speedrun/tree/4387f0dec5)
+  *(2021-07-07)*
+  as the former is not public anymore
+
 
 ## [v3.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.0) *(2021-06-21)*
 
