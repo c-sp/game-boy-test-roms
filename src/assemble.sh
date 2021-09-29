@@ -107,8 +107,8 @@ assemble_gambatte()
 
     REPO=$(mktemp -d)
     cd "$REPO"
-    git clone https://github.com/pokemon-speedrunning/gambatte-speedrun.git .
-    git checkout 4387f0dec5381a69ba247ca5984b0d1fcc9fbc8d
+    git clone https://github.com/pokemon-speedrunning/gambatte-core.git .
+    git checkout d819bad196942db6bc31fd4196b911584c415594
     cd test
     chmod +x ./scripts/assemble_tests.sh
     ./scripts/assemble_tests.sh
@@ -336,7 +336,7 @@ build_same_suite()
     REPO_SAME_SUITE=$(mktemp -d)
     cd "$REPO_SAME_SUITE"
     git clone https://github.com/LIJI32/SameSuite.git .
-    git checkout a09fc186fb6c42e2e496d804b46129a8d02c067a
+    git checkout eb48ef5a9015ae2a0be7e6bf458bd5ef551a69be
 
     make
     pwd

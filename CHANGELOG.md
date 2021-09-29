@@ -12,9 +12,12 @@
 - switch from
   [gambatte](https://github.com/sinamas/gambatte)
   to
-  [gambatte-speedrun:4387f0dec5](https://github.com/pokemon-speedrunning/gambatte-speedrun/tree/4387f0dec5)
-  *(2021-07-07)*
+  [gambatte-core:d819bad196](https://github.com/pokemon-speedrunning/gambatte-core/tree/d819bad196)
+  *(2021-09-23)*
   as the former is not public anymore
+- upgrade to
+  [SameSuite:eb48ef5a90](https://github.com/LIJI32/SameSuite/tree/eb48ef5a90)
+  *(2021-09-04)*
 
 
 ## [v3.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.0) *(2021-06-21)*

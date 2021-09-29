@@ -24,7 +24,7 @@ It includes:
   test suite written by
   [sinamas](https://github.com/sinamas)
   (as the original Gambatte repository is not public anymore we use
-  [gambatte-speedrun](https://github.com/pokemon-speedrunning/gambatte-speedrun)
+  [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
   instead)
 * [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
   test suite written by
@@ -115,13 +115,13 @@ below as I used the same color formulas for Blargg screenshots.
   Test case 3 fails with code `04` on my Game Boy Color.
   All test cases are repeated infinitely,
   the test rom never really finishes.
-  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-speedrun)
+  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
   runs this test rom successfully though.
 * `dmg_sound`:
   All test cases pass on my old Game Boy.
   Though (similar to `cgb_sound`) they are repeated infinitely.
   The test rom never really finishes.
-  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-speedrun)
+  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
   runs this test rom successfully though.
 * `oam_bug`:
   Test cases 2, 4, 5, 7 and 8 fail with code `02` on my Game Boy Color.
@@ -165,21 +165,21 @@ instead of greenish Game Boy colors.
 
 ## Gambatte test suite
 
-[Gambatte](https://github.com/pokemon-speedrunning/gambatte-speedrun)
+[Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
 test roms are located at `gambatte/` inside the released zip file.
 
 **Hardware:**
 Test  roms produce results for DMG (identified by `dmg08`),
 CGB (identified by `cgb04c`) or both.
 For details please have a look at
-[testrunner.cpp: main()](https://github.com/pokemon-speedrunning/gambatte-speedrun/blob/4387f0dec5/test/testrunner.cpp#L379).
+[testrunner.cpp: main()](https://github.com/pokemon-speedrunning/gambatte-core/blob/d819bad196/test/testrunner.cpp#L370).
 Based on the file names I *guess* that Gambatte tests were verified on
 [DMG-CPU-08 (unknown CPU version)](https://gbhwdb.gekkio.fi/consoles/dmg) and
 [CGB-CPU-04 with CPU-CGB-C](https://gbhwdb.gekkio.fi/consoles/cgb).
 
 **Exit Condition:**
 All Gambatte test roms finish after 15 Game Boy LCD frames (see
-[testrunner.cpp: runTestRom()](https://github.com/pokemon-speedrunning/gambatte-speedrun/blob/4387f0dec5/test/testrunner.cpp#L321)).
+[testrunner.cpp: runTestRom()](https://github.com/pokemon-speedrunning/gambatte-core/blob/d819bad196/test/testrunner.cpp#L278)).
 That equals 1053360 Game Boy clock cycles or ~252 emulated milliseconds.
 
 **Test Success:**
@@ -192,7 +192,7 @@ There are different types of Gambatte test roms:
 * Tests displaying a hexadecimal result value on screen are identified by their
   file name containing `_out<hex>`.
   The emulator screen has to be compared against a monochrome pattern found in
-  [testrunner.cpp](https://github.com/pokemon-speedrunning/gambatte-speedrun/blob/4387f0dec5/test/testrunner.cpp#L65)
+  [testrunner.cpp](https://github.com/pokemon-speedrunning/gambatte-core/blob/d819bad196/test/testrunner.cpp#L65)
   to determine test success.
 * For some tests a `png` screenshot file with matching file name can be found
   next to the rom file.
