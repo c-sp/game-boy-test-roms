@@ -186,7 +186,7 @@ build_age_test_roms()
     REPO_AGE_TEST_ROMS=$(mktemp -d)
     cd "$REPO_AGE_TEST_ROMS"
     git clone https://github.com/c-sp/age-test-roms.git .
-    git checkout 620943b975d8a471f308e58f6499467871649c4d
+    git checkout 1522e726ec505763f43b415eb50927270d672495
     make
 
     cd build
