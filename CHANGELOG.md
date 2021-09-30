@@ -19,8 +19,8 @@
   [SameSuite:eb48ef5a90](https://github.com/LIJI32/SameSuite/tree/eb48ef5a90)
   *(2021-09-04)*
 - upgrade to
-  [age-test-roms:1522e726ec](https://github.com/c-sp/age-test-roms/tree/1522e726ec)
-  *(2021-09-29)*
+  [age-test-roms:abefbbdb37](https://github.com/c-sp/age-test-roms/tree/abefbbdb37)
+  *(2021-09-30)*
 
 
 ## [v3.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.0) *(2021-06-21)*

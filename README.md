@@ -57,6 +57,12 @@ test roms are located at `age-test-roms/` inside the released zip file.
 They are compiled with [RGBDS](https://github.com/gbdev/rgbds).
 
 **Hardware:**
+Tests have been verified on
+[DMG-CPU-08 (DMG-CPU C blob)](https://gbhwdb.gekkio.fi/consoles/dmg),
+[CPU-CGB-02 (CPU CGB B)](https://gbhwdb.gekkio.fi/consoles/cgb) and
+[CPU-CGB-06 (CPU CGB E)](https://gbhwdb.gekkio.fi/consoles/cgb).
+Test names indicate compatible devices.
+
 *todo: find out the exact device types I test with
 (will have to disassemble my Game Boys first)*
 
@@ -169,13 +175,13 @@ instead of greenish Game Boy colors.
 test roms are located at `gambatte/` inside the released zip file.
 
 **Hardware:**
-Test  roms produce results for DMG (identified by `dmg08`),
+Test roms produce results for DMG (identified by `dmg08`),
 CGB (identified by `cgb04c`) or both.
 For details please have a look at
 [testrunner.cpp: main()](https://github.com/pokemon-speedrunning/gambatte-core/blob/d819bad196/test/testrunner.cpp#L370).
-Based on the file names I *guess* that Gambatte tests were verified on
+Based on the file names I *guess* Gambatte tests have been verified on
 [DMG-CPU-08 (unknown CPU version)](https://gbhwdb.gekkio.fi/consoles/dmg) and
-[CGB-CPU-04 with CPU-CGB-C](https://gbhwdb.gekkio.fi/consoles/cgb).
+[CGB-CPU-04 (CPU CGB C)](https://gbhwdb.gekkio.fi/consoles/cgb).
 
 **Exit Condition:**
 All Gambatte test roms finish after 15 Game Boy LCD frames (see
@@ -223,7 +229,7 @@ They are compiled with [WLA DX](https://github.com/vhelin/wla-dx).
 Tests limited to specific devices will contain a hint in their file name.
 For example,
 `acceptance/boot_regs-dmgABC.gb` is tailored to 
-[DMG-CPU-A, -B and -C](https://gbhwdb.gekkio.fi/consoles/dmg)
+[DMG-CPU A, B and C](https://gbhwdb.gekkio.fi/consoles/dmg)
 while `acceptance/boot_regs-sgb.gb` works only on
 [SGB](https://gbhwdb.gekkio.fi/consoles/sgb) devices.
 Please see [Test naming](https://github.com/Gekkio/mooneye-gb#test-naming)
@@ -250,7 +256,7 @@ They are compiled with [RGBDS](https://github.com/gbdev/rgbds).
 
 **Hardware:**
 Some [SameSuite apu tests](https://github.com/LIJI32/SameSuite/tree/master/apu)
-only work on [CPU-CGB-E](https://gbhwdb.gekkio.fi/consoles/cgb).
+only work on [CPU CGB E](https://gbhwdb.gekkio.fi/consoles/cgb).
 I could not find any compatibility information for non-apu tests.
 
 **Exit Condition:**
