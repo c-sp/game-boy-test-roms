@@ -63,9 +63,6 @@ Tests have been verified on
 [CPU-CGB-06 (CPU CGB E)](https://gbhwdb.gekkio.fi/consoles/cgb).
 Test names indicate compatible devices.
 
-*todo: find out the exact device types I test with
-(will have to disassemble my Game Boys first)*
-
 **Exit Condition:**
 Each test rom executes opcode `0x40: LD B, B` when finished.
 
