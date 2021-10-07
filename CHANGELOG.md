@@ -1,3 +1,8 @@
+## master
+
+- add Blargg `halt_bug` DMG screenshot and update Blargg test documentation
+
+
 ## [v3.1](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.1) *(2021-09-30)*
 
 - upgrade to

@@ -88,30 +88,29 @@ Each test has to run for a specific amount of (emulated) time:
 |---|---|
 | `cgb_sound` <sup>(*)</sup> | 37 |
 | `cpu_instrs` | 31 |
-| `halt_bug` | *todo: seconds* |
+| `halt_bug` | 2 |
 | `instr_timing` | 1 |
-| `interrupt_time` | 2 |
+| `interrupt_time` <sup>(*)</sup> | 2 |
 | `mem_timing` | 3 |
 | `mem_timing-2` | 4 |
-| `oam_bug` <sup>(*)</sup> | *todo: seconds* |
 
 | test (dmg) | emulated seconds |
 |---|---|
 | `cpu_instrs` | 55 |
 | `dmg_sound` <sup>(*)</sup> | 36 |
-| `halt_bug` | *todo: seconds* |
+| `halt_bug` | 2 |
 | `instr_timing` | 1 |
-| `interrupt_time` | 2 *todo: screenshot* |
 | `mem_timing` | 3 |
 | `mem_timing-2` | 4 |
-| `oam_bug` | *todo* |
+| `oam_bug` <sup>(*)</sup> | *todo* |
 
 **Test Success:**
 A test has finished successfully if the emulator's screen matches the
 respective [screenshot](src/blargg-expected).
 For details on the screenshot RGB values please have a look at
 **Gambatte screenshot colors**
-below as I used the same color formulas for Blargg screenshots.
+below
+(I used Gambatte's color correction for Blargg screenshots).
 
 **(\*) Notes:**
 * `cgb_sound`:
@@ -126,8 +125,12 @@ below as I used the same color formulas for Blargg screenshots.
   The test rom never really finishes.
   [Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
   runs this test rom successfully though.
+* `interrupt_time`:
+  This test requires Game Boy Color features
+  (CGB Double Speed Mode)
+  and thus is not DMG compatible.
 * `oam_bug`:
-  Test cases 2, 4, 5, 7 and 8 fail with code `02` on my Game Boy Color.
+  Game Boy Color is not affected by the OAM corruption bug.
 
 
 
