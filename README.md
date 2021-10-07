@@ -78,31 +78,49 @@ Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 are located at `blargg/` inside the released zip file.
 
 **Hardware:**
-*todo: At the moment I don't have any comprehensive information on device
-compatibility.*
+Tests have been verified on
+[DMG-CPU-08 (DMG-CPU C blob)](https://gbhwdb.gekkio.fi/consoles/dmg),
+[CPU-CGB-02 (CPU CGB B)](https://gbhwdb.gekkio.fi/consoles/cgb) and
+[CPU-CGB-06 (CPU CGB E)](https://gbhwdb.gekkio.fi/consoles/cgb).
 
 **Exit Condition:**
 Each test has to run for a specific amount of (emulated) time:
 
-| test (cgb) | emulated seconds |
-|---|---|
-| `cgb_sound` <sup>(*)</sup> | 37 |
-| `cpu_instrs` | 31 |
-| `halt_bug` | 2 |
-| `instr_timing` | 1 |
-| `interrupt_time` <sup>(*)</sup> | 2 |
-| `mem_timing` | 3 |
-| `mem_timing-2` | 4 |
+| test (cgb) | emulated seconds | CGB-B | CGB-E |
+|------------|------------------|-------|-------|
+| `cgb_sound` | 37 | &#10060;<sup>1.</sup> | &#9989;<sup>2.</sup>
+| `cpu_instrs` | 31 | &#9989; | &#9989;
+| `halt_bug` | 2 | &#9989; | &#9989;
+| `instr_timing` | 1 | &#9989; | &#9989;
+| `interrupt_time` | 2 | &#9989; | &#9989;
+| `mem_timing` | 3 | &#9989; | &#9989;
+| `mem_timing-2` | 4 | &#9989; | &#9989;
 
-| test (dmg) | emulated seconds |
-|---|---|
-| `cpu_instrs` | 55 |
-| `dmg_sound` <sup>(*)</sup> | 36 |
-| `halt_bug` | 2 |
-| `instr_timing` | 1 |
-| `mem_timing` | 3 |
-| `mem_timing-2` | 4 |
-| `oam_bug` <sup>(*)</sup> | *todo* |
+1. `cgb_sound` (CGB-B):
+   Test case 3 fails with code `04`.
+   Test cases are repeated infinitely,
+   the test never really finishes.
+2. `cgb_sound` (CGB-E):
+   Test cases are repeated infinitely,
+   the test never really finishes.
+
+| test (dmg) | emulated seconds | DMG-C |
+|------------|------------------|-------|
+| `cpu_instrs` | 55 | &#9989;
+| `dmg_sound` | 36 | &#9989;<sup>3.</sup>
+| `halt_bug` | 2 | &#9989;
+| `instr_timing` | 1 | &#9989;
+| `interrupt_time` | 2 | &#10060;<sup>4.</sup>
+| `mem_timing` | 3 | &#9989;
+| `mem_timing-2` | 4 | &#9989;
+| `oam_bug` | *todo* | &#9989;
+
+3. `dmg_sound` (DMG-C):
+   Test cases are repeated infinitely,
+   the test never really finishes.
+4. `interrupt_time` (DMG-C):
+   Fails with checksum `7F8F4AAF` (in case anyone is interested).
+   This is a CGB-only rom, so failure was expected.
 
 **Test Success:**
 A test has finished successfully if the emulator's screen matches the
@@ -110,27 +128,7 @@ respective [screenshot](src/blargg-expected).
 For details on the screenshot RGB values please have a look at
 **Gambatte screenshot colors**
 below
-(I used Gambatte's color correction for Blargg screenshots).
-
-**(\*) Notes:**
-* `cgb_sound`:
-  Test case 3 fails with code `04` on my Game Boy Color.
-  All test cases are repeated infinitely,
-  the test rom never really finishes.
-  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
-  runs this test rom successfully though.
-* `dmg_sound`:
-  All test cases pass on my old Game Boy.
-  Though (similar to `cgb_sound`) they are repeated infinitely.
-  The test rom never really finishes.
-  [Gambatte](https://github.com/pokemon-speedrunning/gambatte-core)
-  runs this test rom successfully though.
-* `interrupt_time`:
-  This test requires Game Boy Color features
-  (CGB Double Speed Mode)
-  and thus is not DMG compatible.
-* `oam_bug`:
-  Game Boy Color is not affected by the OAM corruption bug.
+(screenshots were made using Gambatte's color correction).
 
 
 
