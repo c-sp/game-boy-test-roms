@@ -91,6 +91,7 @@ assemble_blargg()
     git checkout c240dd7d700e5c0b00a7bbba52b53e4ee67b5f15
 
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    cp readme.txt "$ARTIFACT"
 
     cd "$SRC_DIR/blargg-expected"
     rsync -am ./ "$ARTIFACT"
@@ -117,6 +118,8 @@ assemble_gambatte()
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='*.gbc' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    cd "$REPO"
+    cp README "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -142,6 +145,7 @@ assemble_mooneye_gb()
     git checkout 2d52008228557f9e713545e702d5b7aa233d09bb
     make -C tests clean all
 
+    cp README.markdown "$ARTIFACT"
     cd tests
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     cd build
@@ -189,6 +193,7 @@ build_age_test_roms()
     git checkout abefbbdb37bd13930fed0581770181a0b1e0bbe6
     make
 
+    cp README.md "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
@@ -213,6 +218,7 @@ build_dmg_acid2()
     git checkout 8a98ce731f96dde032ffb22ec36dc985d78fdb18
     make
 
+    cp README.md "$ARTIFACT"
     cp build/dmg-acid2.gb "$ARTIFACT"
     cp img/reference-cgb.png "$ARTIFACT/dmg-acid2-cgb.png"
     cp img/reference-dmg.png "$ARTIFACT/dmg-acid2-dmg.png"
@@ -238,6 +244,7 @@ build_cgb_acid2()
     git checkout 76c4e2c42de62141dacc829232eb9e2531a79538
     make
 
+    cp README.md "$ARTIFACT"
     cp build/cgb-acid2.gbc "$ARTIFACT"
     cp img/reference.png "$ARTIFACT/cgb-acid2.png"
 
@@ -268,6 +275,7 @@ build_cgb_acid_hell()
 
     make
 
+    cp README.md "$ARTIFACT"
     cp cgb-acid-hell.gbc "$ARTIFACT"
     cp img/reference.png "$ARTIFACT/cgb-acid-hell.png"
 
@@ -309,6 +317,7 @@ build_mealybug_tearoom_tests()
         mv -- "$f" "${f%.png}_dmg_blob.png"
     done
 
+    cp README.md "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
@@ -342,6 +351,7 @@ build_same_suite()
     pwd
 
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
