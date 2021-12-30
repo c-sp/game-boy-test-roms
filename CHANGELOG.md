@@ -1,4 +1,4 @@
-## master
+## [v3.2](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.2) *(2021-12-30)*
 
 - add
   [cgb-acid2:04c6ca40cf](https://github.com/mattcurrie/cgb-acid2/tree/04c6ca40cf)
