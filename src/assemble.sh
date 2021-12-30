@@ -26,7 +26,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_CGB_ACID_HELL"
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
-    echo "    $0 $CMD_MOONEYE_GB"
+    echo "    $0 $CMD_MOONEYE_TEST_SUITE"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_SAME_SUITE"
@@ -126,27 +126,26 @@ assemble_gambatte()
 
 
 
-assemble_mooneye_gb()
+assemble_mooneye_test_suite()
 {
-    ARTIFACT_NAME=mooneye-gb
+    ARTIFACT_NAME=mooneye-test-suite
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
     REPO_WLA_DX=$(mktemp -d)
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
-    git checkout eba3774e8d06f9d92f7ec1d4f39a0f3b9a92b27d
+    git checkout c3cfb15ce2cabc2b7223a92776f84879619cf051
     cmake -G "Unix Makefiles" .
     make wla-gb wlalink
     PATH="$REPO_WLA_DX/binaries:$PATH"
 
     REPO=$(mktemp -d)
     cd "$REPO"
-    git clone https://github.com/Gekkio/mooneye-gb.git .
-    git checkout 2d52008228557f9e713545e702d5b7aa233d09bb
-    make -C tests clean all
+    git clone https://github.com/Gekkio/mooneye-test-suite.git .
+    git checkout 86d1acf2b3369e743d25f66dc3612182c5e5aae5
+    make clean all
 
     cp README.markdown "$ARTIFACT"
-    cd tests
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
@@ -388,7 +387,7 @@ create_release_zip()
 
 CMD_BLARGG=blargg-roms
 CMD_GAMBATTE=gambatte-roms
-CMD_MOONEYE_GB=mooneye-gb-roms
+CMD_MOONEYE_TEST_SUITE=mooneye-test-suite
 CMD_RGBDS=rgbds
 CMD_AGE_TEST_ROMS=age-test-roms
 CMD_DMG_ACID2=dmg-acid2
@@ -413,7 +412,7 @@ fi
 case ${CMD} in
     "${CMD_BLARGG}") assemble_blargg "$@" ;;
     "${CMD_GAMBATTE}") assemble_gambatte "$@" ;;
-    "${CMD_MOONEYE_GB}") assemble_mooneye_gb "$@" ;;
+    "${CMD_MOONEYE_TEST_SUITE}") assemble_mooneye_test_suite "$@" ;;
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_AGE_TEST_ROMS}") build_age_test_roms "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;

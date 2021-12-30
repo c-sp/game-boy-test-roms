@@ -45,17 +45,17 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
-  mooneye-gb-suite:
-    name: build Mooneye GB suite
+  mooneye-test-suite:
+    name: build Mooneye Test Suite
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2
 
-      - name: assemble Mooneye GB test suite
-        run: src/assemble.sh mooneye-gb-roms
+      - name: assemble Mooneye Test Suite
+        run: src/assemble.sh mooneye-test-suite
 
-      - name: upload Mooneye GB artifact
+      - name: upload Mooneye Test Suite artifact
         uses: actions/upload-artifact@v1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
@@ -239,7 +239,7 @@ jobs:
     needs: [
         blargg-suite,
         gambatte-suite,
-        mooneye-gb-suite,
+        mooneye-test-suite,
         age-test-roms,
         dmg-acid2,
         cgb-acid2,

@@ -26,8 +26,8 @@ It includes:
   (as the original Gambatte repository is not public anymore we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
   instead)
-* [Mooneye GB](https://github.com/Gekkio/mooneye-gb)
-  test suite written by
+* [Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)
+  written by
   [Joonas Javanainen](https://github.com/Gekkio)
 * [SameSuite](https://github.com/LIJI32/SameSuite)
   written by
@@ -68,7 +68,7 @@ Each test rom executes opcode `0x40: LD B, B` when finished.
 
 **Test Success:**
 A test succeeds if the Game Boy's CPU registers contain the following
-Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
+Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 
 
 
@@ -217,11 +217,11 @@ Gambatte calculates Game Boy Color RGB values using these formulas:
 
 
 
-## Mooneye GB test suite
+## Mooneye Test Suite
 
-[Mooneye GB](https://github.com/Gekkio/mooneye-gb)
-test roms are located at `mooneye-gb/` inside the released zip file.
-They are compiled with [WLA DX](https://github.com/vhelin/wla-dx).
+The [Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)
+is located at `mooneye-test-suite/` inside the released zip file.
+The test roms are compiled with [WLA DX](https://github.com/vhelin/wla-dx).
 
 **Hardware:**
 Tests limited to specific devices will contain a hint in their file name.
@@ -230,18 +230,18 @@ For example,
 [DMG-CPU A, B and C](https://gbhwdb.gekkio.fi/consoles/dmg)
 while `acceptance/boot_regs-sgb.gb` works only on
 [SGB](https://gbhwdb.gekkio.fi/consoles/sgb) devices.
-Please see [Test naming](https://github.com/Gekkio/mooneye-gb#test-naming)
+Please see [Test naming](https://github.com/Gekkio/mooneye-test-suite#test-naming)
 for further details.
 
 **Exit Condition:**
-Each Mooneye GB test rom executes opcode `0x40: LD B, B` when finished.
+Each Mooneye test rom executes opcode `0x40: LD B, B` when finished.
 The maximal runtime for a test is 120 emulated seconds (see
-[mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/master/core/tests/mooneye_suite.rs)).
+[mooneye_suite.rs](https://github.com/Gekkio/mooneye-gb/blob/66c6e027111dbabcdc68350f3a80d7148bf9dc68/core/tests/mooneye_suite.rs#L198)).
 
 **Test Success:**
 A test succeeds if the Game Boy's CPU registers contain the following
-Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
-Note that some Mooneye GB tests are written for specific Game Boy hardware.
+Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
+Note that some Mooneye tests are written for specific Game Boy hardware.
 They might fail depending on what hardware your emulator supports.
 
 
@@ -262,4 +262,4 @@ Each test rom executes opcode `0x40: LD B, B` when finished.
 
 **Test Success:**
 A test succeeds if the Game Boy's CPU registers contain the following
-Fibonacci values: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
+Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`

@@ -1,5 +1,12 @@
 ## master
 
+- upgrade to
+  [mooneye-test-suite:86d1acf2b3](https://github.com/Gekkio/mooneye-test-suite/tree/86d1acf2b3)
+  *(2021-10-31)*
+- compile the Mooneye Test Suite with
+  [wla-dx:c3cfb15ce2](https://github.com/vhelin/wla-dx/tree/c3cfb15ce2)
+  *(2021-10-17)* as this is the commit ID used by the
+  [mooneye-test-suite build job](https://github.com/Gekkio/mooneye-test-suite/blob/86d1acf2b3369e743d25f66dc3612182c5e5aae5/.github/workflows/ci.yml#L14)
 - add Blargg `halt_bug` DMG screenshot and update Blargg test documentation
 - include each test suite's readme file(s)
 
