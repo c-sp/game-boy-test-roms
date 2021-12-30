@@ -1,5 +1,7 @@
 ## master
 
+- remove Mealybug Tearoom Test screenshot placeholders
+  (e.g. [this one](https://github.com/mattcurrie/mealybug-tearoom-tests/blob/acf48f3f78/expected/CPU%20CGB%20C/m3_lcdc_win_en_change_multiple_wx.png))
 - upgrade to
   [age-test-roms:3b27d1c1fb](https://github.com/c-sp/age-test-roms/tree/3b27d1c1fb)
   *(2021-12-23)*

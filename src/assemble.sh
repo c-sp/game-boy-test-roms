@@ -327,6 +327,16 @@ build_mealybug_tearoom_tests()
     cp expected/DMG-CPU\ B/*.png "$ARTIFACT/ppu"
     cp expected/DMG-blob/*.png "$ARTIFACT/ppu"
 
+    # remove screenshot placeholders
+    rm "$ARTIFACT/ppu/m3_lcdc_win_en_change_multiple_wx_cgb_c.png"
+    rm "$ARTIFACT/ppu/m3_wx_4_change_cgb_c.png"
+    rm "$ARTIFACT/ppu/m3_wx_5_change_cgb_c.png"
+    rm "$ARTIFACT/ppu/m3_wx_6_change_cgb_c.png"
+    rm "$ARTIFACT/ppu/m3_lcdc_win_en_change_multiple_wx_cgb_d.png"
+    rm "$ARTIFACT/ppu/m3_wx_4_change_cgb_d.png"
+    rm "$ARTIFACT/ppu/m3_wx_5_change_cgb_d.png"
+    rm "$ARTIFACT/ppu/m3_wx_6_change_cgb_d.png"
+
     tar_rm_artifact $ARTIFACT_NAME
 }
 
