@@ -189,12 +189,13 @@ build_age_test_roms()
     REPO_AGE_TEST_ROMS=$(mktemp -d)
     cd "$REPO_AGE_TEST_ROMS"
     git clone https://github.com/c-sp/age-test-roms.git .
-    git checkout abefbbdb37bd13930fed0581770181a0b1e0bbe6
+    git checkout 3b27d1c1fb149efe71569b1ffe7bc16757a72636
     make
 
     cp README.md "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
