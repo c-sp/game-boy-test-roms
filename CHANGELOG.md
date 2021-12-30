@@ -1,5 +1,8 @@
 ## master
 
+- add
+  [cgb-acid2:04c6ca40cf](https://github.com/mattcurrie/cgb-acid2/tree/04c6ca40cf)
+  *(2021-02-26)*
 - remove Mealybug Tearoom Test screenshot placeholders
   (e.g. [this one](https://github.com/mattcurrie/mealybug-tearoom-tests/blob/acf48f3f78/expected/CPU%20CGB%20C/m3_lcdc_win_en_change_multiple_wx.png))
 - upgrade to

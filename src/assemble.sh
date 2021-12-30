@@ -241,7 +241,7 @@ build_cgb_acid2()
     REPO_CGB_ACID2=$(mktemp -d)
     cd "$REPO_CGB_ACID2"
     git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid2 .
-    git checkout 76c4e2c42de62141dacc829232eb9e2531a79538
+    git checkout 04c6ca40cf75b6a93513fe596de4ab797efaff97
     make
 
     cp README.md "$ARTIFACT"
