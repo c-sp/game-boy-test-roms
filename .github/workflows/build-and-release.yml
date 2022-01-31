@@ -22,7 +22,7 @@ jobs:
         run: src/assemble.sh blargg-roms
 
       - name: upload Blargg artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -39,7 +39,7 @@ jobs:
         run: src/assemble.sh gambatte-roms
 
       - name: upload Gambatte artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -56,7 +56,7 @@ jobs:
         run: src/assemble.sh mooneye-test-suite
 
       - name: upload Mooneye Test Suite artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -73,7 +73,7 @@ jobs:
         run: src/assemble.sh rgbds
 
       - name: upload RGBDS artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -97,7 +97,7 @@ jobs:
         run: src/assemble.sh age-test-roms
 
       - name: upload age-test-roms artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -121,7 +121,7 @@ jobs:
         run: src/assemble.sh dmg-acid2
 
       - name: upload dmg-acid2 artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -145,7 +145,7 @@ jobs:
         run: src/assemble.sh cgb-acid2
 
       - name: upload cgb-acid2 artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -169,7 +169,7 @@ jobs:
         run: src/assemble.sh cgb-acid-hell
 
       - name: upload cgb-acid-hell artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -198,7 +198,7 @@ jobs:
         run: src/assemble.sh mealybug-tearoom-tests
 
       - name: upload mealybug-tearoom-tests artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -227,7 +227,7 @@ jobs:
         run: src/assemble.sh same-suite
 
       - name: upload same-suite artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -261,7 +261,7 @@ jobs:
         run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
 
       - name: upload zipped artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
