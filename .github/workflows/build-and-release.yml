@@ -88,7 +88,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -112,7 +112,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -136,7 +136,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -160,7 +160,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -189,7 +189,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -218,7 +218,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -252,7 +252,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: download artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -280,7 +280,7 @@ jobs:
     if: startsWith( github.ref, 'refs/tags/v' )
     steps:
       - name: download zipped artifacts
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ./
