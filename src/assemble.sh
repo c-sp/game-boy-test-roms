@@ -377,7 +377,7 @@ build_rtc3test()
 
     cp rtc3test.gb "$ARTIFACT"
     cp README.md "$ARTIFACT"
-    cp test.md "$ARTIFACT"
+    cp tests.md "$ARTIFACT"
 
     #cd "$SRC_DIR/rtc3test"
     #rsync -am ./ "$ARTIFACT"
