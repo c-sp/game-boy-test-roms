@@ -29,6 +29,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_MOONEYE_TEST_SUITE"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     echo "    $0 $CMD_RGBDS"
+    echo "    $0 $CMD_RTC3TEST"
     echo "    $0 $CMD_SAME_SUITE"
     exit 1
 }
@@ -101,7 +102,7 @@ assemble_blargg()
 
 
 
-assemble_gambatte()
+build_gambatte_hwtests()
 {
     ARTIFACT_NAME=gambatte
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
@@ -126,7 +127,7 @@ assemble_gambatte()
 
 
 
-assemble_mooneye_test_suite()
+build_mooneye_test_suite()
 {
     ARTIFACT_NAME=mooneye-test-suite
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
@@ -190,6 +191,8 @@ build_age_test_roms()
     cd "$REPO_AGE_TEST_ROMS"
     git clone https://github.com/c-sp/age-test-roms.git .
     git checkout 3b27d1c1fb149efe71569b1ffe7bc16757a72636
+
+    rgbasm -V
     make
 
     cp README.md "$ARTIFACT"
@@ -216,6 +219,8 @@ build_dmg_acid2()
     cd "$REPO_DMG_ACID2"
     git clone --recurse-submodules https://github.com/mattcurrie/dmg-acid2 .
     git checkout 8a98ce731f96dde032ffb22ec36dc985d78fdb18
+
+    rgbasm -V
     make
 
     cp README.md "$ARTIFACT"
@@ -242,6 +247,8 @@ build_cgb_acid2()
     cd "$REPO_CGB_ACID2"
     git clone --recurse-submodules https://github.com/mattcurrie/cgb-acid2 .
     git checkout 04c6ca40cf75b6a93513fe596de4ab797efaff97
+
+    rgbasm -V
     make
 
     cp README.md "$ARTIFACT"
@@ -273,6 +280,7 @@ build_cgb_acid_hell()
     # We comment out the "md5" step in the Makefile ...
     sed -i.bak "s/md5/#md5/" Makefile
 
+    rgbasm -V
     make
 
     cp README.md "$ARTIFACT"
@@ -298,6 +306,8 @@ build_mealybug_tearoom_tests()
     cd "$REPO_MEALYBUG_TEAROOM_TESTS"
     git clone --recurse-submodules https://github.com/mattcurrie/mealybug-tearoom-tests.git .
     git checkout 70e88fb90b59d19dfbb9c3ac36c64105202bb1f4
+
+    rgbasm -V
     make
 
     # Ubuntu (GitHub runner) symlinks "rename" to the Perl script "prename".
@@ -342,6 +352,41 @@ build_mealybug_tearoom_tests()
 
 
 
+build_rtc3test()
+{
+    # use RGBDS 0.4 as rtc3test is not compatible to RGBDS 0.5
+    # (RGBDS 0.5 "PRINT" macro vs. rtc3test "Print:" label)
+    REPO_RGBDS=$(mktemp -d)
+    cd "$REPO_RGBDS"
+    git clone https://github.com/gbdev/rgbds.git .
+    git checkout v0.4.2
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
+    PATH="$REPO_RGBDS/build/src:$PATH"
+
+    ARTIFACT_NAME=rtc3test
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO_RTC3TEST=$(mktemp -d)
+    cd "$REPO_RTC3TEST"
+    git clone https://github.com/aaaaaa123456789/rtc3test.git .
+    git checkout 80ae792bf1b3c3387929b912e6df001af3511e24
+
+    rgbasm -V
+    make
+
+    cp rtc3test.gb "$ARTIFACT"
+    cp README.md "$ARTIFACT"
+    cp test.md "$ARTIFACT"
+
+    #cd "$SRC_DIR/rtc3test"
+    #rsync -am ./ "$ARTIFACT"
+
+    #tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 build_same_suite()
 {
     # extract RGBDS artifacts
@@ -357,8 +402,8 @@ build_same_suite()
     git clone https://github.com/LIJI32/SameSuite.git .
     git checkout eb48ef5a9015ae2a0be7e6bf458bd5ef551a69be
 
+    rgbasm -V
     make
-    pwd
 
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
@@ -405,6 +450,7 @@ CMD_DMG_ACID2=dmg-acid2
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
+CMD_RTC3TEST=rtc3test
 CMD_SAME_SUITE=same-suite
 CMD_RELEASE_ZIP=release-zip
 
@@ -422,14 +468,15 @@ fi
 
 case ${CMD} in
     "${CMD_BLARGG}") assemble_blargg "$@" ;;
-    "${CMD_GAMBATTE}") assemble_gambatte "$@" ;;
-    "${CMD_MOONEYE_TEST_SUITE}") assemble_mooneye_test_suite "$@" ;;
+    "${CMD_GAMBATTE}") build_gambatte_hwtests "$@" ;;
+    "${CMD_MOONEYE_TEST_SUITE}") build_mooneye_test_suite "$@" ;;
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_AGE_TEST_ROMS}") build_age_test_roms "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
+    "${CMD_RTC3TEST}") build_rtc3test "$@" ;;
     "${CMD_SAME_SUITE}") build_same_suite "$@" ;;
     "${CMD_RELEASE_ZIP}") create_release_zip "$@" ;;
 
