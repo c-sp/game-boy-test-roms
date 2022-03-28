@@ -29,6 +29,9 @@ It includes:
 * [Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)
   written by
   [Joonas Javanainen](https://github.com/Gekkio)
+* [rtc3test](https://github.com/aaaaaa123456789/rtc3test)
+  written by
+  [aaaaaa123456789](https://github.com/aaaaaa123456789)
 * [SameSuite](https://github.com/LIJI32/SameSuite)
   written by
   [Lior Halphon](https://github.com/LIJI32)
@@ -87,7 +90,7 @@ Tests have been verified on
 Each test has to run for a specific amount of (emulated) time:
 
 | test (cgb) | emulated seconds | CGB-B | CGB-E |
-|------------|------------------|-------|-------|
+| ---: | --- | --- | --- |
 | `cgb_sound` | 37 | &#10060;<sup>1.</sup> | &#9989;<sup>2.</sup>
 | `cpu_instrs` | 31 | &#9989; | &#9989;
 | `halt_bug` | 2 | &#9989; | &#9989;
@@ -105,7 +108,7 @@ Each test has to run for a specific amount of (emulated) time:
    the test never really finishes.
 
 | test (dmg) | emulated seconds | DMG-C |
-|------------|------------------|-------|
+| ---: | --- | --- |
 | `cpu_instrs` | 55 | &#9989;
 | `dmg_sound` | 36 | &#9989;<sup>3.</sup>
 | `halt_bug` | 2 | &#9989;
@@ -210,7 +213,7 @@ compare the screenshots.
 Gambatte calculates Game Boy Color RGB values using these formulas:
 
 | channel | formula |
-|---|---|
+| ---: | --- |
 | red   | `(R * 13 + G * 2 + B) / 2` |
 | green | `(G * 3 + B) * 2` |
 | blue  | `(R * 3 + G * 2 + B * 11) / 2` |
@@ -243,6 +246,42 @@ A test succeeds if the Game Boy's CPU registers contain the following
 Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 Note that some Mooneye tests are written for specific Game Boy hardware.
 They might fail depending on what hardware your emulator supports.
+
+
+
+## rtc3test
+
+The [rtc3test](https://github.com/aaaaaa123456789/rtc3test) rom
+is located at `rtc3test/` inside the released zip file.
+We have to use [RGBDS v0.4](https://github.com/gbdev/rgbds/releases/v0.4.2)
+for compilation as the code is not compatible to
+[current RGBDS versions](https://github.com/gbdev/rgbds/releases).
+
+**Hardware:**
+The rom examines MBC3's real time clock and not the Game Boy
+hardware by itself.
+It should behave similar on all Game Boy devices.
+
+**Exit Condition:**
+rtc3test consist of three sub-tests.
+At startup the user has to select the sub-test to run.
+You will have to emulate pressing the respective Game Boy buttons
+and after that wait for the sub-test to finish.
+
+The procedure should be the same on all Game Boy devices.
+
+| sub-test | press buttons | test duration (seconds) |
+| ---: | :---: | --- |
+| basic tests | A | 13
+| range tests | down, A | 8
+| sub-second writes | down, down, A | 26
+
+**Test Success:**
+For each sub-test there is a screenshot of the expected result.
+CGB screenshots were created using the formula
+`(X << 3) | (X >> 2)` for each Game Boy Color RGB channel.
+DMG screenshots use RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+instead of the greenish DMG LCD colors.
 
 
 
