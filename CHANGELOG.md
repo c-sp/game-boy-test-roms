@@ -1,6 +1,12 @@
-## [v3.2](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.2) *(2021-12-30)*
+## master
 
 - add
+  [rtc3test](https://github.com/aaaaaa123456789/rtc3test/tree/80ae792bf1)
+  *(2020-12-02)*
+
+## [v3.2](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.2) *(2021-12-30)*
+
+- upgrade to
   [cgb-acid2:04c6ca40cf](https://github.com/mattcurrie/cgb-acid2/tree/04c6ca40cf)
   *(2021-02-26)*
 - remove Mealybug Tearoom Test screenshot placeholders
