@@ -379,10 +379,10 @@ build_rtc3test()
     cp README.md "$ARTIFACT"
     cp tests.md "$ARTIFACT"
 
-    #cd "$SRC_DIR/rtc3test"
-    #rsync -am ./ "$ARTIFACT"
+    cd "$SRC_DIR"
+    cp rtc3test-expected/*.png "$ARTIFACT"
 
-    #tar_rm_artifact $ARTIFACT_NAME
+    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
