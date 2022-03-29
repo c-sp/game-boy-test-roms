@@ -8,36 +8,41 @@ Have a Game Boy emulator you want to test for accuracy?
 This collection of
 [compiled Game Boy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
-It includes:
+It includes (alphabetically sorted):
 
-* **[AGE test roms](https://github.com/c-sp/age-test-roms)**
-* **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**
-  written by
-  [Shay Green (a.k.a. Blargg)](http://blargg.8bitalley.com)
+* **[AGE test roms](https://github.com/c-sp/age-test-roms)**  
+  <sup>written by
+  [me](https://github.com/c-sp) </sup>
+* **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**  
+  <sup>written by
+  [Shay Green (a.k.a. Blargg)](http://blargg.8bitalley.com)</sup>
 * **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)**,
-  **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)**,
-  **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)** and
-  **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**
-  written by
-  [Matt Currie](https://github.com/mattcurrie)
+  **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)** and
+  **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
+  <sup>written by
+  [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
-  written by
-  [sinamas](https://github.com/sinamas)
   (as the original Gambatte repository is not public anymore we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
-  instead)
-* **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)**
-  written by
-  [Joonas Javanainen](https://github.com/Gekkio)
-* **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**
-  written by [Joonas Javanainen](https://github.com/Gekkio)
-  and [wilbertpol](https://github.com/wilbertpol)
-* **[rtc3test](https://github.com/aaaaaa123456789/rtc3test)**
-  written by
-  [aaaaaa123456789](https://github.com/aaaaaa123456789)
-* **[SameSuite](https://github.com/LIJI32/SameSuite)**
-  written by
-  [Lior Halphon](https://github.com/LIJI32)
+  instead)  
+  <sup>written by
+  [sinamas](https://github.com/sinamas)
+  </sup>
+* **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**  
+  <sup>written by
+  [Matt Currie](https://github.com/mattcurrie) </sup>
+* **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)**  
+  <sup>written by
+  [Joonas Javanainen](https://github.com/Gekkio) </sup>
+* **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**  
+  <sup>written by [Joonas Javanainen](https://github.com/Gekkio)
+  and [wilbertpol](https://github.com/wilbertpol) </sup>
+* **[rtc3test](https://github.com/aaaaaa123456789/rtc3test)**  
+  <sup>written by
+  [aaaaaa123456789](https://github.com/aaaaaa123456789) </sup>
+* **[SameSuite](https://github.com/LIJI32/SameSuite)**  
+  <sup>written by
+  [Lior Halphon](https://github.com/LIJI32) </sup>
 
 
 
@@ -255,7 +260,7 @@ They might fail depending on what hardware your emulator supports.
 ## Mooneye Test Suite (extended by wilbertpol)
 
 The [Mooneye Test Suite extended by wilbertpol](https://github.com/wilbertpol/mooneye-gb)
-is located at `wilbertpol-mooneye-test-suite/` inside the released zip file.
+is located at `mooneye-test-suite-wilbertpol/` inside the released zip file.
 Test roms are compiled with [WLA DX v9.6](https://github.com/vhelin/wla-dx/releases/tag/v9.6)
 as more recent versions of WLA-DX are not compatible.
 
