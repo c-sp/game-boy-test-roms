@@ -15,7 +15,7 @@ It includes (alphabetically sorted):
   [me](https://github.com/c-sp) </sup>
 * **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**  
   <sup>written by
-  [Shay Green (a.k.a. Blargg)](http://blargg.8bitalley.com)</sup>
+  [Shay Green (a.k.a. Blargg)](http://www.slack.net/~ant/) </sup>
 * **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)**,
   **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)** and
   **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
