@@ -247,6 +247,9 @@ build_firstwhite()
 
     cp firstwhite.gb README.md CHANGES.txt "$ARTIFACT"
 
+    cd "$SRC_DIR"
+    cp firstwhite-expected/*.png "$ARTIFACT"
+
     tar_rm_artifact $ARTIFACT_NAME
 }
 
