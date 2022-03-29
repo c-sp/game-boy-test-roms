@@ -24,6 +24,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_CGB_ACID2"
     echo "    $0 $CMD_CGB_ACID_HELL"
     echo "    $0 $CMD_DMG_ACID2"
+    echo "    $0 $CMD_FIRSTWHITE"
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
     echo "    $0 $CMD_MOONEYE_TEST_SUITE"
@@ -220,6 +221,34 @@ build_dmg_acid2()
     cp build/dmg-acid2.gb "$ARTIFACT"
     cp img/reference-cgb.png "$ARTIFACT/dmg-acid2-cgb.png"
     cp img/reference-dmg.png "$ARTIFACT/dmg-acid2-dmg.png"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
+build_firstwhite()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=firstwhite
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/pinobatch/little-things-gb.git .
+    git checkout 9d168486e1210da23f7160043b224bba79f05c08
+
+    cd firstwhite
+    make firstwhite.gb
+
+    cp firstwhite.gb README.md CHANGES.txt "$ARTIFACT"
+
+    cd "$SRC_DIR"
+    cp firstwhite-expected/*.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -501,6 +530,7 @@ CMD_BLARGG=blargg-roms
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_DMG_ACID2=dmg-acid2
+CMD_FIRSTWHITE=firstwhite
 CMD_GAMBATTE=gambatte-roms
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_MOONEYE_TEST_SUITE=mooneye-test-suite
@@ -529,6 +559,7 @@ case ${CMD} in
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
+    "${CMD_FIRSTWHITE}") build_firstwhite "$@" ;;
     "${CMD_GAMBATTE}") build_gambatte_hwtests "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
     "${CMD_MOONEYE_TEST_SUITE}") build_mooneye_test_suite "$@" ;;
