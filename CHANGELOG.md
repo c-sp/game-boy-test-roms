@@ -6,6 +6,9 @@
 - add
   [wilbertpol/mooneye-gb:b78dd21f0b](https://github.com/wilbertpol/mooneye-gb/tree/b78dd21f0b)
   *(2016-07-05)*
+- add
+  [little-things-gb/firstwhite:9d168486e1](https://github.com/pinobatch/little-things-gb/tree/9d168486e1/firstwhite)
+  *(2020-11-23)*
 - compile with
   [RGBDS v0.5.2](https://github.com/gbdev/rgbds/releases/tag/v0.5.2)
   *(2021-11-23)*

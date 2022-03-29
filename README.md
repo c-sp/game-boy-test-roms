@@ -21,6 +21,9 @@ It includes (alphabetically sorted):
   **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
   <sup>written by
   [Matt Currie](https://github.com/mattcurrie) </sup>
+* **[firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)**  
+  <sup>written by
+  [Damian Yerrick](https://github.com/pinobatch) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
   (as the original Gambatte repository is not public anymore we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
@@ -175,6 +178,29 @@ Some tests come with multiple screenshots to cover different Game Boy hardware.
 `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel.
 DMG screenshots use RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
 instead of greenish Game Boy colors.
+
+
+
+## firstwhite
+
+The [firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)
+test rom is located at `firstwhite/` inside the released zip file.
+
+**Hardware:**
+According to the [readme](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite#readme),
+the test should succeed on about every Game Boy device except for
+the Super Game Boy.
+
+**Exit Condition:**
+In my experience the test result is visible nearly immediately.
+Terminating the test after half a second of emulation time should be more than enough.
+
+**Test Success:**
+The test succeeds when only a white screen is visible.
+A corresponding [screenshot](src/firstwhite) is available.
+You should use the formula `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel
+and the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+for DMG shades to make sure the screenshot matches.
 
 
 
