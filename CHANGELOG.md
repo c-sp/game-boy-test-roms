@@ -1,8 +1,17 @@
 ## master
 
 - add
-  [rtc3test](https://github.com/aaaaaa123456789/rtc3test/tree/80ae792bf1)
+  [rtc3test:80ae792bf1](https://github.com/aaaaaa123456789/rtc3test/tree/80ae792bf1)
   *(2020-12-02)*
+- add
+  [wilbertpol/mooneye-gb:b78dd21f0b](https://github.com/wilbertpol/mooneye-gb/tree/b78dd21f0b)
+  *(2016-07-05)*
+- compile with
+  [RGBDS v0.5.2](https://github.com/gbdev/rgbds/releases/tag/v0.5.2)
+  *(2021-11-23)*
+- upgrade to
+  [age-test-roms:cd3f654d13](https://github.com/c-sp/age-test-roms/tree/cd3f654d13)
+  *(2022-03-17)*
 
 ## [v3.2](https://github.com/c-sp/gameboy-test-roms/releases/tag/v3.2) *(2021-12-30)*
 

@@ -11,6 +11,40 @@ env:
 jobs:
 
 
+  rgbds:
+    name: build RGBDS
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: build RGBDS
+        run: src/assemble.sh rgbds
+
+      - name: upload RGBDS artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  wla-dx:
+    name: build WLA-DX
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: build WLA-DX
+        run: src/assemble.sh wla-dx
+
+      - name: upload WLA-DX artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   blargg-suite:
     name: create Blargg suite
     runs-on: ubuntu-latest
@@ -42,40 +76,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  mooneye-test-suite:
-    name: build Mooneye Test Suite
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-
-      - name: assemble Mooneye Test Suite
-        run: src/assemble.sh mooneye-test-suite
-
-      - name: upload Mooneye Test Suite artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  rgbds:
-    name: build RGBDS
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-
-      - name: build RGBDS
-        run: src/assemble.sh rgbds
-
-      - name: upload RGBDS artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -199,6 +199,47 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
+  mooneye-test-suite:
+    name: build Mooneye Test Suite
+    runs-on: ubuntu-latest
+    needs: [ wla-dx ]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: assemble Mooneye Test Suite
+        run: src/assemble.sh mooneye-test-suite
+
+      - name: upload Mooneye Test Suite artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  mooneye-test-suite-wilbertpol:
+    name: build Mooneye Test Suite (wilbertpol)
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: assemble Mooneye Test Suite (wilbertpol)
+        run: src/assemble.sh mooneye-test-suite-wilbertpol
+
+      - name: upload Mooneye Test Suite (wilbertpol) artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   rtc3test:
     name: build rtc3test
     runs-on: ubuntu-latest
@@ -244,14 +285,15 @@ jobs:
     name: create release zip
     runs-on: ubuntu-latest
     needs: [
-        blargg-suite,
-        gambatte-suite,
-        mooneye-test-suite,
         age-test-roms,
-        dmg-acid2,
+        blargg-suite,
         cgb-acid2,
         cgb-acid-hell,
+        dmg-acid2,
+        gambatte-suite,
         mealybug-tearoom-tests,
+        mooneye-test-suite,
+        mooneye-test-suite-wilbertpol,
         rtc3test,
         same-suite
     ]
