@@ -383,7 +383,7 @@ build_release_zip()
 
     # create new zip file
     untar_all_artifacts
-    rm -rf rgbds
+    rm -rf rgbds wla-dx
     zip -r "$ZIP_FILE" .
 }
 
