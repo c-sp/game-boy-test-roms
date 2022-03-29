@@ -10,29 +10,32 @@ This collection of
 might help.
 It includes:
 
-* [AGE test roms](https://github.com/c-sp/age-test-roms)
-* [Blargg's test roms](https://github.com/retrio/gb-test-roms)
+* **[AGE test roms](https://github.com/c-sp/age-test-roms)**
+* **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**
   written by
   [Shay Green (a.k.a. Blargg)](http://blargg.8bitalley.com)
-* [cgb-acid2](https://github.com/mattcurrie/cgb-acid2),
-  [cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell),
-  [dmg-acid2](https://github.com/mattcurrie/dmg-acid2) and
-  [Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)
+* **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)**,
+  **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)**,
+  **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)** and
+  **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**
   written by
   [Matt Currie](https://github.com/mattcurrie)
-* [Gambatte](https://github.com/sinamas/gambatte)
-  test suite written by
+* **[Gambatte test suite](https://github.com/sinamas/gambatte)**
+  written by
   [sinamas](https://github.com/sinamas)
   (as the original Gambatte repository is not public anymore we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
   instead)
-* [Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)
+* **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)**
   written by
   [Joonas Javanainen](https://github.com/Gekkio)
-* [rtc3test](https://github.com/aaaaaa123456789/rtc3test)
+* **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**
+  written by [Joonas Javanainen](https://github.com/Gekkio)
+  and [wilbertpol](https://github.com/wilbertpol)
+* **[rtc3test](https://github.com/aaaaaa123456789/rtc3test)**
   written by
   [aaaaaa123456789](https://github.com/aaaaaa123456789)
-* [SameSuite](https://github.com/LIJI32/SameSuite)
+* **[SameSuite](https://github.com/LIJI32/SameSuite)**
   written by
   [Lior Halphon](https://github.com/LIJI32)
 
@@ -249,6 +252,22 @@ They might fail depending on what hardware your emulator supports.
 
 
 
+## Mooneye Test Suite (extended by wilbertpol)
+
+The [Mooneye Test Suite extended by wilbertpol](https://github.com/wilbertpol/mooneye-gb)
+is located at `wilbertpol-mooneye-test-suite/` inside the released zip file.
+Test roms are compiled with [WLA DX v9.6](https://github.com/vhelin/wla-dx/releases/tag/v9.6)
+as more recent versions of WLA-DX are not compatible.
+
+The test suite works similar to the original [Mooneye Test Suite](#mooneye-test-suite)
+with one exception regarding the **Exit Condition**:
+instead of executing opcode `0x40: LD B, B` to indicate a finished test,
+opcode `0xED (undefined)` is executed
+(this is how the Mooneye Test Suite
+[worked back in 2016](https://github.com/Gekkio/mooneye-gb/blob/8a7f68b3576d9bbd502a5a51ba126c5fc09c57be/tests/common/common.s#L51)).
+
+
+
 ## rtc3test
 
 The [rtc3test](https://github.com/aaaaaa123456789/rtc3test) rom
@@ -277,7 +296,7 @@ The procedure should be the same on all Game Boy devices.
 | sub-second writes | down, down, A | 26
 
 **Test Success:**
-For each sub-test there is a screenshot of the expected result.
+For each sub-test there is a [screenshot](src/rtc3test-expected) of the expected result.
 CGB screenshots were created using the formula
 `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel.
 DMG screenshots use RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
