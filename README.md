@@ -8,44 +8,35 @@ Have a Game Boy emulator you want to test for accuracy?
 This collection of
 [compiled Game Boy test roms](https://github.com/c-sp/gameboy-test-roms/releases)
 might help.
-It includes (alphabetically sorted):
+It includes (in alphabetical order):
 
 * **[AGE test roms](https://github.com/c-sp/age-test-roms)**  
-  <sup>written by
-  [me](https://github.com/c-sp) </sup>
+  <sup>by [me](https://github.com/c-sp) </sup>
 * **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**  
-  <sup>written by
-  [Shay Green (a.k.a. Blargg)](http://www.slack.net/~ant/) </sup>
+  <sup>by [Shay Green (a.k.a. Blargg)](http://www.slack.net/~ant/) </sup>
 * **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)**,
   **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)** and
   **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
-  <sup>written by
-  [Matt Currie](https://github.com/mattcurrie) </sup>
+  <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)**  
-  <sup>written by
-  [Damian Yerrick](https://github.com/pinobatch) </sup>
+  <sup>by [Damian Yerrick](https://github.com/pinobatch) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
   (as the original Gambatte repository is not public anymore we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
   instead)  
-  <sup>written by
-  [sinamas](https://github.com/sinamas)
+  <sup>by [sinamas](https://github.com/sinamas)
   </sup>
 * **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**  
-  <sup>written by
-  [Matt Currie](https://github.com/mattcurrie) </sup>
+  <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite/)**  
-  <sup>written by
-  [Joonas Javanainen](https://github.com/Gekkio) </sup>
+  <sup>by [Joonas Javanainen](https://github.com/Gekkio) </sup>
 * **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**  
-  <sup>written by [Joonas Javanainen](https://github.com/Gekkio)
+  <sup>by [Joonas Javanainen](https://github.com/Gekkio)
   and [wilbertpol](https://github.com/wilbertpol) </sup>
 * **[rtc3test](https://github.com/aaaaaa123456789/rtc3test)**  
-  <sup>written by
-  [aaaaaa123456789](https://github.com/aaaaaa123456789) </sup>
+  <sup>by [aaaaaa123456789](https://github.com/aaaaaa123456789) </sup>
 * **[SameSuite](https://github.com/LIJI32/SameSuite)**  
-  <sup>written by
-  [Lior Halphon](https://github.com/LIJI32) </sup>
+  <sup>by [Lior Halphon](https://github.com/LIJI32) </sup>
 
 
 
@@ -197,7 +188,7 @@ Terminating the test after half a second of emulation time should be more than e
 
 **Test Success:**
 The test succeeds when only a white screen is visible.
-A corresponding [screenshot](src/firstwhite) is available.
+A corresponding [screenshot](src/firstwhite-expected) is available.
 You should use the formula `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel
 and the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
 for DMG shades to make sure the screenshot matches.
@@ -278,8 +269,6 @@ The maximal runtime for a test is 120 emulated seconds (see
 **Test Success:**
 A test succeeds if the Game Boy's CPU registers contain the following
 Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
-Note that some Mooneye tests are written for specific Game Boy hardware.
-They might fail depending on what hardware your emulator supports.
 
 
 

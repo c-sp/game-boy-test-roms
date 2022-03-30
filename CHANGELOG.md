@@ -1,4 +1,4 @@
-## master
+## [v4.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v4.0) *(2022-03-30)*
 
 - add
   [rtc3test:80ae792bf1](https://github.com/aaaaaa123456789/rtc3test/tree/80ae792bf1)
