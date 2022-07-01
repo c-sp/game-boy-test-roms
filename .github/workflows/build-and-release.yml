@@ -335,6 +335,7 @@ jobs:
     needs: [
         age-test-roms,
         blargg-suite,
+        bully,
         cgb-acid2,
         cgb-acid-hell,
         dmg-acid2,
