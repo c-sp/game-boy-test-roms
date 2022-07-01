@@ -21,6 +21,7 @@ print_usage_and_exit()
     echo "usage:"
     echo "    $0 $CMD_AGE_TEST_ROMS"
     echo "    $0 $CMD_BLARGG"
+    echo "    $0 $CMD_BULLY"
     echo "    $0 $CMD_CGB_ACID2"
     echo "    $0 $CMD_CGB_ACID_HELL"
     echo "    $0 $CMD_DMG_ACID2"
@@ -134,6 +135,31 @@ build_blargg()
 
     cd "$SRC_DIR/blargg-expected"
     rsync -am ./ "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
+build_bully()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=bully
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    pwd
+    git clone https://github.com/Hacktix/BullyGB.git .
+    git checkout e24fe6fd7f3fbc6021e3ee7f0f29e9166fce5937
+
+    make
+
+    cp bully.gb README.md logo.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -527,6 +553,7 @@ build_wla_dx()
 
 CMD_AGE_TEST_ROMS=age-test-roms
 CMD_BLARGG=blargg-roms
+CMD_BULLY=bully
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_DMG_ACID2=dmg-acid2
@@ -556,6 +583,7 @@ fi
 case ${CMD} in
     "${CMD_AGE_TEST_ROMS}") build_age_test_roms "$@" ;;
     "${CMD_BLARGG}") build_blargg "$@" ;;
+    "${CMD_BULLY}") build_bully "$@" ;;
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
