@@ -160,6 +160,8 @@ build_bully()
     make
 
     cp bully.gb README.md logo.png "$ARTIFACT"
+    cd "$SRC_DIR"
+    cp bully/bully.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -544,6 +546,8 @@ build_strikethrough()
     make
 
     cp strikethrough.gb README.md "$ARTIFACT"
+    cd "$SRC_DIR"
+    cp strikethrough/strikethrough.png "$ARTIFACT"
 
     tar_rm_artifact $ARTIFACT_NAME
 }
