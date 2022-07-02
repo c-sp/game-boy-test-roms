@@ -3,6 +3,9 @@
 - add
   [BullyGB:e24fe6fd7f](https://github.com/Hacktix/BullyGB/tree/e24fe6fd7f)
   *(2021-02-26)*
+- add
+  [strikethrough:7cd01bf916](https://github.com/Hacktix/strikethrough.gb/tree/7cd01bf916)
+  *(2021-03-05)*
 
 ## [v4.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v4.0) *(2022-03-30)*
 

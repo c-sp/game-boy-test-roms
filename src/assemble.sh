@@ -34,6 +34,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_RTC3TEST"
     echo "    $0 $CMD_SAME_SUITE"
+    echo "    $0 $CMD_STRIKETHROUGH"
     echo "    $0 $CMD_WLA_DX"
     exit 1
 }
@@ -153,7 +154,6 @@ build_bully()
 
     REPO=$(mktemp -d)
     cd "$REPO"
-    pwd
     git clone https://github.com/Hacktix/BullyGB.git .
     git checkout e24fe6fd7f3fbc6021e3ee7f0f29e9166fce5937
 
@@ -526,6 +526,30 @@ build_same_suite()
 
 
 
+build_strikethrough()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=strikethrough
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/Hacktix/strikethrough.gb.git .
+    git checkout 7cd01bf91665b85809379b71e655da751809994e
+
+    make
+
+    cp strikethrough.gb README.md "$ARTIFACT"
+
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
 build_wla_dx()
 {
     ARTIFACT_NAME=wla-dx
@@ -566,6 +590,7 @@ CMD_RELEASE_ZIP=release-zip
 CMD_RGBDS=rgbds
 CMD_RTC3TEST=rtc3test
 CMD_SAME_SUITE=same-suite
+CMD_STRIKETHROUGH=strikethrough
 CMD_WLA_DX=wla-dx
 
 # identify repository directories based on the path of this script
@@ -596,6 +621,7 @@ case ${CMD} in
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_RTC3TEST}") build_rtc3test "$@" ;;
     "${CMD_SAME_SUITE}") build_same_suite "$@" ;;
+    "${CMD_STRIKETHROUGH}") build_strikethrough "$@" ;;
     "${CMD_WLA_DX}") build_wla_dx "$@" ;;
 
     *) print_usage_and_exit ;;

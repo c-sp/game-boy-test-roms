@@ -39,6 +39,8 @@ It includes (in alphabetical order):
   <sup>by [aaaaaa123456789](https://github.com/aaaaaa123456789) </sup>
 * **[SameSuite](https://github.com/LIJI32/SameSuite)**  
   <sup>by [Lior Halphon](https://github.com/LIJI32) </sup>
+* **[strikethrough](https://github.com/Hacktix/strikethrough.gb)**  
+  <sup>by [Hacktix](https://github.com/Hacktix) </sup>
 
 
 
@@ -349,3 +351,9 @@ Each test rom executes opcode `0x40: LD B, B` when finished.
 **Test Success:**
 A test succeeds if the Game Boy's CPU registers contain the following
 Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
+
+
+
+## Strikethrough
+
+TODO

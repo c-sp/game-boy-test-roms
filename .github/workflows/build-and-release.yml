@@ -329,6 +329,30 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
+  strikethrough:
+    name: build strikethrough.gb
+    runs-on: ubuntu-latest
+    needs: [ rgbds ]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: build strikethrough.gb
+        run: src/assemble.sh strikethrough
+
+      - name: upload strikethrough.gb artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest
@@ -345,7 +369,8 @@ jobs:
         mooneye-test-suite,
         mooneye-test-suite-wilbertpol,
         rtc3test,
-        same-suite
+        same-suite,
+        strikethrough
     ]
     steps:
       - name: checkout code
