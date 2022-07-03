@@ -55,7 +55,7 @@ For each test rom we have to consider:
 * **Exit Condition:**
   When is a test finished?
 * **Test Success/Failure:**
-  How do we identify test success and failure?
+  How do we identify test success or failure?
 
 
 
@@ -143,7 +143,22 @@ below
 
 ## BullyGB
 
+[BullyGB](https://github.com/Hacktix/BullyGB) is located at `bully/` inside the released zip file.
+It is compiled with [RGBDS](https://github.com/gbdev/rgbds).
+
+**Hardware:**
+According to the [BullyGB Wiki](https://github.com/Hacktix/BullyGB/wiki),
+most test cases are compatible to all Game Boy models.
+The test cases compatible to only specific models seem to be included/skipped automatically.
+
+**Exit Condition:**
 TODO
+
+**Test Success:**
+A [screenshot](src/bully-expected) of the expected test result is available.
+You should use the formula `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel
+and the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+for DMG shades to be able to compare screenshots.
 
 
 
@@ -201,7 +216,7 @@ The test succeeds when only a white screen is visible.
 A corresponding [screenshot](src/firstwhite-expected) is available.
 You should use the formula `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel
 and the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
-for DMG shades to make sure the screenshot matches.
+for DMG shades to be able to compare screenshots.
 
 
 
@@ -243,7 +258,7 @@ There are different types of Gambatte test roms:
 
 Your emulator should use the RGB values `#000000`, `#555555`, `#AAAAAA` and
 `#FFFFFF` as DMG shades instead of the classic greenish Game Boy colors to
-compare the screenshots.
+be able to compare screenshots.
 
 Gambatte calculates Game Boy Color RGB values using these formulas:
 
@@ -356,4 +371,18 @@ Fibonacci numbers: `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`
 
 ## Strikethrough
 
+[Strikethrough](https://github.com/Hacktix/strikethrough.gb) is located at `strikethrough/`
+inside the released zip file.
+It is compiled with [RGBDS](https://github.com/gbdev/rgbds).
+
+**Hardware:**
 TODO
+
+**Exit Condition:**
+TODO
+
+**Test Success:**
+A [screenshot](src/strikethrough-expected) of the expected test result is available.
+You should use the formula `(X << 3) | (X >> 2)` for each Game Boy Color RGB channel
+and the RGB values `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF`
+for DMG shades to be able to compare screenshots.
