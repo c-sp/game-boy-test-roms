@@ -19,7 +19,7 @@ It includes (in alphabetical order):
   **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)** and
   **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
   <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
-* **[firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)**  
+* **[Firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)**  
   <sup>by [Damian Yerrick](https://github.com/pinobatch) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
   (as the original Gambatte repository is not public anymore, we use
@@ -54,7 +54,7 @@ For each test rom we have to consider:
 * **Test Success/Failure:**
   How do we identify test success or failure?
 
-Details can be found in a separate readme for each test suite:
+Details on this can be found in a separate readme for each test suite:
 * [AGE test roms](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/age-test-roms.md)
   (located at `<release-zip>/age-test-roms/`)
 * [Blargg's test roms](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/blargg.md)
@@ -67,9 +67,9 @@ Details can be found in a separate readme for each test suite:
   (located at `<release-zip>/cgb-acid2/`)
 * [dmg-acid2](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/dmg-acid2.md)
   (located at `<release-zip>/dmg-acid2/`)
-* [firstwhite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/firstwhite.md)
+* [Firstwhite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/firstwhite.md)
   (located at `<release-zip>/firstwhite/`)
-* [mealybug-tearoom-tests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mealybug-tearoom-tests.md)
+* [Mealybug Tearoom Tests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mealybug-tearoom-tests.md)
   (located at `<release-zip>/mealybug-tearoom-tests/`)
 * [Mooneye Test Suite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mooneye-test-suite.md)
   (located at `<release-zip>/mooneye-test-suite/`)
