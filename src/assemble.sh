@@ -116,7 +116,8 @@ build_age_test_roms()
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='*.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
-    # TODO remove _in-progress
+    # remove _in-progress/ as these tests are not finished yet
+    rm -rf "$ARTIFACT/_in-progress"
 
     cp "$SRC_DIR/howto/age-test-roms.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME

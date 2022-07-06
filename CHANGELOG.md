@@ -8,6 +8,7 @@
   *(2021-03-05)*
 - restructure readme:
   add a readme for each test suite
+- remove `age-test-roms/_in-progress` as these tests are not finished yet
 
 ## [v4.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v4.0) *(2022-03-30)*
 
