@@ -116,6 +116,9 @@ build_age_test_roms()
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='*.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    # TODO remove _in-progress
+
+    cp "$SRC_DIR/howto/age-test-roms.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -137,6 +140,7 @@ build_blargg()
     cd "$SRC_DIR/blargg-expected"
     rsync -am ./ "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/blargg.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -163,6 +167,7 @@ build_bully()
     cd "$SRC_DIR"
     cp bully-expected/bully.png "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/bully.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -190,6 +195,7 @@ build_cgb_acid2()
     cp build/cgb-acid2.gbc "$ARTIFACT"
     cp img/reference.png "$ARTIFACT/cgb-acid2.png"
 
+    cp "$SRC_DIR/howto/cgb-acid2.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -222,6 +228,7 @@ build_cgb_acid_hell()
     cp cgb-acid-hell.gbc "$ARTIFACT"
     cp img/reference.png "$ARTIFACT/cgb-acid-hell.png"
 
+    cp "$SRC_DIR/howto/cgb-acid-hell.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -250,6 +257,7 @@ build_dmg_acid2()
     cp img/reference-cgb.png "$ARTIFACT/dmg-acid2-cgb.png"
     cp img/reference-dmg.png "$ARTIFACT/dmg-acid2-dmg.png"
 
+    cp "$SRC_DIR/howto/dmg-acid2.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -278,6 +286,7 @@ build_firstwhite()
     cd "$SRC_DIR"
     cp firstwhite-expected/*.png "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/firstwhite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -303,6 +312,7 @@ build_gambatte_hwtests()
     cd "$REPO"
     cp README "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/gambatte.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -363,6 +373,7 @@ build_mealybug_tearoom_tests()
     rm "$ARTIFACT/ppu/m3_wx_5_change_cgb_d.png"
     rm "$ARTIFACT/ppu/m3_wx_6_change_cgb_d.png"
 
+    cp "$SRC_DIR/howto/mealybug-tearoom-tests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -389,6 +400,7 @@ build_mooneye_test_suite()
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/mooneye-test-suite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -419,6 +431,7 @@ build_mooneye_test_suite_wilbertpol()
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/mooneye-test-suite-wilbertpol.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -497,6 +510,7 @@ build_rtc3test()
     cd "$SRC_DIR"
     cp rtc3test-expected/*.png "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/rtc3test.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -523,6 +537,7 @@ build_same_suite()
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/same-suite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -549,6 +564,7 @@ build_strikethrough()
     cd "$SRC_DIR"
     cp strikethrough-expected/strikethrough.png "$ARTIFACT"
 
+    cp "$SRC_DIR/howto/strikethrough.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
