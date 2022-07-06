@@ -49,7 +49,8 @@ mkdir_artifact()
 
     # delete old artifact
     # (dir and tar* file)
-    rm -rf "$ART_DIR"*
+    rm -r "$ART_DIR"
+    rm -f "$ART_DIR".*
 
     # create artifact dir
     mkdir -p "$ART_DIR"
@@ -401,6 +402,10 @@ build_mooneye_test_suite()
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
+    cd "$SRC_DIR/mooneye-test-suite-expected"
+    rsync -am ./ "$ARTIFACT"
+    rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
+
     cp "$SRC_DIR/howto/mooneye-test-suite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
@@ -431,6 +436,10 @@ build_mooneye_test_suite_wilbertpol()
     rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+
+    cd "$SRC_DIR/mooneye-test-suite-expected"
+    rsync -am ./ "$ARTIFACT"
+    rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
 
     cp "$SRC_DIR/howto/mooneye-test-suite-wilbertpol.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME

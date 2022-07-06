@@ -29,4 +29,31 @@ A test succeeds,
 if the Game Boy's CPU registers contain the following Fibonacci numbers:
 `B = 3, C = 5, D = 8, E = 13, H = 21, L = 34`.
 
-[//]: # (TODO screenshot colors for manual-only/sprite_priority.gb)
+### Screenshot based tests
+
+At the time of writing,
+`manual-only/sprite_priority.gb` is the only test requiring screenshot
+comparison to detect success/failure.
+As already indicated by its directory name,
+it is not part of [Mooneye's automatic test suite](
+https://github.com/Gekkio/mooneye-gb/blob/3856dcbca82a7d32bd438cc92fd9693f868e2e23/core/tests/mooneye_suite.rs#L78).
+
+The provided `manual-only/sprite_priority-expected.png` is a grayscale image and
+not compatible to the "common palette" used by e.g. cgb-acid2 screenshots or the
+ones provided by Mealybug Tearoom Tests.
+For that reason I replaced `manual-only/sprite_priority-expected.png` with
+[two images](https://github.com/c-sp/gameboy-test-roms/tree/master/src/mooneye-test-suite-expected)
+containing the expected result for DMG and CGB (compatibility mode) using this
+"common palette".
+
+To create comparable screenshots,
+your emulator should calculate colors as follows:
+- `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF` are used for the four DMG LCD
+  shades
+- each CGB 5 bit RGB channel is converted to 8 bits using the formula
+  `(X << 3) | (X >> 2)`
+- LCD shades for CGB compatibility mode are:
+    - background: `#000000`, `#0063C6`, `#7BFF31` and `#FFFFFF`
+    - objects: `#000000`, `#943939`, `#FF8484` and `#FFFFFF`
+
+[//]: # (TODO check manual-only/sprite_priority.gb on real hardware)

@@ -15,6 +15,7 @@ See the tables below for details.
 
 [//]: # (TODO add CGB-C)
 [//]: # (TODO add oam-bug screenshot)
+[//]: # (TODO modify screenshots: use cgb-acid2 compatible colors instead of Gambatte compatible colors)
 
 Each test has to run for a specific amount of (emulated) time:
 
