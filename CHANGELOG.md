@@ -12,6 +12,9 @@
 - add custom `manual-only/sprite_priority` screenshots (Mooneye Test Suite)
 - add DMG screenshot for Blargg's oam_bug test
 - refactor Blargg screenshots to use cgb-acid2 compatible color palette
+- adjust Blargg screenshot naming:
+  use suffixes to indicate compatible Game Boy devices
+  (e.g. `<...>-dmg.png` or `<...>-cgb.png`)
 
 ## [v4.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v4.0) *(2022-03-30)*
 
