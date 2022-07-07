@@ -14,12 +14,10 @@ See the tables below for details.
 ## Exit Condition
 
 [//]: # (TODO add CGB-C)
-[//]: # (TODO add oam-bug screenshot)
-[//]: # (TODO modify screenshots: use cgb-acid2 compatible colors instead of Gambatte compatible colors)
 
 Each test has to run for a specific amount of (emulated) time:
 
-| test (CGB) | emulated seconds | CGB-B | CGB-E |
+| test | emulated seconds | CGB-B | CGB-E |
 | ---: | --- | --- | --- |
 | `cgb_sound` | 37 | &#10060;<sup>1.</sup> | &#9989;<sup>2.</sup>
 | `cpu_instrs` | 31 | &#9989; | &#9989;
@@ -36,8 +34,12 @@ Each test has to run for a specific amount of (emulated) time:
 2. `cgb_sound` (CGB-E):
    Test cases are repeated infinitely,
    the test never really finishes.
+   The corresponding
+   [screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/blargg-expected/cgb_sound)
+   was created with [SameBoy](https://sameboy.github.io),
+   which terminates the test correctly.
 
-| test (DMG) | emulated seconds | DMG-C |
+| test | emulated seconds | DMG-C |
 | ---: | --- | --- |
 | `cpu_instrs` | 55 | &#9989;
 | `dmg_sound` | 36 | &#9989;<sup>3.</sup>
@@ -46,11 +48,15 @@ Each test has to run for a specific amount of (emulated) time:
 | `interrupt_time` | 2 | &#10060;<sup>4.</sup>
 | `mem_timing` | 3 | &#9989;
 | `mem_timing-2` | 4 | &#9989;
-| `oam_bug` | *todo* | &#9989;
+| `oam_bug` | 21 | &#9989;
 
 3. `dmg_sound` (DMG-C):
    Test cases are repeated infinitely,
    the test never really finishes.
+   The corresponding
+   [screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/blargg-expected/dmg_sound)
+   was created with [SameBoy](https://sameboy.github.io),
+   which terminates the test correctly.
 4. `interrupt_time` (DMG-C):
    Fails with checksum `7F8F4AAF` (in case anyone is interested).
    This is a CGB-only rom, so failure was expected.
@@ -60,6 +66,12 @@ Each test has to run for a specific amount of (emulated) time:
 A test has finished successfully,
 if the emulator's screen matches the respective
 [screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/blargg-expected).
-For details on the screenshot RGB values please have a look at
-**Gambatte screenshot colors**
-(screenshots were created using Gambatte's color correction).
+To create comparable screenshots,
+your emulator should calculate colors as follows:
+- `#000000`, `#555555`, `#AAAAAA` and `#FFFFFF` are used for the four DMG LCD
+  shades
+- each CGB 5 bit RGB channel is converted to 8 bits using the formula
+  `(X << 3) | (X >> 2)`
+- LCD shades for CGB compatibility mode are:
+   - background: `#000000`, `#0063C6`, `#7BFF31` and `#FFFFFF`
+   - objects: `#000000`, `#943939`, `#FF8484` and `#FFFFFF`
