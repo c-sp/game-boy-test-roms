@@ -10,7 +10,12 @@ most test cases are compatible to all Game Boy devices.
 The test cases compatible to only specific Game Boy devices seem to be
 included/skipped automatically.
 
-[//]: # (TODO verify this on my devices)
+I double-checked this for my own devices
+([DMG-CPU-08 (DMG-CPU C blob)](https://gbhwdb.gekkio.fi/consoles/dmg),
+[CPU-CGB-02 (CPU CGB B), CPU-CGB-04 (CPU CGB C) and CPU-CGB-06 (CPU CGB E)](
+https://gbhwdb.gekkio.fi/consoles/cgb))
+and it fails on my DMG-C with error `Bad Echo RAM Reads`.
+CGB results are fine though.
 
 ## Exit Condition
 

@@ -55,5 +55,3 @@ your emulator should calculate colors as follows:
 - LCD shades for CGB compatibility mode are:
     - background: `#000000`, `#0063C6`, `#7BFF31` and `#FFFFFF`
     - objects: `#000000`, `#943939`, `#FF8484` and `#FFFFFF`
-
-[//]: # (TODO check manual-only/sprite_priority.gb on real hardware)

@@ -5,7 +5,11 @@
 
 ## Game Boy Devices & SoC Revisions
 
-[//]: # (TODO strikethrough: devices & SoC revisions)
+I could not find any compatibility information on Strikethrough.
+It works on all of my devices though
+([DMG-CPU-08 (DMG-CPU C blob)](https://gbhwdb.gekkio.fi/consoles/dmg),
+[CPU-CGB-02 (CPU CGB B), CPU-CGB-04 (CPU CGB C) and CPU-CGB-06 (CPU CGB E)](
+https://gbhwdb.gekkio.fi/consoles/cgb)).
 
 ## Exit Condition
 
@@ -13,8 +17,8 @@ Running the test run for half a second emulated time is sufficient.
 
 ## Test Success/Failure
 
-[A screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/strikethrough-expected)
-of the expected test result is available.
+[Screenshots](https://github.com/c-sp/gameboy-test-roms/tree/master/src/strikethrough-expected)
+of the expected test results are available.
 
 To create comparable screenshots,
 your emulator should calculate colors as follows:
