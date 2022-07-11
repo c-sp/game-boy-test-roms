@@ -13,19 +13,17 @@ See the tables below for details.
 
 ## Exit Condition
 
-[//]: # (TODO add CGB-C)
-
 Each test has to run for a specific amount of (emulated) time:
 
-| test | emulated seconds | CGB-B | CGB-E |
-| ---: | --- | --- | --- |
-| `cgb_sound` | 37 | &#10060;<sup>1.</sup> | &#9989;<sup>2.</sup>
-| `cpu_instrs` | 31 | &#9989; | &#9989;
-| `halt_bug` | 2 | &#9989; | &#9989;
-| `instr_timing` | 1 | &#9989; | &#9989;
-| `interrupt_time` | 2 | &#9989; | &#9989;
-| `mem_timing` | 3 | &#9989; | &#9989;
-| `mem_timing-2` | 4 | &#9989; | &#9989;
+| test | emulated seconds | CGB-B | CGB-C | CGB-E |
+| ---: | --- | --- | --- | --- |
+| `cgb_sound` | 37 | &#10060;<sup>1.</sup> | &#9989;<sup>2.</sup> | &#9989;<sup>2.</sup>
+| `cpu_instrs` | 31 | &#9989; | &#9989; | &#9989;
+| `halt_bug` | 2 | &#9989; | &#9989; | &#9989;
+| `instr_timing` | 1 | &#9989; | &#9989; | &#9989;
+| `interrupt_time` | 2 | &#9989; | &#9989; | &#9989;
+| `mem_timing` | 3 | &#9989; | &#9989;| &#9989;
+| `mem_timing-2` | 4 | &#9989; | &#9989;| &#9989;
 
 1. `cgb_sound` (CGB-B):
    Test case 3 fails with code `04`.
