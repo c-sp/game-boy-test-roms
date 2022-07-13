@@ -83,3 +83,26 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/same-suite/`)
 * [Strikethrough](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/strikethrough.md)
   (located at `<release-zip>/strikethrough/`)
+
+## Versioning
+
+All noteworthy adjustments can be found in the [changelog](CHANGELOG.md).
+
+Note that **version numbers are NOT based on
+[semantic versioning](https://semver.org)** as I am not capable of
+determining what update to any included test suite is actually a breaking change
+with regard to your emulator.
+Instead,
+major version numbers are increased with every addition of new test suites and
+minor version numbers are increased with any update to already included test
+suites.
+
+Readme by release version:
+
+* [Readme v4.0](https://github.com/c-sp/gameboy-test-roms/blob/v4.0/README.md)
+* [Readme v3.2](https://github.com/c-sp/gameboy-test-roms/blob/v3.2/README.md)
+* [Readme v3.1](https://github.com/c-sp/gameboy-test-roms/blob/v3.1/README.md)
+* [Readme v3.0](https://github.com/c-sp/gameboy-test-roms/blob/v3.0/README.md)
+* [Readme v2.0](https://github.com/c-sp/gameboy-test-roms/blob/v2.0/README.md)
+* [Readme v1.1](https://github.com/c-sp/gameboy-test-roms/blob/v1.1/README.md)
+* [Readme v1.0](https://github.com/c-sp/gameboy-test-roms/blob/v1.0/README.md)
