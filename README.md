@@ -69,6 +69,8 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/dmg-acid2/`)
 * [Firstwhite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/firstwhite.md)
   (located at `<release-zip>/firstwhite/`)
+* [Gambatte test suite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/gambatte.md)
+  (located at `<release-zip>/gambatte/`)
 * [Mealybug Tearoom Tests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mealybug-tearoom-tests.md)
   (located at `<release-zip>/mealybug-tearoom-tests/`)
 * [Mooneye Test Suite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mooneye-test-suite.md)
