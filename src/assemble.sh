@@ -572,7 +572,7 @@ build_strikethrough()
 
     cp strikethrough.gb README.md "$ARTIFACT"
     cd "$SRC_DIR"
-    cp strikethrough-expected/strikethrough.png "$ARTIFACT"
+    cp strikethrough-expected/strikethrough*.png "$ARTIFACT"
 
     cp "$SRC_DIR/howto/strikethrough.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
