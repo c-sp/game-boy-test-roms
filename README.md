@@ -67,8 +67,6 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/cgb-acid2/`)
 * [dmg-acid2](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/dmg-acid2.md)
   (located at `<release-zip>/dmg-acid2/`)
-* [Firstwhite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/firstwhite.md)
-  (located at `<release-zip>/firstwhite/`)
 * [Gambatte test suite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/gambatte.md)
   (located at `<release-zip>/gambatte/`)
 * [Mealybug Tearoom Tests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mealybug-tearoom-tests.md)
@@ -77,6 +75,8 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/mooneye-test-suite/`)
 * [Mooneye Test Suite (wilbertpol)](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mooneye-test-suite-wilbertpol.md)
   (located at `<release-zip>/mooneye-test-suite-wilbertpol/`)
+* [(parts of) little-things-gb](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/little-things-gb.md)
+  (located at `<release-zip>/firstwhite/`)
 * [rtc3test](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/rtc3test.md)
   (located at `<release-zip>/rtc3test/`)
 * [SameSuite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/same-suite.md)
@@ -90,8 +90,8 @@ All noteworthy adjustments can be found in the [changelog](CHANGELOG.md).
 
 Note that **version numbers are NOT based on
 [semantic versioning](https://semver.org)** as I am not capable of
-determining what update to any included test suite is actually a breaking change
-with regard to your emulator.
+determining what update to any included test suite is actually a breaking
+change.
 Instead,
 major version numbers are increased with every addition of new test suites and
 minor version numbers are increased with any update to already included test

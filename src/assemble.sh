@@ -441,9 +441,9 @@ build_little_things_gb()
     cp tellinglys/README.md "$ARTIFACT/tellinglys-readme.md"
 
     cd "$SRC_DIR"
-    cp firstwhite-expected/*.png "$ARTIFACT"
+    cp little-things-gb-expected/*.png "$ARTIFACT"
 
-    cp "$SRC_DIR/howto/firstwhite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+    cp "$SRC_DIR/howto/little-things-gb.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
