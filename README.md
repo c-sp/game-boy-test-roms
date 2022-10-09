@@ -19,8 +19,6 @@ It includes (in alphabetical order):
   **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)** and
   **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
   <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
-* **[Firstwhite](https://github.com/pinobatch/little-things-gb/tree/master/firstwhite)**  
-  <sup>by [Damian Yerrick](https://github.com/pinobatch) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
   (as the original Gambatte repository is not public anymore, we use
   [pokemon-speedrunning/gambatte-core](https://github.com/pokemon-speedrunning/gambatte-core)
@@ -34,6 +32,8 @@ It includes (in alphabetical order):
 * **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**  
   <sup>by [Joonas Javanainen](https://github.com/Gekkio)
   and [wilbertpol](https://github.com/wilbertpol) </sup>
+* **[(parts of) little-things-gb](https://github.com/pinobatch/little-things-gb)**  
+  <sup>by [Damian Yerrick](https://github.com/pinobatch) </sup>
 * **[rtc3test](https://github.com/aaaaaa123456789/rtc3test)**  
   <sup>by [ax6](https://github.com/aaaaaa123456789) </sup>
 * **[SameSuite](https://github.com/LIJI32/SameSuite)**  

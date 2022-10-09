@@ -25,11 +25,11 @@ print_usage_and_exit()
     echo "    $0 $CMD_CGB_ACID2"
     echo "    $0 $CMD_CGB_ACID_HELL"
     echo "    $0 $CMD_DMG_ACID2"
-    echo "    $0 $CMD_FIRSTWHITE"
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
     echo "    $0 $CMD_MOONEYE_TEST_SUITE"
     echo "    $0 $CMD_MOONEYE_TEST_SUITE_WILBERTPOL"
+    echo "    $0 $CMD_LITTLE_THINGS_GB"
     echo "    $0 $CMD_RELEASE_ZIP <zip-file>"
     echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_RTC3TEST"
@@ -265,35 +265,6 @@ build_dmg_acid2()
 
 
 
-build_firstwhite()
-{
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
-    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
-
-    ARTIFACT_NAME=firstwhite
-    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
-
-    REPO=$(mktemp -d)
-    cd "$REPO"
-    git clone https://github.com/pinobatch/little-things-gb.git .
-    git checkout 9d168486e1210da23f7160043b224bba79f05c08
-
-    cd firstwhite
-    make firstwhite.gb
-
-    cp firstwhite.gb README.md CHANGES.txt "$ARTIFACT"
-
-    cd "$SRC_DIR"
-    cp firstwhite-expected/*.png "$ARTIFACT"
-
-    cp "$SRC_DIR/howto/firstwhite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
-}
-
-
-
 build_gambatte_hwtests()
 {
     ARTIFACT_NAME=gambatte
@@ -442,6 +413,37 @@ build_mooneye_test_suite_wilbertpol()
     rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
 
     cp "$SRC_DIR/howto/mooneye-test-suite-wilbertpol.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+    tar_rm_artifact $ARTIFACT_NAME
+}
+
+
+
+build_little_things_gb()
+{
+    # extract RGBDS artifacts
+    cd "$ARTIFACTS_DIR"
+    untar_all_artifacts
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=little-things-gb
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/pinobatch/little-things-gb.git .
+    git checkout c4785ad0b9635da7704cc56051e9df552e9e454a
+
+    make firstwhite/firstwhite.gb tellinglys/tellinglys.gb
+
+    cp firstwhite/firstwhite.gb "$ARTIFACT"
+    cp firstwhite/README.md "$ARTIFACT/firstwhite-readme.md"
+    cp tellinglys/tellinglys.gb "$ARTIFACT"
+    cp tellinglys/README.md "$ARTIFACT/tellinglys-readme.md"
+
+    cd "$SRC_DIR"
+    cp firstwhite-expected/*.png "$ARTIFACT"
+
+    cp "$SRC_DIR/howto/firstwhite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
     tar_rm_artifact $ARTIFACT_NAME
 }
 
@@ -611,11 +613,11 @@ CMD_BULLY=bully
 CMD_CGB_ACID2=cgb-acid2
 CMD_CGB_ACID_HELL=cgb-acid-hell
 CMD_DMG_ACID2=dmg-acid2
-CMD_FIRSTWHITE=firstwhite
 CMD_GAMBATTE=gambatte-roms
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_MOONEYE_TEST_SUITE=mooneye-test-suite
 CMD_MOONEYE_TEST_SUITE_WILBERTPOL=mooneye-test-suite-wilbertpol
+CMD_LITTLE_THINGS_GB=little-things-gb
 CMD_RELEASE_ZIP=release-zip
 CMD_RGBDS=rgbds
 CMD_RTC3TEST=rtc3test
@@ -642,11 +644,11 @@ case ${CMD} in
     "${CMD_CGB_ACID2}") build_cgb_acid2 "$@" ;;
     "${CMD_CGB_ACID_HELL}") build_cgb_acid_hell "$@" ;;
     "${CMD_DMG_ACID2}") build_dmg_acid2 "$@" ;;
-    "${CMD_FIRSTWHITE}") build_firstwhite "$@" ;;
     "${CMD_GAMBATTE}") build_gambatte_hwtests "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
     "${CMD_MOONEYE_TEST_SUITE}") build_mooneye_test_suite "$@" ;;
     "${CMD_MOONEYE_TEST_SUITE_WILBERTPOL}") build_mooneye_test_suite_wilbertpol "$@" ;;
+    "${CMD_LITTLE_THINGS_GB}") build_little_things_gb "$@" ;;
     "${CMD_RELEASE_ZIP}") build_release_zip "$@" ;;
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_RTC3TEST}") build_rtc3test "$@" ;;
