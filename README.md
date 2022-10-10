@@ -76,7 +76,7 @@ Details on this can be found in a separate readme for each test suite:
 * [Mooneye Test Suite (wilbertpol)](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mooneye-test-suite-wilbertpol.md)
   (located at `<release-zip>/mooneye-test-suite-wilbertpol/`)
 * [(parts of) little-things-gb](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/little-things-gb.md)
-  (located at `<release-zip>/firstwhite/`)
+  (located at `<release-zip>/little-things-gb/`)
 * [rtc3test](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/rtc3test.md)
   (located at `<release-zip>/rtc3test/`)
 * [SameSuite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/same-suite.md)
