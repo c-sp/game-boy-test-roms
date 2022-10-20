@@ -6,13 +6,16 @@
 - add
   [strikethrough:7cd01bf916](https://github.com/Hacktix/strikethrough.gb/tree/7cd01bf916)
   *(2021-03-05)*
+- [little-things-gb](https://github.com/pinobatch/little-things-gb): add
+  [Telling LYs](https://github.com/pinobatch/little-things-gb/tree/master/tellinglys)
+  *(2022-09-22)*
 - restructure readme:
   add a readme for each test suite
 - remove `age-test-roms/_in-progress` as these tests are not finished yet
 - add custom `manual-only/sprite_priority` screenshots (Mooneye Test Suite)
 - add DMG screenshot for Blargg's oam_bug test
-- refactor Blargg screenshots to use cgb-acid2 compatible color palette
-- adjust Blargg screenshot naming:
+- refactor Blargg screenshots to use cgb-acid2 compatible colors
+- adjust Blargg screenshots naming:
   use suffixes to indicate compatible Game Boy devices
   (e.g. `<...>-dmg.png` or `<...>-cgb.png`)
 
