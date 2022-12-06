@@ -42,8 +42,8 @@ Your emulator should use the RGB values `#000000`, `#555555`, `#AAAAAA` and
 
 Gambatte calculates Game Boy Color RGB values using the following formulae:
 
-| RGB channel | formula |
-| ---: | --- |
-| red   | `(R * 13 + G * 2 + B) / 2` |
-| green | `(G * 3 + B) * 2` |
-| blue  | `(R * 3 + G * 2 + B * 11) / 2` |
+| RGB channel | formula                        |
+|------------:|--------------------------------|
+|         red | `(R * 13 + G * 2 + B) / 2`     |
+|       green | `(G * 3 + B) * 2`              |
+|        blue | `(R * 3 + G * 2 + B * 11) / 2` |

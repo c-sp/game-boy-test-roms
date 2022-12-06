@@ -20,11 +20,11 @@ wait for the sub-test to finish.
 
 This procedure should be the same on all Game Boy devices.
 
-| sub-test | press buttons | test duration (emulated seconds) |
-| ---: | :---: | --- |
-| basic tests | A | 13
-| range tests | down, A | 8
-| sub-second writes | down, down, A | 26
+|          sub-test | press buttons | test duration (emulated seconds) |
+|------------------:|:-------------:|----------------------------------|
+|       basic tests |       A       | 13                               |
+|       range tests |    down, A    | 8                                |
+| sub-second writes | down, down, A | 26                               |
 
 ## Test Success/Failure
 
