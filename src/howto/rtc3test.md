@@ -13,10 +13,10 @@ it should succeed on all Game Boy devices.
 
 ## Exit Condition
 
-rtc3test consist of three sub-tests.
-At startup the user has to select the sub-test to run.
+rtc3test consist of three subtests.
+At startup the user has to select the subtest to run.
 You will have to emulate pressing the respective Game Boy buttons and after that
-wait for the sub-test to finish.
+wait for the subtest to finish.
 
 This procedure should be the same on all Game Boy devices.
 
@@ -28,7 +28,7 @@ This procedure should be the same on all Game Boy devices.
 
 ## Test Success/Failure
 
-For each sub-test there is a
+For each subtest there is a
 [screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/rtc3test-expected)
 of the expected result.
 

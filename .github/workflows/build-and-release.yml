@@ -5,7 +5,7 @@ on: push
 env:
   ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
-  ZIP_ARTIFACT_NAME: gameboy-test-roms.zip
+  ZIP_ARTIFACT_NAME: game-boy-test-roms.zip
   RGBDS_ARTIFACT_NAME: rgbds
 
 jobs:
@@ -395,7 +395,7 @@ jobs:
   # Releases are created automatically for each pushed tag.
   # Creating a new tag without any additional release information is
   # (as of 2020-06-13) not possible using the github.com website.
-  # Instead create a new tag via CLI:
+  # Instead, create a new tag via CLI:
   #     git tag -a v1.0 -m "release v1.0"
   #     git push origin --tags
   upload-new-release:
@@ -430,11 +430,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # This pulls from the CREATE RELEASE step above,
-          # referencing it's ID to get its outputs object,
+          # referencing its ID to get its outputs object,
           # which include a `upload_url`.
           # See this blog post for more info:
           # https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./${{ env.ZIP_ARTIFACT_NAME }}
-          asset_name: gameboy-test-roms-${{ env.RELEASE_VERSION }}.zip
+          asset_name: game-boy-test-roms-${{ env.RELEASE_VERSION }}.zip
           asset_content_type: application/zip
