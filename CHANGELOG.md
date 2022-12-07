@@ -1,4 +1,4 @@
-## master
+## [v5.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v5.0) *(2022-12-07)*
 
 - add
   [BullyGB:e24fe6fd7f](https://github.com/Hacktix/BullyGB/tree/e24fe6fd7f)

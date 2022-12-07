@@ -398,6 +398,12 @@ jobs:
   # Instead, create a new tag via CLI:
   #     git tag -a v1.0 -m "release v1.0"
   #     git push origin --tags
+  #
+  # Release preparations:
+  #   - adjust CHANGELOG.md
+  #   - adjust README.md (readme link)
+  #   - push new tag
+  #
   upload-new-release:
     name: upload new release
     runs-on: ubuntu-latest
