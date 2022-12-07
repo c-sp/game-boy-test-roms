@@ -29,7 +29,10 @@ Terminating the test after half a second emulated time should be sufficient.
 
 ### Telling LYs
 
-TODO
+In order to pass the test you will have to emulate pressing all Game Boy
+buttons one after another in arbitrary order.
+Afterwards the test still needs some time until the "pass" screen is displayed.
+5 seconds emulated time after the last button press should be enough.
 
 ## Test Success/Failure
 
