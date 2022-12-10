@@ -1,4 +1,5 @@
 ![](https://github.com/c-sp/gameboy-test-roms/workflows/build%20and%20release/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/c-sp/gameboy-test-roms.svg)](https://GitHub.com/c-sp/gameboy-test-roms/releases/)
 
 # Game Boy Test Roms
 
