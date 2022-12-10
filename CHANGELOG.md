@@ -1,4 +1,4 @@
-## master
+## [v5.1](https://github.com/c-sp/gameboy-test-roms/releases/tag/v5.1) *(2022-12-10)*
 
 - fix Blargg
   [interrupt_time-dmg.png](src/blargg-expected/interrupt_time/interrupt_time-dmg.png)
