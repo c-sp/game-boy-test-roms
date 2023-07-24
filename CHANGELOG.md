@@ -1,4 +1,4 @@
-## master
+## [v6.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v6.0) *(2023-07-24)*
 
 - add
   [GBMicrotest:f3b55497c1](https://github.com/aappleby/GBMicrotest/tree/f3b55497c1)
