@@ -7,6 +7,7 @@ env:
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: game-boy-test-roms.zip
   RGBDS_ARTIFACT_NAME: rgbds
+  WLADX_ARTIFACT_NAME: wladx
 
 jobs:
 
@@ -41,7 +42,7 @@ jobs:
       - name: upload WLA-DX artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          name: ${{ env.WLADX_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -258,13 +259,37 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          name: ${{ env.WLADX_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
       - name: assemble Mooneye Test Suite
         run: src/assemble.sh mooneye-test-suite
 
       - name: upload Mooneye Test Suite artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACTS_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+
+  gbmicrotest:
+    name: build GBMicrotest
+    runs-on: ubuntu-latest
+    needs: [ wla-dx ]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.WLADX_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_PATH }}
+
+      - name: assemble GBMicrotest
+        run: src/assemble.sh gbmicrotest
+
+      - name: upload GBMicrotest artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACTS_NAME }}
