@@ -1,4 +1,4 @@
-## master
+## [v5.2](https://github.com/c-sp/gameboy-test-roms/releases/tag/v5.2) *(2023-07-24)*
 
 - upgrade to
   [Mooneye Test Suite:8d742b9d55](https://github.com/Gekkio/mooneye-test-suite/tree/8d742b9d55)

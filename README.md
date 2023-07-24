@@ -100,6 +100,7 @@ suites.
 
 Readme by release version:
 
+* [Readme v5.2](https://github.com/c-sp/gameboy-test-roms/blob/v5.2/README.md)
 * [Readme v5.1](https://github.com/c-sp/gameboy-test-roms/blob/v5.1/README.md)
 * [Readme v5.0](https://github.com/c-sp/gameboy-test-roms/blob/v5.0/README.md)
 * [Readme v4.0](https://github.com/c-sp/gameboy-test-roms/blob/v4.0/README.md)
