@@ -365,7 +365,7 @@ build_mooneye_test_suite()
     REPO=$(mktemp -d)
     cd "$REPO"
     git clone https://github.com/Gekkio/mooneye-test-suite.git .
-    git checkout 86d1acf2b3369e743d25f66dc3612182c5e5aae5
+    git checkout 8d742b9d55055f6878a2f3017e0ccf2234cd692c
     make clean all
 
     cp README.markdown "$ARTIFACT"
@@ -478,6 +478,9 @@ build_rgbds()
 
     # build rgbds from source:
     # https://rgbds.gbdev.io/install/source
+    #
+    # As of 2023-07-24 a lot of test rom source code is not compatible
+    # to RGBDS 0.6, which is why we still default to RGBDS 0.5.
     REPO_RGBDS=$(mktemp -d)
     cd "$REPO_RGBDS"
     git clone https://github.com/gbdev/rgbds.git .
@@ -590,8 +593,12 @@ build_wla_dx()
     REPO_WLA_DX=$(mktemp -d)
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
-    git checkout c3cfb15ce2cabc2b7223a92776f84879619cf051
-    cmake -G "Unix Makefiles" .
+    git checkout d8b51a99ff1d8c9cb64ba4db90191718508f9c98
+    # in case of this error on macOS:
+    #     wlalink/write.c:3576:26: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+    # use another compiler, e.g.
+    #     ./assemble.sh wla-dx -DCMAKE_C_COMPILER=/usr/local/bin/gcc-13
+    cmake "$@" .
     make wla-gb wlalink
 
     cp binaries/wla-gb binaries/wlalink "$ARTIFACT"
