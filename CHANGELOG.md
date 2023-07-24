@@ -1,11 +1,14 @@
 ## master
 
 - upgrade to
-  [mooneye-test-suite:8d742b9d55](https://github.com/Gekkio/mooneye-test-suite/tree/8d742b9d55)
+  [Mooneye Test Suite:8d742b9d55](https://github.com/Gekkio/mooneye-test-suite/tree/8d742b9d55)
   *(2022-03-17)*
 - compile Mooneye Test Suite with
   [wla-dx:d8b51a99ff](https://github.com/vhelin/wla-dx/tree/d8b51a99ff)
   *(2022-05-05)*
+- upgrade to
+  [SameSuite:f71b4b3c37](https://github.com/LIJI32/SameSuite/tree/f71b4b3c37)
+  *(2022-04-10)*
 
 ## [v5.1](https://github.com/c-sp/gameboy-test-roms/releases/tag/v5.1) *(2022-12-10)*
 

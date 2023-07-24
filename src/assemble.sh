@@ -457,7 +457,7 @@ build_release_zip()
     fi
 
     mkdir -p "$ARTIFACTS_DIR"
-    cp README.md CHANGELOG.md "$ARTIFACTS_DIR"
+    cp "$REPO_DIR/README.md" "$REPO_DIR/CHANGELOG.md" "$ARTIFACTS_DIR"
 
     # remove old zip file
     cd "$ARTIFACTS_DIR"
@@ -480,7 +480,8 @@ build_rgbds()
     # https://rgbds.gbdev.io/install/source
     #
     # As of 2023-07-24 a lot of test rom source code is not compatible
-    # to RGBDS 0.6, which is why we still default to RGBDS 0.5.
+    # to RGBDS 0.6 (e.g. dmc-acid2, cgb-acid2, bully), which is why we still
+    # default to RGBDS 0.5.
     REPO_RGBDS=$(mktemp -d)
     cd "$REPO_RGBDS"
     git clone https://github.com/gbdev/rgbds.git .
@@ -544,7 +545,7 @@ build_same_suite()
     REPO_SAME_SUITE=$(mktemp -d)
     cd "$REPO_SAME_SUITE"
     git clone https://github.com/LIJI32/SameSuite.git .
-    git checkout eb48ef5a9015ae2a0be7e6bf458bd5ef551a69be
+    git checkout f71b4b3c3773b771f94955f5081dd2b36aabe54d
 
     rgbasm -V
     make
