@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: build RGBDS
         run: src/assemble.sh rgbds
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: build WLA-DX
         run: src/assemble.sh wla-dx
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: assemble Blargg test suite
         run: src/assemble.sh blargg-roms
@@ -69,7 +69,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -92,7 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: assemble Gambatte test suite
         run: src/assemble.sh gambatte-roms
@@ -110,7 +110,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -134,7 +134,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -158,7 +158,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -182,7 +182,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -206,7 +206,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -230,7 +230,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -254,7 +254,7 @@ jobs:
     needs: [ wla-dx ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -278,7 +278,7 @@ jobs:
     needs: [ wla-dx ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -301,7 +301,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: assemble Mooneye Test Suite (wilbertpol)
         run: src/assemble.sh mooneye-test-suite-wilbertpol
@@ -318,7 +318,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: build rtc3test
         run: src/assemble.sh rtc3test
@@ -336,7 +336,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -360,7 +360,7 @@ jobs:
     needs: [ rgbds ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
@@ -400,7 +400,7 @@ jobs:
     ]
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: download artifacts
         uses: actions/download-artifact@v3
