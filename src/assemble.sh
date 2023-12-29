@@ -77,7 +77,7 @@ build_age_test_roms()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=age-test-roms
@@ -132,9 +132,7 @@ build_bully()
 {
     print_cmd_title
 
-    ls -lsah "$ARTIFACTS_DIR/rgbds"
     chmod +x "$ARTIFACTS_DIR/rgbds/"*
-    ls -lsah "$ARTIFACTS_DIR/rgbds"
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=bully
@@ -160,7 +158,7 @@ build_cgb_acid2()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=cgb-acid2
@@ -187,7 +185,7 @@ build_cgb_acid_hell()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=cgb-acid-hell
@@ -219,7 +217,7 @@ build_dmg_acid2()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=dmg-acid2
@@ -274,7 +272,7 @@ build_gbmicrotest()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/wla-dx/*"
+    chmod +x "$ARTIFACTS_DIR/wla-dx/"*
     PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=gbmicrotest
@@ -299,7 +297,7 @@ build_little_things_gb()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=little-things-gb
@@ -329,7 +327,7 @@ build_mealybug_tearoom_tests()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=mealybug-tearoom-tests
@@ -389,7 +387,7 @@ build_mooneye_test_suite()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/wla-dx/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=mooneye-test-suite
@@ -550,7 +548,7 @@ build_same_suite()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=same-suite
@@ -576,7 +574,7 @@ build_strikethrough()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/*"
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=strikethrough
