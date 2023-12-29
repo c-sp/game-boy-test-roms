@@ -132,6 +132,7 @@ build_bully()
 {
     print_cmd_title
 
+    ls -lsah "$ARTIFACTS_DIR/rgbds"
     chmod +x "$ARTIFACTS_DIR/rgbds/*"
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
