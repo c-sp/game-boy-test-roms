@@ -7,7 +7,7 @@ env:
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: game-boy-test-roms.zip
   RGBDS_ARTIFACT_NAME: artifact-rgbds
-  WLADX_ARTIFACT_NAME: artifact-wladx
+  WLADX_ARTIFACT_NAME: artifact-wla-dx
 
 jobs:
 
