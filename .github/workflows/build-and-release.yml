@@ -6,8 +6,8 @@ env:
   ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: game-boy-test-roms.zip
-  RGBDS_ARTIFACT_NAME: rgbds
-  WLADX_ARTIFACT_NAME: wladx
+  RGBDS_ARTIFACT_NAME: artifact-rgbds
+  WLADX_ARTIFACT_NAME: artifact-wladx
 
 jobs:
 
@@ -23,9 +23,9 @@ jobs:
         run: src/assemble.sh rgbds
 
       - name: upload RGBDS artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -40,9 +40,9 @@ jobs:
         run: src/assemble.sh wla-dx
 
       - name: upload WLA-DX artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.WLADX_ARTIFACT_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -57,9 +57,9 @@ jobs:
         run: src/assemble.sh blargg-roms
 
       - name: upload Blargg artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -72,7 +72,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -81,9 +81,9 @@ jobs:
         run: src/assemble.sh bully
 
       - name: upload bully.gb artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -98,9 +98,9 @@ jobs:
         run: src/assemble.sh gambatte-roms
 
       - name: upload Gambatte artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -113,7 +113,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -122,9 +122,9 @@ jobs:
         run: src/assemble.sh age-test-roms
 
       - name: upload age-test-roms artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -137,7 +137,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -146,9 +146,9 @@ jobs:
         run: src/assemble.sh dmg-acid2
 
       - name: upload dmg-acid2 artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -161,7 +161,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -170,9 +170,9 @@ jobs:
         run: src/assemble.sh cgb-acid2
 
       - name: upload cgb-acid2 artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -185,7 +185,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -194,9 +194,9 @@ jobs:
         run: src/assemble.sh cgb-acid-hell
 
       - name: upload cgb-acid-hell artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -209,7 +209,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -218,9 +218,9 @@ jobs:
         run: src/assemble.sh little-things-gb
 
       - name: upload little-things-gb artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -233,7 +233,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -242,9 +242,9 @@ jobs:
         run: src/assemble.sh mealybug-tearoom-tests
 
       - name: upload mealybug-tearoom-tests artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -257,7 +257,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.WLADX_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -266,9 +266,9 @@ jobs:
         run: src/assemble.sh mooneye-test-suite
 
       - name: upload Mooneye Test Suite artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -281,7 +281,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.WLADX_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -290,9 +290,9 @@ jobs:
         run: src/assemble.sh gbmicrotest
 
       - name: upload GBMicrotest artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -307,9 +307,9 @@ jobs:
         run: src/assemble.sh mooneye-test-suite-wilbertpol
 
       - name: upload Mooneye Test Suite (wilbertpol) artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -324,9 +324,9 @@ jobs:
         run: src/assemble.sh rtc3test
 
       - name: upload rtc3test artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -339,7 +339,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -348,9 +348,9 @@ jobs:
         run: src/assemble.sh same-suite
 
       - name: upload same-suite artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -363,7 +363,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.RGBDS_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -372,9 +372,9 @@ jobs:
         run: src/assemble.sh strikethrough
 
       - name: upload strikethrough.gb artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -403,16 +403,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
 
       - name: zip artifacts
         run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
 
       - name: upload zipped artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
@@ -437,7 +436,7 @@ jobs:
     if: startsWith( github.ref, 'refs/tags/v' )
     steps:
       - name: download zipped artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ./
