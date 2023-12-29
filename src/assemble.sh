@@ -387,7 +387,7 @@ build_mooneye_test_suite()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/"*
+    chmod +x "$ARTIFACTS_DIR/wla-dx/"*
     PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=mooneye-test-suite
