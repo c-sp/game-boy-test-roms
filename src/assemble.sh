@@ -133,6 +133,7 @@ build_bully()
     print_cmd_title
 
     ls -lsah "$ARTIFACTS_DIR/rgbds"
+    chmod +x "$ARTIFACTS_DIR/rgbds/rgbasm"
     chmod +x "$ARTIFACTS_DIR/rgbds/rgb*"
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
