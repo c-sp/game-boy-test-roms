@@ -406,6 +406,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: ${{ env.ARTIFACTS_PATH }}
+          merge-multiple: true
 
       - name: zip artifacts
         run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
