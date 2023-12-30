@@ -23,7 +23,7 @@ jobs:
       - run: src/assemble.sh ${{ matrix.tool }}
       - uses: actions/upload-artifact@v4
         with:
-          name: artifact-${{ github.job }}-{{ matrix.tool }}
+          name: artifact-${{ github.job }}-${{ matrix.tool }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
