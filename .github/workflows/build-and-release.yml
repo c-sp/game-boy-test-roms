@@ -20,7 +20,7 @@ jobs:
         tool: [rgbds, wla-dx]
     steps:
       - uses: actions/checkout@v4
-      - run: src/assemble.sh {{ matrix.tool }}
+      - run: src/assemble.sh ${{ matrix.tool }}
       - uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ github.job }}-{{ matrix.tool }}
