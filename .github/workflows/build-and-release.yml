@@ -17,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          ls ${{ env.ARTIFACTS_PATH }} -lsah
           src/assemble.sh ${{ matrix.tool }}
           ls ${{ env.ARTIFACTS_PATH }} -lsah
       - uses: actions/upload-artifact@v4
@@ -52,7 +51,6 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
           merge-multiple: true
       - run: |
-          ls ${{ env.ARTIFACTS_PATH }} -lsah
           src/assemble.sh ${{ matrix.suite }}
           ls ${{ env.ARTIFACTS_PATH }} -lsah
       - uses: actions/upload-artifact@v4
@@ -70,7 +68,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          ls ${{ env.ARTIFACTS_PATH }} -lsah
           src/assemble.sh ${{ matrix.suite }}
           ls ${{ env.ARTIFACTS_PATH }} -lsah
       - uses: actions/upload-artifact@v4
@@ -94,7 +91,9 @@ jobs:
           merge-multiple: true
 
       - name: zip artifacts
-        run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
+        run: |
+          src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
+          ls ${{ env.ARTIFACTS_PATH }} -lsah
 
       - name: upload zipped artifacts
         uses: actions/upload-artifact@v4
