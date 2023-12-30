@@ -3,420 +3,96 @@ name: build and release
 on: push
 
 env:
-  ARTIFACTS_NAME: job-artifacts
   ARTIFACTS_PATH: artifacts
   ZIP_ARTIFACT_NAME: game-boy-test-roms.zip
-  RGBDS_ARTIFACT_NAME: rgbds
-  WLADX_ARTIFACT_NAME: wladx
 
 jobs:
-
-
-  rgbds:
-    name: build RGBDS
+  # make the tools required for some build jobs
+  tools:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [ rgbds, wla-dx ]
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: build RGBDS
-        run: src/assemble.sh rgbds
-
-      - name: upload RGBDS artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/checkout@v4
+      - run: |
+          src/assemble.sh ${{ matrix.tool }}
+          ls ${{ env.ARTIFACTS_PATH }} -lsah
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
+          name: artifact-${{ github.job }}-${{ matrix.tool }}
           path: ${{ env.ARTIFACTS_PATH }}
 
-
-  wla-dx:
-    name: build WLA-DX
+  # build test roms using the tools created above
+  test-roms:
     runs-on: ubuntu-latest
+    needs: [ tools ]
+    strategy:
+      fail-fast: false
+      matrix:
+        suite:
+          - age-test-roms
+          - bully
+          - cgb-acid-hell
+          - cgb-acid2
+          - dmg-acid2
+          - gbmicrotest
+          - little-things-gb
+          - mealybug-tearoom-tests
+          - mooneye-test-suite
+          - same-suite
+          - strikethrough
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: build WLA-DX
-        run: src/assemble.sh wla-dx
-
-      - name: upload WLA-DX artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          name: ${{ env.WLADX_ARTIFACT_NAME }}
+          pattern: artifact-tools-*
+          path: ${{ env.ARTIFACTS_PATH }}
+          merge-multiple: true
+      - run: |
+          src/assemble.sh ${{ matrix.suite }}
+          ls ${{ env.ARTIFACTS_PATH }} -lsah
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact-${{ github.job }}-${{ matrix.suite }}
           path: ${{ env.ARTIFACTS_PATH }}
 
-
-  blargg-suite:
-    name: create Blargg suite
+  # build test roms (no tools required)
+  test-roms-no-tools:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ blargg-roms, gambatte-roms, mooneye-test-suite-wilbertpol, rtc3test ]
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Blargg test suite
-        run: src/assemble.sh blargg-roms
-
-      - name: upload Blargg artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/checkout@v4
+      - run: |
+          src/assemble.sh ${{ matrix.suite }}
+          ls ${{ env.ARTIFACTS_PATH }} -lsah
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
+          name: artifact-${{ github.job }}-${{ matrix.suite }}
           path: ${{ env.ARTIFACTS_PATH }}
 
-
-  bully:
-    name: build bully.gb
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build bully.gb
-        run: src/assemble.sh bully
-
-      - name: upload bully.gb artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  gambatte-suite:
-    name: build Gambatte suite
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Gambatte test suite
-        run: src/assemble.sh gambatte-roms
-
-      - name: upload Gambatte artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  age-test-roms:
-    name: build age-test-roms
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build age-test-roms
-        run: src/assemble.sh age-test-roms
-
-      - name: upload age-test-roms artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  dmg-acid2:
-    name: build dmg-acid2 test rom
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build dmg-acid2 test rom
-        run: src/assemble.sh dmg-acid2
-
-      - name: upload dmg-acid2 artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  cgb-acid2:
-    name: build cgb-acid2 test rom
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build cgb-acid2 test rom
-        run: src/assemble.sh cgb-acid2
-
-      - name: upload cgb-acid2 artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  cgb-acid-hell:
-    name: build cgb-acid-hell test rom
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build cgb-acid-hell test rom
-        run: src/assemble.sh cgb-acid-hell
-
-      - name: upload cgb-acid-hell artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  little-things-gb:
-    name: build (parts of) little-things-gb
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build (parts of) little-things-gb
-        run: src/assemble.sh little-things-gb
-
-      - name: upload little-things-gb artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  mealybug-tearoom-tests:
-    name: build mealybug-tearoom-tests
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build mealybug-tearoom-tests
-        run: src/assemble.sh mealybug-tearoom-tests
-
-      - name: upload mealybug-tearoom-tests artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  mooneye-test-suite:
-    name: build Mooneye Test Suite
-    runs-on: ubuntu-latest
-    needs: [ wla-dx ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.WLADX_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: assemble Mooneye Test Suite
-        run: src/assemble.sh mooneye-test-suite
-
-      - name: upload Mooneye Test Suite artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  gbmicrotest:
-    name: build GBMicrotest
-    runs-on: ubuntu-latest
-    needs: [ wla-dx ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.WLADX_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: assemble GBMicrotest
-        run: src/assemble.sh gbmicrotest
-
-      - name: upload GBMicrotest artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  mooneye-test-suite-wilbertpol:
-    name: build Mooneye Test Suite (wilbertpol)
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Mooneye Test Suite (wilbertpol)
-        run: src/assemble.sh mooneye-test-suite-wilbertpol
-
-      - name: upload Mooneye Test Suite (wilbertpol) artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  rtc3test:
-    name: build rtc3test
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: build rtc3test
-        run: src/assemble.sh rtc3test
-
-      - name: upload rtc3test artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  same-suite:
-    name: build same-suite
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build same-suite
-        run: src/assemble.sh same-suite
-
-      - name: upload same-suite artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  strikethrough:
-    name: build strikethrough.gb
-    runs-on: ubuntu-latest
-    needs: [ rgbds ]
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.RGBDS_ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: build strikethrough.gb
-        run: src/assemble.sh strikethrough
-
-      - name: upload strikethrough.gb artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ARTIFACTS_NAME }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
+  # create a releasable zip
   create-release-zip:
     name: create release zip
     runs-on: ubuntu-latest
-    needs: [
-        age-test-roms,
-        blargg-suite,
-        bully,
-        cgb-acid2,
-        cgb-acid-hell,
-        dmg-acid2,
-        little-things-gb,
-        gambatte-suite,
-        gbmicrotest,
-        mealybug-tearoom-tests,
-        mooneye-test-suite,
-        mooneye-test-suite-wilbertpol,
-        rtc3test,
-        same-suite,
-        strikethrough
-    ]
+    needs: [ test-roms, test-roms-no-tools ]
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          name: ${{ env.ARTIFACTS_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}
-
-      - name: zip artifacts
-        run: src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
-
-      - name: upload zipped artifacts
-        uses: actions/upload-artifact@v3
+          merge-multiple: true
+      - run: |
+          src/assemble.sh release-zip $ZIP_ARTIFACT_NAME
+          ls ${{ env.ARTIFACTS_PATH }} -lsah
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ${{ env.ARTIFACTS_PATH }}/${{ env.ZIP_ARTIFACT_NAME }}
-
 
   # Releases are created automatically for each pushed tag.
   # Creating a new tag without any additional release information is
@@ -436,17 +112,12 @@ jobs:
     needs: [ create-release-zip ]
     if: startsWith( github.ref, 'refs/tags/v' )
     steps:
-      - name: download zipped artifacts
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.ZIP_ARTIFACT_NAME }}
           path: ./
-
-      - name: get release version
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-      - name: create release ${{ env.RELEASE_VERSION }}
-        id: create_release
+      - run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -455,9 +126,7 @@ jobs:
           release_name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
-
-      - name: upload release ${{ env.RELEASE_VERSION }} asset
-        uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

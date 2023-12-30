@@ -40,6 +40,13 @@ print_usage_and_exit()
     exit 1
 }
 
+print_cmd_title()
+{
+    echo "---------------------------------------------------------"
+    echo "$CMD"
+    echo "---------------------------------------------------------"
+}
+
 mkdir_artifact()
 {
     if [ -z "$1" ]; then
@@ -58,34 +65,6 @@ mkdir_artifact()
     echo "$ART_DIR"
 }
 
-tar_rm_artifact()
-{
-    ARTIFACT_NAME=$1
-    if [ -z "$ARTIFACT_NAME" ]; then
-        echo "artifact name not specified"
-        exit 1
-    fi
-    ART_DIR="$ARTIFACTS_DIR/$ARTIFACT_NAME"
-
-    # tar artifact
-    cd "$ARTIFACTS_DIR"
-    tar -czf "$ARTIFACT_NAME.tar.gz" "$ARTIFACT_NAME"
-
-    # remove untar'd artifact files as they
-    # should not be uploaded
-    rm -rf "$ARTIFACT_NAME"
-}
-
-untar_all_artifacts()
-{
-    # untar and remove all tar files in the current directory
-    for f in *.tar*; do
-        if [ -f "$f" ]; then
-            tar -xvf "$f" && rm "$f"
-        fi
-    done
-}
-
 
 
 ###############################################################################
@@ -96,9 +75,9 @@ untar_all_artifacts()
 
 build_age_test_roms()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=age-test-roms
@@ -122,13 +101,14 @@ build_age_test_roms()
     rm -rf "$ARTIFACT/_in-progress"
 
     cp "$SRC_DIR/howto/age-test-roms.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_blargg()
 {
+    print_cmd_title
+
     ARTIFACT_NAME=blargg
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
@@ -144,16 +124,15 @@ build_blargg()
     rsync -am ./ "$ARTIFACT"
 
     cp "$SRC_DIR/howto/blargg.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_bully()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=bully
@@ -171,16 +150,15 @@ build_bully()
     cp bully-expected/bully.png "$ARTIFACT"
 
     cp "$SRC_DIR/howto/bully.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_cgb_acid2()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=cgb-acid2
@@ -199,16 +177,15 @@ build_cgb_acid2()
     cp img/reference.png "$ARTIFACT/cgb-acid2.png"
 
     cp "$SRC_DIR/howto/cgb-acid2.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_cgb_acid_hell()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=cgb-acid-hell
@@ -232,16 +209,15 @@ build_cgb_acid_hell()
     cp img/reference.png "$ARTIFACT/cgb-acid-hell.png"
 
     cp "$SRC_DIR/howto/cgb-acid-hell.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_dmg_acid2()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=dmg-acid2
@@ -261,13 +237,14 @@ build_dmg_acid2()
     cp img/reference-dmg.png "$ARTIFACT/dmg-acid2-dmg.png"
 
     cp "$SRC_DIR/howto/dmg-acid2.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_gambatte_hwtests()
 {
+    print_cmd_title
+
     ARTIFACT_NAME=gambatte
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
@@ -287,16 +264,15 @@ build_gambatte_hwtests()
     cp README "$ARTIFACT"
 
     cp "$SRC_DIR/howto/gambatte.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_gbmicrotest()
 {
-    # extract WLA-DX artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/wla-dx/"*
     PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=gbmicrotest
@@ -313,16 +289,15 @@ build_gbmicrotest()
 
     cp bin/* "$ARTIFACT"
     cp "$SRC_DIR/howto/gbmicrotest.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_little_things_gb()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=little-things-gb
@@ -344,16 +319,15 @@ build_little_things_gb()
     cp little-things-gb-expected/*.png "$ARTIFACT"
 
     cp "$SRC_DIR/howto/little-things-gb.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_mealybug_tearoom_tests()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=mealybug-tearoom-tests
@@ -405,16 +379,15 @@ build_mealybug_tearoom_tests()
     rm "$ARTIFACT/ppu/m3_wx_6_change_cgb_d.png"
 
     cp "$SRC_DIR/howto/mealybug-tearoom-tests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_mooneye_test_suite()
 {
-    # extract WLA-DX artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/wla-dx/"*
     PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=mooneye-test-suite
@@ -436,20 +409,31 @@ build_mooneye_test_suite()
     rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
 
     cp "$SRC_DIR/howto/mooneye-test-suite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_mooneye_test_suite_wilbertpol()
 {
+    print_cmd_title
+
     # we need WLA-DX v9.6 for compatibility reasons
     REPO_WLA_DX=$(mktemp -d)
+    echo "building wla-dx 9.6 in $REPO_WLA_DX"
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
     git checkout v9.6
+
+    # stack.c is encoded as iso-8859-1, we convert it to utf-8 to prevent possible compiler errors
+    echo "converting stack.c to utf-8"
+    iconv -f iso-8859-1 -t utf-8 stack.c > stack-utf8.c
+    mv stack-utf8.c stack.c
+
+    # compile WLA-DX v9.6
     ./unix.sh 8
+
     PATH="$REPO_WLA_DX/binaries:$PATH"
+    echo "path is $PATH"
 
     ARTIFACT_NAME=mooneye-test-suite-wilbertpol
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
@@ -471,13 +455,14 @@ build_mooneye_test_suite_wilbertpol()
     rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
 
     cp "$SRC_DIR/howto/mooneye-test-suite-wilbertpol.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_release_zip()
 {
+    print_cmd_title
+
     ZIP_FILE=$1
     if [ -z "$ZIP_FILE" ]; then
         print_usage_and_exit
@@ -491,7 +476,6 @@ build_release_zip()
     rm -rf "$ZIP_FILE"
 
     # create new zip file
-    untar_all_artifacts
     rm -rf rgbds wla-dx
     zip -r "$ZIP_FILE" .
 }
@@ -500,6 +484,8 @@ build_release_zip()
 
 build_rgbds()
 {
+    print_cmd_title
+
     ARTIFACT_NAME=rgbds
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
@@ -517,14 +503,14 @@ build_rgbds()
     cmake --build build
 
     cp build/src/rgbasm build/src/rgbfix build/src/rgbgfx build/src/rgblink "$ARTIFACT"
-
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_rtc3test()
 {
+    print_cmd_title
+
     # use RGBDS 0.4 as rtc3test is not compatible to RGBDS 0.5
     # (RGBDS 0.5 "PRINT" macro vs. rtc3test "Print:" label)
     REPO_RGBDS=$(mktemp -d)
@@ -554,16 +540,15 @@ build_rtc3test()
     cp rtc3test-expected/*.png "$ARTIFACT"
 
     cp "$SRC_DIR/howto/rtc3test.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_same_suite()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=same-suite
@@ -581,16 +566,15 @@ build_same_suite()
     rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
     cp "$SRC_DIR/howto/same-suite.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_strikethrough()
 {
-    # extract RGBDS artifacts
-    cd "$ARTIFACTS_DIR"
-    untar_all_artifacts
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
     PATH="$ARTIFACTS_DIR/rgbds:$PATH"
 
     ARTIFACT_NAME=strikethrough
@@ -608,13 +592,14 @@ build_strikethrough()
     cp strikethrough-expected/strikethrough*.png "$ARTIFACT"
 
     cp "$SRC_DIR/howto/strikethrough.md" "$ARTIFACT/game-boy-test-roms-howto.md"
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
 
 build_wla_dx()
 {
+    print_cmd_title
+
     ARTIFACT_NAME=wla-dx
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
@@ -622,7 +607,7 @@ build_wla_dx()
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
     git checkout d8b51a99ff1d8c9cb64ba4db90191718508f9c98
-    # in case of this error on macOS:
+    # in case of this error (e.g. on macOS):
     #     wlalink/write.c:3576:26: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
     # use another compiler, e.g.
     #     ./assemble.sh wla-dx -DCMAKE_C_COMPILER=/usr/local/bin/gcc-13
@@ -630,8 +615,6 @@ build_wla_dx()
     make wla-gb wlalink
 
     cp binaries/wla-gb binaries/wlalink "$ARTIFACT"
-
-    tar_rm_artifact $ARTIFACT_NAME
 }
 
 
