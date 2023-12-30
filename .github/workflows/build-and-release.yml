@@ -10,8 +10,7 @@ env:
   WLADX_ARTIFACT_NAME: artifact-tools-wla-dx
 
 jobs:
-
-
+  # make the tools required for some build jobs
   tools:
     runs-on: ubuntu-latest
     strategy:
@@ -26,21 +25,21 @@ jobs:
           name: artifact-${{ github.job }}-${{ matrix.tool }}
           path: ${{ env.ARTIFACTS_PATH }}
 
+  # build test roms using the tools created above
 
-  blargg-suite:
-    name: create Blargg suite
+  # build test roms (no tools required)
+  test-roms-no-tools:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [blargg-roms, gambatte-roms, mooneye-test-suite-wilbertpol, rtc3test]
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Blargg test suite
-        run: src/assemble.sh blargg-roms
-
-      - name: upload Blargg artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+      - run: src/assemble.sh ${{ matrix.suite }}
+      - uses: actions/upload-artifact@v4
         with:
-          name: artifact-${{ github.job }}
+          name: artifact-${{ github.job }}-${{ matrix.suite }}
           path: ${{ env.ARTIFACTS_PATH }}
 
 
@@ -62,23 +61,6 @@ jobs:
         run: src/assemble.sh bully
 
       - name: upload bully.gb artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-${{ github.job }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  gambatte-suite:
-    name: build Gambatte suite
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Gambatte test suite
-        run: src/assemble.sh gambatte-roms
-
-      - name: upload Gambatte artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ github.job }}
@@ -277,40 +259,6 @@ jobs:
           path: ${{ env.ARTIFACTS_PATH }}
 
 
-  mooneye-test-suite-wilbertpol:
-    name: build Mooneye Test Suite (wilbertpol)
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: assemble Mooneye Test Suite (wilbertpol)
-        run: src/assemble.sh mooneye-test-suite-wilbertpol
-
-      - name: upload Mooneye Test Suite (wilbertpol) artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-${{ github.job }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
-  rtc3test:
-    name: build rtc3test
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: build rtc3test
-        run: src/assemble.sh rtc3test
-
-      - name: upload rtc3test artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-${{ github.job }}
-          path: ${{ env.ARTIFACTS_PATH }}
-
-
   same-suite:
     name: build same-suite
     runs-on: ubuntu-latest
@@ -363,19 +311,16 @@ jobs:
     name: create release zip
     runs-on: ubuntu-latest
     needs: [
+        test-roms-no-tools,
         age-test-roms,
-        blargg-suite,
         bully,
         cgb-acid2,
         cgb-acid-hell,
         dmg-acid2,
         little-things-gb,
-        gambatte-suite,
         gbmicrotest,
         mealybug-tearoom-tests,
         mooneye-test-suite,
-        mooneye-test-suite-wilbertpol,
-        rtc3test,
         same-suite,
         strikethrough
     ]
