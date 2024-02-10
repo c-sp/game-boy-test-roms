@@ -322,6 +322,34 @@ build_little_things_gb()
 }
 
 
+build_mbc3_tester()
+{
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=mbc3-tester
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/EricKirschenmann/MBC3-Tester-gb.git .
+    git checkout 40065adab0e2a5597621bb7e7e4812d0e0f43da7
+
+    cd disassembly
+    make all
+    cd -
+
+    cp disassembly/game.gb "$ARTIFACT"
+    cp README.md "$ARTIFACT/mbc3-tester-readme.md"
+
+    cd "$SRC_DIR"
+    cp mbc3-tester-expected/*.png "$ARTIFACT"
+
+    cp "$SRC_DIR/howto/mbc3-tester.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+}
+
 
 build_mealybug_tearoom_tests()
 {
@@ -634,6 +662,7 @@ CMD_DMG_ACID2=dmg-acid2
 CMD_GAMBATTE=gambatte-roms
 CMD_GBMICROTEST=gbmicrotest
 CMD_LITTLE_THINGS_GB=little-things-gb
+CMD_MBC3_TESTER=mbc3-tester
 CMD_MEALYBUG_TEAROOM_TESTS=mealybug-tearoom-tests
 CMD_MOONEYE_TEST_SUITE=mooneye-test-suite
 CMD_MOONEYE_TEST_SUITE_WILBERTPOL=mooneye-test-suite-wilbertpol
@@ -666,6 +695,7 @@ case ${CMD} in
     "${CMD_GAMBATTE}") build_gambatte_hwtests "$@" ;;
     "${CMD_GBMICROTEST}") build_gbmicrotest "$@" ;;
     "${CMD_LITTLE_THINGS_GB}") build_little_things_gb "$@" ;;
+    "${CMD_MBC3_TESTER}") build_mbc3_tester "$@" ;;
     "${CMD_MEALYBUG_TEAROOM_TESTS}") build_mealybug_tearoom_tests "$@" ;;
     "${CMD_MOONEYE_TEST_SUITE}") build_mooneye_test_suite "$@" ;;
     "${CMD_MOONEYE_TEST_SUITE_WILBERTPOL}") build_mooneye_test_suite_wilbertpol "$@" ;;
