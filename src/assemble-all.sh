@@ -15,6 +15,7 @@ SCRIPT_DIR=$(dirname "$0")
 "$SCRIPT_DIR/assemble.sh" gambatte-roms
 "$SCRIPT_DIR/assemble.sh" gbmicrotest
 "$SCRIPT_DIR/assemble.sh" little-things-gb
+"$SCRIPT_DIR/assemble.sh" mbc3-tester
 "$SCRIPT_DIR/assemble.sh" mealybug-tearoom-tests
 "$SCRIPT_DIR/assemble.sh" mooneye-test-suite
 "$SCRIPT_DIR/assemble.sh" mooneye-test-suite-wilbertpol
