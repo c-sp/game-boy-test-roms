@@ -341,7 +341,7 @@ build_mbc3_tester()
     make all
     cd -
 
-    cp disassembly/game.gb "$ARTIFACT"
+    cp disassembly/game.gb "$ARTIFACT/mbc3-tester.gb"
     cp README.md "$ARTIFACT/mbc3-tester-readme.md"
 
     cd "$SRC_DIR"
