@@ -6,6 +6,9 @@ are compiled with [RGBDS](https://github.com/gbdev/rgbds).
 ## Game Boy Devices & SoC Revisions
 
 I could not find any information on Game Boy hardware compatibility for this test suite.
+However,
+no timing edge cases seem to be involved here,
+so these tests will probably run on any DMG and CGB.
 
 ## Exit Condition
 
