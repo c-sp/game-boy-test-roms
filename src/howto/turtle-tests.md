@@ -12,7 +12,7 @@ so these tests will probably run on any DMG and CGB.
 
 ## Exit Condition
 
-TODO
+Running the test run for half a second emulated time or around 30 frames is sufficient.
 
 ## Test Success/Failure
 
