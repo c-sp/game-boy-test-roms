@@ -338,6 +338,10 @@ build_mbc3_tester()
     git checkout 40065adab0e2a5597621bb7e7e4812d0e0f43da7
 
     cd disassembly
+    # The GitHub Ubuntu runner does not know any "md5" command
+    # (Ubuntu comes with "md5sum" instead).
+    # We comment out the "md5" step in the Makefile ...
+    sed -i.bak "s/md5/#md5/" Makefile
     make all
     cd -
 
