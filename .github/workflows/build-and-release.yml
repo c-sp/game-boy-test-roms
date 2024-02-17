@@ -44,6 +44,7 @@ jobs:
           - mooneye-test-suite
           - same-suite
           - strikethrough
+          - turtle-tests
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4

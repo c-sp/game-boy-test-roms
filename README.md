@@ -43,6 +43,8 @@ It includes (in alphabetical order):
   <sup>by [ax6](https://github.com/aaaaaa123456789) </sup>
 * **[SameSuite](https://github.com/LIJI32/SameSuite)**  
   <sup>by [Lior Halphon](https://github.com/LIJI32) </sup>
+* **[TurtleTests](https://github.com/Powerlated/TurtleTests)**  
+  <sup>by [Brian Jia](https://github.com/Powerlated) </sup>
 
 ## Running test suites
 
@@ -92,6 +94,8 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/same-suite/`)
 * [Strikethrough](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/strikethrough.md)
   (located at `<release-zip>/strikethrough/`)
+* [TurtleTests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/turtle-tests.md)
+  (located at `<release-zip>/turtle-tests/`)
 
 ## Versioning
 
