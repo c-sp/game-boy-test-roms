@@ -28,6 +28,8 @@ It includes (in alphabetical order):
   </sup>
 * **[GBMicrotest](https://github.com/aappleby/GBMicrotest)**  
   <sup>by [aappleby](https://github.com/aappleby) </sup>
+* **[MBC3 Tester](https://github.com/EricKirschenmann/MBC3-Tester-gb)**  
+  <sup>by [Eric Kirschenmann](https://github.com/EricKirschenmann) </sup>
 * **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**  
   <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite)**  
@@ -74,6 +76,8 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/gambatte/`)
 * [GBMicrotest](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/gbmicrotest.md)
   (located at `<release-zip>/gbmicrotest/`)
+* [MBC3 Tester](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mbc3-tester.md)
+  (located at `<release-zip>/mbc3-tester/`)
 * [Mealybug Tearoom Tests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mealybug-tearoom-tests.md)
   (located at `<release-zip>/mealybug-tearoom-tests/`)
 * [Mooneye Test Suite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/mooneye-test-suite.md)
