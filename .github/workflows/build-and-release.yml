@@ -39,6 +39,7 @@ jobs:
           - dmg-acid2
           - gbmicrotest
           - little-things-gb
+          - mbc3-tester
           - mealybug-tearoom-tests
           - mooneye-test-suite
           - same-suite
