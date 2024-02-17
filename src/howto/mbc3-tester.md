@@ -16,6 +16,7 @@ This tests loops indefinitely. The result can be checked after first 40 frames.
 Test success/failure can be determined by
 [a screenshot](https://github.com/c-sp/gameboy-test-roms/tree/master/src/mbc3-tester-expected/)
 comparison.
+Note that on CGB the test runs in "CGB compatibility mode".
 
 To create comparable screenshots,
 your emulator should calculate colors as follows:
