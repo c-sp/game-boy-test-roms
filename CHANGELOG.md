@@ -2,6 +2,8 @@
 
 - add [MBC3 Tester:40065adab0](https://github.com/EricKirschenmann/MBC3-Tester-gb/tree/40065adab0)
   *(2021-03-02)*
+- add [TurtleTests:b341ff54ec](https://github.com/Powerlated/TurtleTests/tree/b341ff54ec)
+  *(2020-09-05)*
 
 ## [v6.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v6.0) *(2023-07-24)*
 

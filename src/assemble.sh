@@ -28,6 +28,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_GAMBATTE"
     echo "    $0 $CMD_GBMICROTEST"
     echo "    $0 $CMD_LITTLE_THINGS_GB"
+    echo "    $0 $CMD_MBC3_TESTER"
     echo "    $0 $CMD_MEALYBUG_TEAROOM_TESTS"
     echo "    $0 $CMD_MOONEYE_TEST_SUITE"
     echo "    $0 $CMD_MOONEYE_TEST_SUITE_WILBERTPOL"
@@ -36,6 +37,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_RTC3TEST"
     echo "    $0 $CMD_SAME_SUITE"
     echo "    $0 $CMD_STRIKETHROUGH"
+    echo "    $0 $CMD_TURTLE_TESTS"
     echo "    $0 $CMD_WLA_DX"
     exit 1
 }
@@ -627,6 +629,35 @@ build_strikethrough()
 }
 
 
+build_turtle_tests()
+{
+    print_cmd_title
+
+    chmod +x "$ARTIFACTS_DIR/rgbds/"*
+    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
+
+    ARTIFACT_NAME=turtle-tests
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/Powerlated/TurtleTests.git .
+    git checkout b341ff54ec1e6a501d37dd309c556b6968a07eec
+
+echo $(pwd)
+    make
+
+    cp README.md "$ARTIFACT"
+    cd src
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+
+    cd "$SRC_DIR/turtle-tests-expected"
+    rsync -am ./ "$ARTIFACT"
+
+    cp "$SRC_DIR/howto/turtle-tests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+}
+
+
 
 build_wla_dx()
 {
@@ -675,6 +706,7 @@ CMD_RGBDS=rgbds
 CMD_RTC3TEST=rtc3test
 CMD_SAME_SUITE=same-suite
 CMD_STRIKETHROUGH=strikethrough
+CMD_TURTLE_TESTS=turtle-tests
 CMD_WLA_DX=wla-dx
 
 # identify repository directories based on the path of this script
@@ -708,6 +740,7 @@ case ${CMD} in
     "${CMD_RTC3TEST}") build_rtc3test "$@" ;;
     "${CMD_SAME_SUITE}") build_same_suite "$@" ;;
     "${CMD_STRIKETHROUGH}") build_strikethrough "$@" ;;
+    "${CMD_TURTLE_TESTS}") build_turtle_tests "$@" ;;
     "${CMD_WLA_DX}") build_wla_dx "$@" ;;
 
     *) print_usage_and_exit ;;
