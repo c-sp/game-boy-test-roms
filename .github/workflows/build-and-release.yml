@@ -66,7 +66,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ blargg-roms, gambatte-roms, mooneye-test-suite-wilbertpol, rtc3test, scribbltests ]
+        suite:
+          - blargg-roms
+          - gambatte-roms
+          - mooneye-test-suite-wilbertpol
+          - rtc3test
+          - scribbltests
     steps:
       - uses: actions/checkout@v4
       - run: |
