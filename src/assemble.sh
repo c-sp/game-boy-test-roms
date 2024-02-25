@@ -623,7 +623,7 @@ build_scribbltests()
     cd "$SRC_DIR/scribbltests-expected"
     rsync -am ./ "$ARTIFACT"
 
-    #cp "$SRC_DIR/howto/scribbltests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+    cp "$SRC_DIR/howto/scribbltests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
 }
 
 
