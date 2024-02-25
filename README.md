@@ -18,8 +18,9 @@ It includes (in alphabetical order):
   and **[Strikethrough](https://github.com/Hacktix/strikethrough.gb)**  
   <sup>by [Hacktix](https://github.com/Hacktix) </sup>
 * **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)**,
-  **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)** and
-  **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)**  
+  **[cgb-acid2](https://github.com/mattcurrie/cgb-acid2)**,
+  **[dmg-acid2](https://github.com/mattcurrie/dmg-acid2)** and
+  **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**  
   <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[Gambatte test suite](https://github.com/sinamas/gambatte)**
   (as the original Gambatte repository is not public anymore, we use
@@ -31,8 +32,6 @@ It includes (in alphabetical order):
   <sup>by [aappleby](https://github.com/aappleby) </sup>
 * **[MBC3 Tester](https://github.com/EricKirschenmann/MBC3-Tester-gb)**  
   <sup>by [Eric Kirschenmann](https://github.com/EricKirschenmann) </sup>
-* **[Mealybug Tearoom Tests](https://github.com/mattcurrie/mealybug-tearoom-tests)**  
-  <sup>by [Matt Currie](https://github.com/mattcurrie) </sup>
 * **[Mooneye Test Suite](https://github.com/Gekkio/mooneye-test-suite)**  
   <sup>by [Joonas Javanainen](https://github.com/Gekkio) </sup>
 * **[Mooneye Test Suite (wilbertpol)](https://github.com/wilbertpol/mooneye-gb)**  
