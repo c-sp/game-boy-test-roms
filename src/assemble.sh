@@ -620,10 +620,10 @@ build_scribbltests()
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
     rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
 
-    #cd "$SRC_DIR/turtle-tests-expected"
-    #rsync -am ./ "$ARTIFACT"
+    cd "$SRC_DIR/scribbltests-expected"
+    rsync -am ./ "$ARTIFACT"
 
-    #cp "$SRC_DIR/howto/turtle-tests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+    #cp "$SRC_DIR/howto/scribbltests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
 }
 
 
