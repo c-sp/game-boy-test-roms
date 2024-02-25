@@ -36,6 +36,7 @@ print_usage_and_exit()
     echo "    $0 $CMD_RGBDS"
     echo "    $0 $CMD_RTC3TEST"
     echo "    $0 $CMD_SAME_SUITE"
+    echo "    $0 $CMD_SCRIBBLTESTS"
     echo "    $0 $CMD_STRIKETHROUGH"
     echo "    $0 $CMD_TURTLE_TESTS"
     echo "    $0 $CMD_WLA_DX"
@@ -604,6 +605,29 @@ build_same_suite()
 
 
 
+build_scribbltests()
+{
+    print_cmd_title
+
+    ARTIFACT_NAME=scribbltests
+    ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
+
+    REPO=$(mktemp -d)
+    cd "$REPO"
+    git clone https://github.com/Hacktix/scribbltests.git .
+    git checkout 96dd2f14bc8cce1fd5df25427056e059a175e9f7
+
+    rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
+    rsync -am --include='README.md' --include='*/' --exclude='*' ./ "$ARTIFACT"
+
+    cd "$SRC_DIR/scribbltests-expected"
+    rsync -am ./ "$ARTIFACT"
+
+    cp "$SRC_DIR/howto/scribbltests.md" "$ARTIFACT/game-boy-test-roms-howto.md"
+}
+
+
+
 build_strikethrough()
 {
     print_cmd_title
@@ -629,6 +653,7 @@ build_strikethrough()
 }
 
 
+
 build_turtle_tests()
 {
     print_cmd_title
@@ -644,7 +669,6 @@ build_turtle_tests()
     git clone https://github.com/Powerlated/TurtleTests.git .
     git checkout b341ff54ec1e6a501d37dd309c556b6968a07eec
 
-echo $(pwd)
     make
 
     cp README.md "$ARTIFACT"
@@ -705,6 +729,7 @@ CMD_RELEASE_ZIP=release-zip
 CMD_RGBDS=rgbds
 CMD_RTC3TEST=rtc3test
 CMD_SAME_SUITE=same-suite
+CMD_SCRIBBLTESTS=scribbltests
 CMD_STRIKETHROUGH=strikethrough
 CMD_TURTLE_TESTS=turtle-tests
 CMD_WLA_DX=wla-dx
@@ -739,6 +764,7 @@ case ${CMD} in
     "${CMD_RGBDS}") build_rgbds "$@" ;;
     "${CMD_RTC3TEST}") build_rtc3test "$@" ;;
     "${CMD_SAME_SUITE}") build_same_suite "$@" ;;
+    "${CMD_SCRIBBLTESTS}") build_scribbltests "$@" ;;
     "${CMD_STRIKETHROUGH}") build_strikethrough "$@" ;;
     "${CMD_TURTLE_TESTS}") build_turtle_tests "$@" ;;
     "${CMD_WLA_DX}") build_wla_dx "$@" ;;

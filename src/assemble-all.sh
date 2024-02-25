@@ -21,6 +21,8 @@ SCRIPT_DIR=$(dirname "$0")
 "$SCRIPT_DIR/assemble.sh" mooneye-test-suite-wilbertpol
 "$SCRIPT_DIR/assemble.sh" rtc3test
 "$SCRIPT_DIR/assemble.sh" same-suite
+"$SCRIPT_DIR/assemble.sh" scribbltests
 "$SCRIPT_DIR/assemble.sh" strikethrough
+"$SCRIPT_DIR/assemble.sh" turtle-tests
 
 "$SCRIPT_DIR/assemble.sh" release-zip master.zip
