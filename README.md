@@ -13,7 +13,8 @@ It includes (in alphabetical order):
   <sup>by [me](https://github.com/c-sp) </sup>
 * **[Blargg's test roms](https://github.com/retrio/gb-test-roms)**  
   <sup>by [Shay Green (a.k.a. Blargg)](http://www.slack.net/~ant/) </sup>
-* **[Bully](https://github.com/Hacktix/BullyGB)**
+* **[Bully](https://github.com/Hacktix/BullyGB)**,
+  **[Scribbltests](https://github.com/Hacktix/scribbltests)**
   and **[Strikethrough](https://github.com/Hacktix/strikethrough.gb)**  
   <sup>by [Hacktix](https://github.com/Hacktix) </sup>
 * **[cgb-acid-hell](https://github.com/mattcurrie/cgb-acid-hell)**,
@@ -92,6 +93,8 @@ Details on this can be found in a separate readme for each test suite:
   (located at `<release-zip>/rtc3test/`)
 * [SameSuite](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/same-suite.md)
   (located at `<release-zip>/same-suite/`)
+* [Scribbltests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/scribbltests.md)
+  (located at `<release-zip>/scribbltests/`)
 * [Strikethrough](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/strikethrough.md)
   (located at `<release-zip>/strikethrough/`)
 * [TurtleTests](https://github.com/c-sp/gameboy-test-roms/tree/master/src/howto/turtle-tests.md)

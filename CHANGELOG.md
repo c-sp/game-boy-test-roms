@@ -4,6 +4,8 @@
   *(2021-03-02)*
 - add [TurtleTests:b341ff54ec](https://github.com/Powerlated/TurtleTests/tree/b341ff54ec)
   *(2020-09-05)*
+- add [Scribbltests:96dd2f14bc](https://github.com/Hacktix/scribbltests/commit/96dd2f14bc)
+  *(2020-12-25)*
 
 ## [v6.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v6.0) *(2023-07-24)*
 
