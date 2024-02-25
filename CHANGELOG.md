@@ -1,4 +1,4 @@
-## [master](https://github.com/c-sp/gameboy-test-roms)
+## [v7.0](https://github.com/c-sp/gameboy-test-roms/releases/tag/v7.0) *(2024-02-25)*
 
 - add [MBC3 Tester:40065adab0](https://github.com/EricKirschenmann/MBC3-Tester-gb/tree/40065adab0)
   *(2021-03-02)*
