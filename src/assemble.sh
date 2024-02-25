@@ -609,9 +609,6 @@ build_scribbltests()
 {
     print_cmd_title
 
-    chmod +x "$ARTIFACTS_DIR/rgbds/"*
-    PATH="$ARTIFACTS_DIR/rgbds:$PATH"
-
     ARTIFACT_NAME=scribbltests
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
