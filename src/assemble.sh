@@ -431,7 +431,7 @@ build_mooneye_test_suite()
     REPO=$(mktemp -d)
     cd "$REPO"
     git clone https://github.com/Gekkio/mooneye-test-suite.git .
-    git checkout 8d742b9d55055f6878a2f3017e0ccf2234cd692c
+    git checkout 443f6e1f2a8d83ad9da051cbb960311c5aaaea66
     make clean all
 
     cp README.markdown "$ARTIFACT"
@@ -452,42 +452,21 @@ build_mooneye_test_suite_wilbertpol()
 {
     print_cmd_title
 
-    # we need WLA-DX v9.6 for compatibility reasons
-    REPO_WLA_DX=$(mktemp -d)
-    echo "building wla-dx 9.6 in $REPO_WLA_DX"
-    cd "$REPO_WLA_DX"
-    git clone https://github.com/vhelin/wla-dx.git .
-    git checkout v9.6
-
-    # stack.c is encoded as iso-8859-1, we convert it to utf-8 to prevent possible compiler errors
-    echo "converting stack.c to utf-8"
-    iconv -f iso-8859-1 -t utf-8 stack.c > stack-utf8.c
-    mv stack-utf8.c stack.c
-
-    # compile WLA-DX v9.6
-    ./unix.sh 8
-
-    PATH="$REPO_WLA_DX/binaries:$PATH"
-    echo "path is $PATH"
+    chmod +x "$ARTIFACTS_DIR/wla-dx/"*
+    PATH="$ARTIFACTS_DIR/wla-dx:$PATH"
 
     ARTIFACT_NAME=mooneye-test-suite-wilbertpol
     ARTIFACT=$(mkdir_artifact $ARTIFACT_NAME)
 
     REPO=$(mktemp -d)
     cd "$REPO"
-    git clone https://github.com/wilbertpol/mooneye-gb.git .
-    git checkout b78dd21f0b6d00513bdeab20f7950e897a0379b3
-    make WLAFLAGS="-DACCEPTANCE_TEST=1" -C tests clean all
+    git clone https://github.com/vojty/wilbertpol-test-suite.git .
+    git checkout 325f8e80775cdce408d6d827910c5657c8f0504e
+    make clean all
 
     cp README.markdown "$ARTIFACT"
-    cd tests
-    rsync -am --include='*.png' --include='*/' --exclude='*' ./ "$ARTIFACT"
     cd build
     rsync -am --include='*.gb' --include='*/' --exclude='*' ./ "$ARTIFACT"
-
-    cd "$SRC_DIR/mooneye-test-suite-expected"
-    rsync -am ./ "$ARTIFACT"
-    rm -f "$ARTIFACT/manual-only/sprite_priority-expected.png"
 
     cp "$SRC_DIR/howto/mooneye-test-suite-wilbertpol.md" "$ARTIFACT/game-boy-test-roms-howto.md"
 }
@@ -552,7 +531,7 @@ build_rtc3test()
     cd "$REPO_RGBDS"
     git clone https://github.com/gbdev/rgbds.git .
     git checkout v0.4.2
-    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cmake --build build
     PATH="$REPO_RGBDS/build/src:$PATH"
 
@@ -693,12 +672,12 @@ build_wla_dx()
     REPO_WLA_DX=$(mktemp -d)
     cd "$REPO_WLA_DX"
     git clone https://github.com/vhelin/wla-dx.git .
-    git checkout d8b51a99ff1d8c9cb64ba4db90191718508f9c98
+    git checkout 89a90a56be5c2b8cf19a9afa3e1b32384ddb1a97
     # in case of this error (e.g. on macOS):
     #     wlalink/write.c:3576:26: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
     # use another compiler, e.g.
     #     ./assemble.sh wla-dx -DCMAKE_C_COMPILER=/usr/local/bin/gcc-13
-    cmake "$@" .
+    cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 "$@" .
     make wla-gb wlalink
 
     cp binaries/wla-gb binaries/wlalink "$ARTIFACT"
