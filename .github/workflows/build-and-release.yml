@@ -9,7 +9,7 @@ env:
 jobs:
   # make the tools required for some build jobs
   tools:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -26,7 +26,7 @@ jobs:
 
   # build test roms using the tools created above
   test-roms:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [ tools ]
     strategy:
       fail-fast: false
@@ -62,7 +62,7 @@ jobs:
 
   # build test roms (no tools required)
   test-roms-no-tools:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -85,7 +85,7 @@ jobs:
   # create a releasable zip
   create-release-zip:
     name: create release zip
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [ test-roms, test-roms-no-tools ]
     steps:
       - uses: actions/checkout@v4
@@ -115,7 +115,7 @@ jobs:
   #
   upload-new-release:
     name: upload new release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [ create-release-zip ]
     if: startsWith( github.ref, 'refs/tags/v' )
     steps:
