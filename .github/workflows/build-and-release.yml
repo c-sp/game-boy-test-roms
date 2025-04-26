@@ -42,6 +42,7 @@ jobs:
           - mbc3-tester
           - mealybug-tearoom-tests
           - mooneye-test-suite
+          - mooneye-test-suite-wilbertpol
           - same-suite
           - strikethrough
           - turtle-tests
@@ -69,7 +70,6 @@ jobs:
         suite:
           - blargg-roms
           - gambatte-roms
-          - mooneye-test-suite-wilbertpol
           - rtc3test
           - scribbltests
     steps:
